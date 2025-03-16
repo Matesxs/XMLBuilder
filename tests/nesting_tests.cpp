@@ -1,7 +1,5 @@
 #include "common.hpp"
 
-#include <memory>
-
 TEST(Nesting, SingleLayerOnRoot)
 {
   XMLBuilder::RootNode root;
