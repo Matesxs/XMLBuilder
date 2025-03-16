@@ -5,10 +5,22 @@
 
 using namespace std::string_view_literals;
 
-TEST(Creation, RootNoChildren)
+TEST(Generate, ByGenerate)
 {
   XMLBuilder::RootNode rootNode;
   EXPECT_EQ(rootNode.Generate(), DEFAULT_HEADER);
+}
+
+TEST(Generate, ByString)
+{
+  XMLBuilder::RootNode rootNode;
+  EXPECT_EQ(std::string(rootNode), DEFAULT_HEADER);
+}
+
+TEST(Generate, CustomHeader)
+{
+  XMLBuilder::RootNode rootNode;
+  EXPECT_EQ(rootNode.Generate("2.0", "random-encoding"), std::format(HEADER_FORMAT, "2.0", "random-encoding"));
 }
 
 TEST(Creation, NodeCharArrayTag)

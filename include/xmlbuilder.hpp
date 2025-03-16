@@ -167,7 +167,7 @@ namespace XMLBuilder
 				if (!ContainsAttribute(key))
 					throw std::out_of_range("Key not in attributes");
 
-				return std::string(m_attributes.at(key));
+				return m_attributes.at(key);
 			}
 
 			template<types::Strings N>
@@ -195,13 +195,18 @@ namespace XMLBuilder
 
 		class Generatable
 		{
-			public:
+		public:
 			std::string Generate(const std::string& version = "1.0", const std::string& encoding = "Windows-1250") const
 			{
 				std::stringstream outputStream;
 				outputStream << "<?xml version=\"" << version << "\" encoding=\"" << encoding << "\"?>" << std::endl;
 				_Generate(outputStream, 0);
 				return outputStream.str();
+			}
+
+			operator std::string()
+			{
+				return Generate();
 			}
 
 		protected:
@@ -341,6 +346,38 @@ namespace XMLBuilder
 				throw std::invalid_argument("Value can't be empty");
 		}
 
+		template<types::Stringlike V>
+		bool ModifyValue(const V& value)
+		{
+			std::string newValue(types::converters::toString(value));
+			if (newValue.empty()) return false;
+
+			m_value = newValue;
+
+			return true;
+		}
+
+		template<types::Floating V>
+		bool ModifyValue(const V value, size_t precision)
+		{
+			std::string newValue(types::converters::floatingToString(value, precision, true));
+			if (newValue.empty()) return false;
+
+			m_value = newValue;
+
+			return true;
+		}
+
+		std::string& Get()
+		{
+			return m_value;
+		}
+
+		std::string Get() const
+		{
+			return m_value;
+		}
+
 	protected:
 		// Inherited via NodeBase
 		virtual void _Generate(std::stringstream& outputStream, size_t depth) const override
@@ -355,7 +392,7 @@ namespace XMLBuilder
 		}
 
 	private:
-		const std::string m_value;
+		std::string m_value;
 	};
 
 	class ParentNode : public meta::NodeBase, public meta::Tagged, public meta::Attributable<Node>, public meta::ChildrenStore<ParentNode>

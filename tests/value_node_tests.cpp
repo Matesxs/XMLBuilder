@@ -255,3 +255,120 @@ TEST(ValueNode, longDoubleValueLimitExtendPrecision)
   EXPECT_EQ(node2.Generate(), std::format("{}<test{}>{:.8f}</test{}>\n", DEFAULT_HEADER, 2, -123.45l, 2));
   EXPECT_EQ(node3.Generate(), std::format("{}<test{}>{}</test{}>\n", DEFAULT_HEADER, 3, "nan", 3));
 }
+
+TEST(ValueNode, GetValueString)
+{
+  XMLBuilder::ValueNode node("test", 123.45l, 8);
+
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{:.8f}</test>\n", DEFAULT_HEADER, 123.45l));
+  EXPECT_EQ(node.Get(), std::format("{:.8f}", 123.45l));
+}
+
+TEST(ValueNode, ModifyValueString)
+{
+  XMLBuilder::ValueNode node("test", "value");
+
+  node.ModifyValue("test1");
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, "test1"));
+
+  char value2Arr[] = "test2";
+  char* value2 = value2Arr;
+  node.ModifyValue(value2);
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, value2));
+
+  const char* value3 = "test3";
+  node.ModifyValue(value3);
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, value3));
+
+  node.ModifyValue("test4"sv);
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, "test4"));
+
+  std::string_view value5 = "test5";
+  node.ModifyValue(value5);
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, value5));
+
+  const std::string_view value6 = "test6";
+  node.ModifyValue(value6);
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, value6));
+
+  std::string value7 = "test7";
+  node.ModifyValue(value7);
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, value7));
+
+  const std::string_view value8 = "test8";
+  node.ModifyValue(value8);
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, value8));
+}
+
+TEST(ValueNode, ModifyValueWholeNumber)
+{
+  XMLBuilder::ValueNode node("test", 123);
+
+  node.ModifyValue(456);
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, 456));
+
+  node.ModifyValue(static_cast<short>(123));
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, 123));
+
+  node.ModifyValue(static_cast<long>(-123));
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, -123));
+
+  node.ModifyValue(static_cast<long long>(123));
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, 123));
+
+  node.ModifyValue(static_cast<int8_t>(-123));
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, -123));
+
+  node.ModifyValue(static_cast<int16_t>(123));
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, 123));
+
+  node.ModifyValue(static_cast<int32_t>(-123));
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, -123));
+
+  node.ModifyValue(static_cast<int64_t>(123));
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, 123));
+}
+
+TEST(ValueNode, ModifyValueFloating)
+{
+  XMLBuilder::ValueNode node("test", "test");
+
+  node.ModifyValue(123.123f);
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, 123.123f));
+
+  node.ModifyValue(-123.123);
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, -123.123));
+
+  node.ModifyValue(123.123l);
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, 123.123l));
+
+  node.ModifyValue(-123.123f, 1);
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{:.1f}</test>\n", DEFAULT_HEADER, -123.123f));
+
+  node.ModifyValue(123.123, 1);
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{:.1f}</test>\n", DEFAULT_HEADER, 123.123));
+
+  node.ModifyValue(-123.123l, 1);
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{:.1f}</test>\n", DEFAULT_HEADER, -123.123l));
+
+  node.ModifyValue(123.123f, 6);
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{:.6f}</test>\n", DEFAULT_HEADER, 123.123f));
+
+  node.ModifyValue(-123.123, 6);
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{:.6f}</test>\n", DEFAULT_HEADER, -123.123));
+
+  node.ModifyValue(123.123l, 6);
+  EXPECT_EQ(node.Generate(), std::format("{}<test>{:.6f}</test>\n", DEFAULT_HEADER, 123.123l));
+}
+
+TEST(ValueNode, ModifyValueByReference)
+{
+  XMLBuilder::ValueNode node1("test", "test");
+  node1.Get() = "test1";
+
+  const XMLBuilder::ValueNode node2 ("test", "test");
+  node2.Get() = "test2"; // Not modified, returned by value
+
+  EXPECT_EQ(node1.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, "test1"));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, "test"));
+}

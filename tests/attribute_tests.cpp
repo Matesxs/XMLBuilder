@@ -372,30 +372,30 @@ TEST(Attributes, ModifyAttributeString)
   char value2Arr[] = "test2";
   char* value2 = value2Arr;
   node.ModifyAttribute("testAttr", value2);
-  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{}\"/>\n", DEFAULT_HEADER, "test2"));
+  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{}\"/>\n", DEFAULT_HEADER, value2));
 
   const char* value3 = "test3";
   node.ModifyAttribute("testAttr", value3);
-  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{}\"/>\n", DEFAULT_HEADER, "test3"));
+  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{}\"/>\n", DEFAULT_HEADER, value3));
 
   node.ModifyAttribute("testAttr", "test4"sv);
   EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{}\"/>\n", DEFAULT_HEADER, "test4"));
 
   std::string_view value5 = "test5";
   node.ModifyAttribute("testAttr", value5);
-  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{}\"/>\n", DEFAULT_HEADER, "test5"));
+  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{}\"/>\n", DEFAULT_HEADER, value5));
 
   const std::string_view value6 = "test6";
   node.ModifyAttribute("testAttr", value6);
-  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{}\"/>\n", DEFAULT_HEADER, "test6"));
+  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{}\"/>\n", DEFAULT_HEADER, value6));
 
   std::string value7 = "test7";
   node.ModifyAttribute("testAttr", value7);
-  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{}\"/>\n", DEFAULT_HEADER, "test7"));
+  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{}\"/>\n", DEFAULT_HEADER, value7));
 
   const std::string_view value8 = "test8";
   node.ModifyAttribute("testAttr", value8);
-  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{}\"/>\n", DEFAULT_HEADER, "test8"));
+  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{}\"/>\n", DEFAULT_HEADER, value8));
 }
 
 TEST(Attributes, ModifyAttributeWholeNumber)
