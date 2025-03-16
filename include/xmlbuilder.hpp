@@ -82,7 +82,7 @@ namespace XMLBuilder
 					throw std::invalid_argument("Key can't be empty");
 
 				// Just to not overwrite existing attribute
-				if (!m_attributes.contains(key))
+				if (!ContainsAttribute(key))
 					m_attributes.insert({key, std::string(types::converters::toString(value))});
 				return static_cast<ParentType&>(*this);
 			}
@@ -95,9 +95,91 @@ namespace XMLBuilder
 					throw std::invalid_argument("Key can't be empty");
 
 				// Just to not overwrite existing attribute
-				if (!m_attributes.contains(key))
+				if (!ContainsAttribute(key))
 					m_attributes.insert({key, types::converters::floatingToString(value, precision, true)});
 				return static_cast<ParentType&>(*this);
+			}
+
+			template<types::Strings N>
+			bool ContainsAttribute(const N& name) const
+			{
+				std::string key(name);
+				if (key.empty()) return false;
+				return m_attributes.contains(key);
+			}
+
+			template<types::Strings N, types::Stringlike V>
+			bool ModifyAttribute(const N& name, const V& value)
+			{
+				std::string key(name);
+				if (key.empty()) return false;
+				if (!ContainsAttribute(key)) return false;
+
+				m_attributes.insert_or_assign(key, std::string(types::converters::toString(value)));
+
+				return true;
+			}
+
+			template<types::Strings N, types::Floating V>
+			bool ModifyAttribute(const N& name, const V value, size_t precision)
+			{
+				std::string key(name);
+				if (key.empty()) return false;
+				if (!ContainsAttribute(key)) return false;
+
+				m_attributes.insert_or_assign(key, types::converters::floatingToString(value, precision, true));
+
+				return true;
+			}
+
+			template<types::Strings N>
+			bool RemoveAttribute(const N& name)
+			{
+				std::string key(name);
+				if (key.empty()) return false;
+				if (!ContainsAttribute(key)) return false;
+
+				m_attributes.erase(key);
+
+				return true;
+			}
+
+			template<types::Strings N>
+			std::string& attAt(const N& name)
+			{
+				std::string key(name);
+				if (key.empty())
+					throw std::invalid_argument("Key can't be empty");
+
+				if (!ContainsAttribute(key))
+					throw std::out_of_range("Key not in attributes");
+
+				return m_attributes.at(key);
+			}
+
+			template<types::Strings N>
+			std::string attAt(const N& name) const
+			{
+				std::string key(name);
+				if (key.empty())
+					throw std::invalid_argument("Key can't be empty");
+
+				if (!ContainsAttribute(key))
+					throw std::out_of_range("Key not in attributes");
+
+				return std::string(m_attributes.at(key));
+			}
+
+			template<types::Strings N>
+			std::string& operator[](const N& name)
+			{
+				return attAt(name);
+			}
+
+			template<types::Strings N>
+			std::string operator[](const N& name) const
+			{
+				return attAt(name);
 			}
 
 		protected:
@@ -185,8 +267,40 @@ namespace XMLBuilder
 			template<types::XMLNodeBased ChildType>
 			ParentType& AddChild(const ChildType& child)
 			{
-				m_children.push_back(new ChildType(child));
+				m_children.push_back(std::make_shared<ChildType>(child));
 				return static_cast<ParentType&>(*this);
+			}
+
+			size_t ChildrenCount() const
+			{
+				return m_children.size();
+			}
+
+			bool RemoveChild(size_t idx)
+			{
+				if (idx >= ChildrenCount()) return false;
+
+				m_children.erase(m_children.begin() + idx);
+
+				return true;
+			}
+
+			template<types::XMLNodeBased ChildType>
+			ChildType& childAt(size_t idx)
+			{
+				if (idx >= ChildrenCount())
+					throw std::out_of_range("Index out of range");
+
+				return *std::static_pointer_cast<ChildType>(m_children.at(idx));
+			}
+
+			template<types::XMLNodeBased ChildType>
+			ChildType childAt(size_t idx) const
+			{
+				if (idx >= ChildrenCount())
+					throw std::out_of_range("Index out of range");
+
+				return *std::static_pointer_cast<ChildType>(m_children.at(idx));
 			}
 
 		protected:
@@ -202,7 +316,7 @@ namespace XMLBuilder
 			}
 
 		protected:
-			std::vector<meta::NodeBase*> m_children;
+			std::vector<std::shared_ptr<meta::NodeBase>> m_children;
 		};
 	}
 
