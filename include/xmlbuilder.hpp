@@ -81,7 +81,7 @@ namespace XMLBuilder
 				return outputStream.str();
 			}
 
-			operator std::string()
+			operator std::string() const
 			{
 				return Generate();
 			}
