@@ -70,6 +70,34 @@ namespace XMLBuilder
 			const std::string m_tag;
 		};
 
+		class Generatable
+		{
+		public:
+			std::string Generate(const std::string& version = "1.0", const std::string& encoding = "Windows-1250") const
+			{
+				std::stringstream outputStream;
+				outputStream << "<?xml version=\"" << version << "\" encoding=\"" << encoding << "\"?>" << std::endl;
+				_Generate(outputStream, 0);
+				return outputStream.str();
+			}
+
+			operator std::string()
+			{
+				return Generate();
+			}
+
+		protected:
+			std::string _GenerateDepthPadding(size_t depth) const
+			{
+				std::string output;
+				for (size_t i = 0; i < depth; i++)
+					output.push_back('\t');
+				return output;
+			}
+
+			virtual void _Generate(std::stringstream& outputStream, size_t depth) const = 0;
+		};
+
 		template<class ParentType>
 		class Attributable
 		{
@@ -193,33 +221,6 @@ namespace XMLBuilder
 			std::map<std::string, std::string> m_attributes;
 		};
 
-		class Generatable
-		{
-		public:
-			std::string Generate(const std::string& version = "1.0", const std::string& encoding = "Windows-1250") const
-			{
-				std::stringstream outputStream;
-				outputStream << "<?xml version=\"" << version << "\" encoding=\"" << encoding << "\"?>" << std::endl;
-				_Generate(outputStream, 0);
-				return outputStream.str();
-			}
-
-			operator std::string()
-			{
-				return Generate();
-			}
-
-		protected:
-			std::string _GenerateDepthPadding(size_t depth) const
-			{
-				std::string output;
-				for (size_t i = 0; i < depth; i++)
-					output.push_back('\t');
-				return output;
-			}
-
-			virtual void _Generate(std::stringstream& outputStream, size_t depth) const = 0;
-		};
 
 		class NodeBase : public Generatable
 		{
@@ -234,28 +235,6 @@ namespace XMLBuilder
 			}
 		};
 	}
-
-	class Node : public meta::NodeBase, public meta::Tagged, public meta::Attributable<Node>
-	{
-	public:
-		template<types::Strings T>
-		Node(const T& tag) :
-			meta::Tagged(tag)
-		{ }
-
-	protected:
-		// Inherited via NodeBase
-		virtual void _Generate(std::stringstream& outputStream, size_t depth) const override
-		{
-			std::string paddingString = _GenerateDepthPadding(depth);
-			outputStream << paddingString;
-			outputStream << '<' << m_tag;
-
-			_WriteAttributes(outputStream);
-
-			outputStream << "/>" << std::endl;
-		}
-	};
 
 	namespace types
 	{
@@ -324,6 +303,28 @@ namespace XMLBuilder
 			std::vector<std::shared_ptr<meta::NodeBase>> m_children;
 		};
 	}
+
+	class Node : public meta::NodeBase, public meta::Tagged, public meta::Attributable<Node>
+	{
+	public:
+		template<types::Strings T>
+		Node(const T& tag) :
+			meta::Tagged(tag)
+		{ }
+
+	protected:
+		// Inherited via NodeBase
+		virtual void _Generate(std::stringstream& outputStream, size_t depth) const override
+		{
+			std::string paddingString = _GenerateDepthPadding(depth);
+			outputStream << paddingString;
+			outputStream << '<' << m_tag;
+
+			_WriteAttributes(outputStream);
+
+			outputStream << "/>" << std::endl;
+		}
+	};
 
 	class ValueNode : public meta::NodeBase, public meta::Tagged, public meta::Attributable<Node>
 	{
