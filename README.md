@@ -1,5 +1,9 @@
 # XML Builder library for C++
 
+## Note
+
+This library is still in development so lot of things may change. There isn't any documentation becase of that reason but I plan to make some soon.
+
 ## About XML Builder Library
 
 This library is designed to simplify the process of generating XML documents programmatically. The primary motivation behind creating this library stems from the observation that many existing XML generation tools or libraries can be overly complex, difficult to integrate, or lack flexibility for developers who need a easy-to-use solution.
