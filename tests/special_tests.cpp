@@ -30,5 +30,86 @@ TEST(Special, DataRetention)
 TEST(Special, FullRLTest)
 {
   XMLBuilder::RootNode root;
-  root.AddChild(XMLBuilder::ParentNode("dat:dataPack").AddAttribute("version", "1.0"));
+  root.AddChild(XMLBuilder::ParentNode("dat:dataPack").AddAttribute("version", "1.0").AddAttribute("id", "1741957155-1").AddAttribute("application", "ATP").AddAttribute("programVersion", "2.0.0")
+                .AddChild(XMLBuilder::ParentNode("dat:dataPackItem").AddAttribute("version", "2.0").AddAttribute("id", "23230971452/19/1")
+                          .AddChild(XMLBuilder::ParentNode("bnk:bank").AddAttribute("version", "2.0")
+                                    .AddChild(XMLBuilder::ParentNode("bnk:bankHeader")
+                                              .AddChild(XMLBuilder::ValueNode("bnk:bankType", "receipt"))
+                                              .AddChild(XMLBuilder::ParentNode("bnk:account")
+                                                        .AddChild(XMLBuilder::ValueNode("typ:ids", "AM1")))
+                                              .AddChild(XMLBuilder::ValueNode("bnk:symVar", "028-2095944-2421910"))
+                                              .AddChild(XMLBuilder::ValueNode("bnk:dateStatement", "2024-11-05"))
+                                              .AddChild(XMLBuilder::ValueNode("bnk:datePayment", "2024-11-03")))
+                                    .AddChild(XMLBuilder::ParentNode("bnk:bankSummary")
+                                              .AddChild(XMLBuilder::ParentNode("bnk:foreignCurrency")
+                                                        .AddChild(XMLBuilder::ParentNode("typ:currency")
+                                                                  .AddChild(XMLBuilder::ValueNode("typ:ids", "EUR")))
+                                                        .AddChild(XMLBuilder::ValueNode("typ:amount", 1))
+                                                        .AddChild(XMLBuilder::ValueNode("typ:priceSum", 74.13l, 2))))))
+                .AddChild(XMLBuilder::ParentNode("dat:dataPackItem").AddAttribute("version", "2.0").AddAttribute("id", "23230971452/61/1")
+                          .AddChild(XMLBuilder::ParentNode("bnk:bank").AddAttribute("version", "2.0")
+                                    .AddChild(XMLBuilder::ParentNode("bnk:bankHeader")
+                                              .AddChild(XMLBuilder::ValueNode("bnk:bankType", "receipt"))
+                                              .AddChild(XMLBuilder::ParentNode("bnk:account")
+                                                        .AddChild(XMLBuilder::ValueNode("typ:ids", "AM1")))
+                                              .AddChild(XMLBuilder::ValueNode("bnk:symVar", "028-2549070-8518720"))
+                                              .AddChild(XMLBuilder::ValueNode("bnk:dateStatement", "2024-11-05"))
+                                              .AddChild(XMLBuilder::ValueNode("bnk:datePayment", "2024-11-03")))
+                                    .AddChild(XMLBuilder::ParentNode("bnk:bankSummary")
+                                              .AddChild(XMLBuilder::ParentNode("bnk:foreignCurrency")
+                                                        .AddChild(XMLBuilder::ParentNode("typ:currency")
+                                                                  .AddChild(XMLBuilder::ValueNode("typ:ids", "EUR")))
+                                                        .AddChild(XMLBuilder::ValueNode("typ:amount", 1))
+                                                        .AddChild(XMLBuilder::ValueNode("typ:priceSum", 186.31l, 2)))))));
+
+  const std::string_view result =
+"<?xml version=\"1.0\" encoding=\"Windows-1250\"?>\n\
+<dat:dataPack application=\"ATP\" id=\"1741957155-1\" programVersion=\"2.0.0\" version=\"1.0\">\n\
+\t<dat:dataPackItem id=\"23230971452/19/1\" version=\"2.0\">\n\
+\t\t<bnk:bank version=\"2.0\">\n\
+\t\t\t<bnk:bankHeader>\n\
+\t\t\t\t<bnk:bankType>receipt</bnk:bankType>\n\
+\t\t\t\t<bnk:account>\n\
+\t\t\t\t\t<typ:ids>AM1</typ:ids>\n\
+\t\t\t\t</bnk:account>\n\
+\t\t\t\t<bnk:symVar>028-2095944-2421910</bnk:symVar>\n\
+\t\t\t\t<bnk:dateStatement>2024-11-05</bnk:dateStatement>\n\
+\t\t\t\t<bnk:datePayment>2024-11-03</bnk:datePayment>\n\
+\t\t\t</bnk:bankHeader>\n\
+\t\t\t<bnk:bankSummary>\n\
+\t\t\t\t<bnk:foreignCurrency>\n\
+\t\t\t\t\t<typ:currency>\n\
+\t\t\t\t\t\t<typ:ids>EUR</typ:ids>\n\
+\t\t\t\t\t</typ:currency>\n\
+\t\t\t\t\t<typ:amount>1</typ:amount>\n\
+\t\t\t\t\t<typ:priceSum>74.13</typ:priceSum>\n\
+\t\t\t\t</bnk:foreignCurrency>\n\
+\t\t\t</bnk:bankSummary>\n\
+\t\t</bnk:bank>\n\
+\t</dat:dataPackItem>\n\
+\t<dat:dataPackItem id=\"23230971452/61/1\" version=\"2.0\">\n\
+\t\t<bnk:bank version=\"2.0\">\n\
+\t\t\t<bnk:bankHeader>\n\
+\t\t\t\t<bnk:bankType>receipt</bnk:bankType>\n\
+\t\t\t\t<bnk:account>\n\
+\t\t\t\t\t<typ:ids>AM1</typ:ids>\n\
+\t\t\t\t</bnk:account>\n\
+\t\t\t\t<bnk:symVar>028-2549070-8518720</bnk:symVar>\n\
+\t\t\t\t<bnk:dateStatement>2024-11-05</bnk:dateStatement>\n\
+\t\t\t\t<bnk:datePayment>2024-11-03</bnk:datePayment>\n\
+\t\t\t</bnk:bankHeader>\n\
+\t\t\t<bnk:bankSummary>\n\
+\t\t\t\t<bnk:foreignCurrency>\n\
+\t\t\t\t\t<typ:currency>\n\
+\t\t\t\t\t\t<typ:ids>EUR</typ:ids>\n\
+\t\t\t\t\t</typ:currency>\n\
+\t\t\t\t\t<typ:amount>1</typ:amount>\n\
+\t\t\t\t\t<typ:priceSum>186.31</typ:priceSum>\n\
+\t\t\t\t</bnk:foreignCurrency>\n\
+\t\t\t</bnk:bankSummary>\n\
+\t\t</bnk:bank>\n\
+\t</dat:dataPackItem>\n\
+</dat:dataPack>\n";
+
+  EXPECT_EQ(root.Generate(), result);
 }
