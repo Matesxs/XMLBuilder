@@ -275,7 +275,7 @@ namespace XMLBuilder
 				if (idx >= ChildrenCount())
 					throw std::out_of_range("Index out of range");
 
-				return *std::static_pointer_cast<ChildType>(m_children.at(idx));
+				return *std::dynamic_pointer_cast<ChildType>(m_children.at(idx));
 			}
 
 			template<types::XMLNodeBased ChildType>
@@ -284,7 +284,7 @@ namespace XMLBuilder
 				if (idx >= ChildrenCount())
 					throw std::out_of_range("Index out of range");
 
-				return *std::static_pointer_cast<ChildType>(m_children.at(idx));
+				return *std::dynamic_pointer_cast<ChildType>(m_children.at(idx));
 			}
 
 		protected:
