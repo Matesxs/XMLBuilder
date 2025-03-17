@@ -4,14 +4,14 @@ TEST(Nesting, SingleLayerOnRoot)
 {
   XMLBuilder::RootNode root;
   root.AddChild(XMLBuilder::Node("test1").AddAttribute("testAttr1", 123).AddAttribute("testAttr2", "xyz")).AddChild(XMLBuilder::ValueNode("test2", "value2").AddAttribute("testAttr1", 12.52, 8).AddAttribute("testAttr2", 456));
-  EXPECT_EQ(root.Generate(), std::format("{}<test1 testAttr1=\"123\" testAttr2=\"xyz\"/>\n<test2 testAttr1=\"12.52000000\" testAttr2=\"456\"/>\n", DEFAULT_HEADER));
+  EXPECT_EQ(root.Generate(), std::format("{}<test1 testAttr1=\"123\" testAttr2=\"xyz\"/>\n<test2 testAttr1=\"12.52000000\" testAttr2=\"456\">value2</test2>\n", DEFAULT_HEADER));
 }
 
 TEST(Nesting, SingleLayerOnParent)
 {
   XMLBuilder::ParentNode parent("parent");
   parent.AddChild(XMLBuilder::Node("test1").AddAttribute("testAttr1", 123).AddAttribute("testAttr2", "xyz")).AddChild(XMLBuilder::ValueNode("test2", "value2").AddAttribute("testAttr1", 12.52, 8).AddAttribute("testAttr2", 456));
-  EXPECT_EQ(parent.Generate(), std::format("{}<parent>\n\t<test1 testAttr1=\"123\" testAttr2=\"xyz\"/>\n\t<test2 testAttr1=\"12.52000000\" testAttr2=\"456\"/>\n</parent>\n", DEFAULT_HEADER));
+  EXPECT_EQ(parent.Generate(), std::format("{}<parent>\n\t<test1 testAttr1=\"123\" testAttr2=\"xyz\"/>\n\t<test2 testAttr1=\"12.52000000\" testAttr2=\"456\">value2</test2>\n</parent>\n", DEFAULT_HEADER));
 }
 
 TEST(Nesting, Multilayer)
@@ -32,7 +32,7 @@ TEST(Nesting, Multilayer)
 
   root.AddChild(parent1).AddChild(parent2).AddChild(XMLBuilder::ValueNode("test3", 14).AddAttribute("root", "root"));
 
-  EXPECT_EQ(root.Generate(), std::format("{}<parent1 test1=\"123\" test2=\"parent\">\n\t<parent11 test=\"14.36\">\n\t\t<parent11Child1/>\n\t\t<parent11Child2 child2=\"ack\"/>\n\t</parent11>\n</parent1>\n<parent2 test1=\"parent2\" test2=\"120500\">\n\t<parent2Child1>hi</parent2Child1>\n\t<parent2Child2 test1=\"test\"/>\n</parent2>\n<test3 root=\"root\"/>\n", DEFAULT_HEADER));
+  EXPECT_EQ(root.Generate(), std::format("{}<parent1 test1=\"123\" test2=\"parent\">\n\t<parent11 test=\"14.36\">\n\t\t<parent11Child1/>\n\t\t<parent11Child2 child2=\"ack\">14.2000</parent11Child2>\n\t</parent11>\n</parent1>\n<parent2 test1=\"parent2\" test2=\"120500\">\n\t<parent2Child1>hi</parent2Child1>\n\t<parent2Child2 test1=\"test\"/>\n</parent2>\n<test3 root=\"root\">14</test3>\n", DEFAULT_HEADER));
 }
 
 TEST(Nesting, ChildCount)
@@ -81,5 +81,5 @@ TEST(Nesting, RemoveChild)
 
   root.childAt<XMLBuilder::ParentNode>(0).childAt<XMLBuilder::ParentNode>(0).RemoveChild(0);
 
-  EXPECT_EQ(root.Generate(), std::format("{}<parent1 test1=\"123\" test2=\"parent\">\n\t<parent11 test=\"14.36\"/>\n</parent1>\n<test3 root=\"root\"/>\n", DEFAULT_HEADER));
+  EXPECT_EQ(root.Generate(), std::format("{}<parent1 test1=\"123\" test2=\"parent\">\n\t<parent11 test=\"14.36\"/>\n</parent1>\n<test3 root=\"root\">14</test3>\n", DEFAULT_HEADER));
 }

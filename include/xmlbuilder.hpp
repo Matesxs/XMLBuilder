@@ -326,7 +326,7 @@ namespace XMLBuilder
 		}
 	};
 
-	class ValueNode : public meta::NodeBase, public meta::Tagged, public meta::Attributable<Node>
+	class ValueNode : public meta::NodeBase, public meta::Tagged, public meta::Attributable<ValueNode>
 	{
 	public:
 		template<types::Strings T, types::Stringlike V>
@@ -396,7 +396,7 @@ namespace XMLBuilder
 		std::string m_value;
 	};
 
-	class ParentNode : public meta::NodeBase, public meta::Tagged, public meta::Attributable<Node>, public meta::ChildrenStore<ParentNode>
+	class ParentNode : public meta::NodeBase, public meta::Tagged, public meta::Attributable<ParentNode>, public meta::ChildrenStore<ParentNode>
 	{
 	public:
 		template<types::Strings T>
