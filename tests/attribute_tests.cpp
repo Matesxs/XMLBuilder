@@ -114,13 +114,13 @@ TEST(Attributes, stringViewValue)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"value{}\"/>\n", DEFAULT_HEADER, 3, 3, 3));
 }
 
-TEST(Attributes, NumericBoolValue)
+TEST(Attributes, BoolValue)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddAttribute("testAtt1", true);
   XMLBuilder::Node node2 = XMLBuilder::Node("test2").AddAttribute("testAtt2", false);
 
-  EXPECT_EQ(node1.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 1, 1, 1));
-  EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 2, 2, 0));
+  EXPECT_EQ(node1.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 1, 1, "true"));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 2, 2, "false"));
 }
 
 TEST(Attributes, ShortValue)

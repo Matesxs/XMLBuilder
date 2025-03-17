@@ -30,12 +30,10 @@ namespace XMLBuilder
 			template<Stringlike T>
 			decltype(auto) toString(T& t)
 			{
-				if constexpr (Floating<T>)
+				if constexpr (Stringable<T>)
 					return std::format("{}", t);
-				else if constexpr (Stringable<T>)
-					return std::to_string(t);
 				else
-					return t;
+					return std::string(t);
 			}
 
 			template<Floating T>
@@ -111,7 +109,7 @@ namespace XMLBuilder
 
 				// Just to not overwrite existing attribute
 				if (!ContainsAttribute(key))
-					m_attributes.insert({key, std::string(types::converters::toString(value))});
+					m_attributes.insert({key, types::converters::toString(value)});
 				return static_cast<ParentType&>(*this);
 			}
 
@@ -143,7 +141,7 @@ namespace XMLBuilder
 				if (key.empty()) return false;
 				if (!ContainsAttribute(key)) return false;
 
-				m_attributes.insert_or_assign(key, std::string(types::converters::toString(value)));
+				m_attributes.insert_or_assign(key, types::converters::toString(value));
 
 				return true;
 			}

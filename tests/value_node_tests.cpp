@@ -60,13 +60,13 @@ TEST(ValueNode, stringViewValue)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{}>value{}</test{}>\n", DEFAULT_HEADER, 3, 3, 3));
 }
 
-TEST(ValueNode, NumericBoolValue)
+TEST(ValueNode, BoolValue)
 {
   XMLBuilder::ValueNode node1("test1", true);
   XMLBuilder::ValueNode node2("test2", false);
 
-  EXPECT_EQ(node1.Generate(), std::format("{}<test{}>{}</test{}>\n", DEFAULT_HEADER, 1, 1, 1));
-  EXPECT_EQ(node2.Generate(), std::format("{}<test{}>{}</test{}>\n", DEFAULT_HEADER, 2, 0, 2));
+  EXPECT_EQ(node1.Generate(), std::format("{}<test{}>{}</test{}>\n", DEFAULT_HEADER, 1, "true", 1));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test{}>{}</test{}>\n", DEFAULT_HEADER, 2, "false", 2));
 }
 
 TEST(ValueNode, ShortValue)
