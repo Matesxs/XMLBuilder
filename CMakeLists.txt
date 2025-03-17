@@ -12,4 +12,5 @@ set(Headers
 add_library(${PROJECT_NAME} INTERFACE ${Headers})
 target_include_directories(${PROJECT_NAME} INTERFACE include/)
 
+enable_testing()
 add_subdirectory(tests/)
