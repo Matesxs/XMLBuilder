@@ -25,3 +25,9 @@ The absence of a simple, lightweight, and header-only solution inspired me to cr
 ## Limitations
 
 - Use of modern C++ standard C++20
+- No XML check, only check done is on repeating attribute names
+
+## Repository structure
+
+- **include** folder contains the library itself, feel free to include it in your project
+- **tests** folder contains tests of functionality of the library
