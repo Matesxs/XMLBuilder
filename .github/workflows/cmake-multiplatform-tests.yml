@@ -4,9 +4,13 @@ name: CMake Tests on multiple platforms
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - "master"
+      - "development"
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - "master"
+      - "development"
 
 jobs:
   build:

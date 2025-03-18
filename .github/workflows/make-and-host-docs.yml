@@ -1,0 +1,38 @@
+name: Make and host Doxygen docs
+
+on:
+  push:
+    branches:
+      - "master"
+  pull_request:
+    branches:
+      - "master"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@v4
+        
+    - name: Set reusable strings
+      id: strings
+      shell: bash
+      run: |
+        echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+
+    - name: Configure CMake
+      run: >
+        cmake -B ${{ steps.strings.outputs.build-output-dir }}
+        -DCMAKE_BUILD_TYPE=Release
+        -S ${{ github.workspace }}
+
+    - name: "Build and Host Docs"
+      uses: DenverCoder1/doxygen-github-pages-action@v2.0.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: lib-docs
+        folder: ${{ steps.strings.outputs.build-output-dir }}/docs/html
+        config_file: ${{ steps.strings.outputs.build-output-dir }}/docs/Doxyfile
+        doxygen_version: 1.9.6
