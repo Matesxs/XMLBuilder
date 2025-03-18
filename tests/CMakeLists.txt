@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(XMLBuilderLib_Tests VERSION 1.0.0)
+project(XMLBuilderLib_Tests)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -18,6 +18,8 @@ FetchContent_MakeAvailable(googletest)
 
 file(GLOB TEST_SOURCES ./*.cpp ./*.hpp)
 file(GLOB UTILS_SOURCES ./utils/*.cpp ./utils/*.hpp)
+
+enable_testing()
 
 add_executable(
   ${PROJECT_NAME}
