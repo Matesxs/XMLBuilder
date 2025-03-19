@@ -28,11 +28,15 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -S ${{ github.workspace }}
 
-    - name: "Build and Host Docs"
-      uses: DenverCoder1/doxygen-github-pages-action@v2.0.0
+    - name: Build Docs
+      uses: mattnotmitt/doxygen-action@v1.9.5
+      with:
+        working-directory: "${{ steps.strings.outputs.build-output-dir }}/docs"
+        doxyfile-path: "${{ steps.strings.outputs.build-output-dir }}/docs/Doxyfile"
+
+    - name: Deploy Docs
+      uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: lib-docs
-        folder: ${{ steps.strings.outputs.build-output-dir }}/docs/html
-        config_file: ${{ steps.strings.outputs.build-output-dir }}/docs/Doxyfile
-        doxygen_version: 1.9.6
+        publish_dir: "${{ steps.strings.outputs.build-output-dir }}/docs/html"
+        publish_branch: lib-docs
