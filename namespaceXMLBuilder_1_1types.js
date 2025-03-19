@@ -8,5 +8,6 @@ var namespaceXMLBuilder_1_1types =
     [ "Stringable", "conceptXMLBuilder_1_1types_1_1Stringable.html", null ],
     [ "Stringlike", "conceptXMLBuilder_1_1types_1_1Stringlike.html", null ],
     [ "Floating", "conceptXMLBuilder_1_1types_1_1Floating.html", null ],
+    [ "Integral", "conceptXMLBuilder_1_1types_1_1Integral.html", null ],
     [ "XMLNodeBased", "conceptXMLBuilder_1_1types_1_1XMLNodeBased.html", null ]
 ];

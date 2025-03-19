@@ -7,5 +7,6 @@ var classXMLBuilder_1_1ValueNode =
     [ "Get", "classXMLBuilder_1_1ValueNode.html#a79a9d932a8b28d2f432b7db700a9879c", null ],
     [ "ModifyValue", "classXMLBuilder_1_1ValueNode.html#a140a56fe1e19e7a2345795bace337149", null ],
     [ "ModifyValue", "classXMLBuilder_1_1ValueNode.html#af90bf5d15ed0dce05fd9951bd2453ec2", null ],
+    [ "operator=", "classXMLBuilder_1_1ValueNode.html#a7c4f3cef067010f9b9edbbb8cba0e305", null ],
     [ "operator=", "classXMLBuilder_1_1ValueNode.html#ab984225777b57c033ef8fdd84b132458", null ]
 ];

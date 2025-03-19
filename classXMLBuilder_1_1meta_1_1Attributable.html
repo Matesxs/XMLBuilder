@@ -149,10 +149,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a31375e87ba90c751864006b5cbd5691e"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a31375e87ba90c751864006b5cbd5691e">operator[]</a> (const N &amp;name) const</td></tr>
 <tr class="memdesc:a31375e87ba90c751864006b5cbd5691e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns string value of attribute.  <br /></td></tr>
 <tr class="separator:a31375e87ba90c751864006b5cbd5691e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e6d9f8917251380fa6a5c7f11b15db2" id="r_a0e6d9f8917251380fa6a5c7f11b15db2"><td class="memTemplParams" colspan="2">template&lt;types::Strings N, types::Stringlike V&gt; </td></tr>
-<tr class="memitem:a0e6d9f8917251380fa6a5c7f11b15db2"><td class="memTemplItemLeft" align="right" valign="top">ParentType &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a0e6d9f8917251380fa6a5c7f11b15db2">operator&lt;&lt;</a> (const std::pair&lt; N, V &gt; data)</td></tr>
-<tr class="memdesc:a0e6d9f8917251380fa6a5c7f11b15db2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator for adding or modifying attribute.  <br /></td></tr>
-<tr class="separator:a0e6d9f8917251380fa6a5c7f11b15db2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a182049398569e59d7ad8e44f6581589b" id="r_a182049398569e59d7ad8e44f6581589b"><td class="memTemplParams" colspan="2">template&lt;types::Strings N, types::Stringlike V&gt; </td></tr>
+<tr class="memitem:a182049398569e59d7ad8e44f6581589b"><td class="memTemplItemLeft" align="right" valign="top">ParentType &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a182049398569e59d7ad8e44f6581589b">operator&lt;&lt;</a> (const std::pair&lt; N, V &gt; &amp;data)</td></tr>
+<tr class="memdesc:a182049398569e59d7ad8e44f6581589b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator for adding or modifying stringlike attribute.  <br /></td></tr>
+<tr class="separator:a182049398569e59d7ad8e44f6581589b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3b030850943fc6ffea3873ef7bed780" id="r_aa3b030850943fc6ffea3873ef7bed780"><td class="memTemplParams" colspan="2">template&lt;types::Strings N, types::Floating V, types::Integral P&gt; </td></tr>
+<tr class="memitem:aa3b030850943fc6ffea3873ef7bed780"><td class="memTemplItemLeft" align="right" valign="top">ParentType &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aa3b030850943fc6ffea3873ef7bed780">operator&lt;&lt;</a> (const std::pair&lt; N, std::pair&lt; V, P &gt; &gt; &amp;data)</td></tr>
+<tr class="memdesc:aa3b030850943fc6ffea3873ef7bed780"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator for adding or modifying floating point attribute.  <br /></td></tr>
+<tr class="separator:aa3b030850943fc6ffea3873ef7bed780"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -459,8 +463,55 @@ false Attribute name is not present in the node </dd></dl>
 
 </div>
 </div>
-<a id="a0e6d9f8917251380fa6a5c7f11b15db2" name="a0e6d9f8917251380fa6a5c7f11b15db2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e6d9f8917251380fa6a5c7f11b15db2">&#9670;&#160;</a></span>operator&lt;&lt;()</h2>
+<a id="aa3b030850943fc6ffea3873ef7bed780" name="aa3b030850943fc6ffea3873ef7bed780"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3b030850943fc6ffea3873ef7bed780">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class ParentType&gt; </div>
+<div class="memtemplate">
+template&lt;types::Strings N, types::Floating V, types::Integral P&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ParentType &amp; <a class="el" href="classXMLBuilder_1_1meta_1_1Attributable.html">XMLBuilder::meta::Attributable</a>&lt; ParentType &gt;::operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">const std::pair&lt; N, std::pair&lt; V, P &gt; &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Operator for adding or modifying floating point attribute. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Throws invalid_argument exception if called with empty attribute name</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to string.">types::Strings</a> type for name of the attribute </td></tr>
+    <tr><td class="paramname">V</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Floating.html" title="Floating point numbers.">types::Floating</a> type of the attribute value </td></tr>
+    <tr><td class="paramname">P</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Integral.html">types::Integral</a> type of attribute value precision </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Data pair of attribute name and pair of attribute value and fixed value precision </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ParentType&amp; Return self reference based on parent type for chaining </dd></dl>
+
+</div>
+</div>
+<a id="a182049398569e59d7ad8e44f6581589b" name="a182049398569e59d7ad8e44f6581589b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a182049398569e59d7ad8e44f6581589b">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -475,7 +526,7 @@ template&lt;types::Strings N, types::Stringlike V&gt; </div>
         <tr>
           <td class="memname">ParentType &amp; <a class="el" href="classXMLBuilder_1_1meta_1_1Attributable.html">XMLBuilder::meta::Attributable</a>&lt; ParentType &gt;::operator&lt;&lt; </td>
           <td>(</td>
-          <td class="paramtype">const std::pair&lt; N, V &gt;</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
+          <td class="paramtype">const std::pair&lt; N, V &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -486,7 +537,7 @@ template&lt;types::Strings N, types::Stringlike V&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Operator for adding or modifying attribute. </p>
+<p>Operator for adding or modifying stringlike attribute. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Throws invalid_argument exception if called with empty attribute name</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
