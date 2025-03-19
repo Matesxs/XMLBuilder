@@ -761,10 +761,11 @@ namespace XMLBuilder
 
 		/**
 		 * @brief Modify value of node by stringlike value
+		 * @warning Throws invalid_argument exception if value is empty, value can't be empty
 		 * 
 		 * @tparam V types::Stringlike type of value
 		 * @param value New value for the node
-		 * @return ValueNode& Reference to value node
+		 * @return ValueNode& Return self reference for chaining
 		 */
 		template<types::Stringlike V>
 		ValueNode& operator=(const V& value)
