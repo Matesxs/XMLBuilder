@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - "master"
+    paths:
+      - "include/**.hpp"
+      - "docs/**"
 
 jobs:
   build:

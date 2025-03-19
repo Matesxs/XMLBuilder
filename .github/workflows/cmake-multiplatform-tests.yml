@@ -6,9 +6,17 @@ on:
   push:
     branches:
       - "master"
+    paths:
+      - "include/**.hpp"
+      - "tests/**.cpp"
+      - "tests/**.hpp"
   pull_request:
     branches:
       - "master"
+    paths:
+      - "include/**.hpp"
+      - "tests/**.cpp"
+      - "tests/**.hpp"
 
 jobs:
   build:
