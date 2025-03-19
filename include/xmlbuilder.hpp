@@ -89,7 +89,7 @@ namespace XMLBuilder
 			template<Floating T>
 			inline std::string floatingToString(const T value, size_t precision)
 			{
-				std::stringstream ss;
+				std::ostringstream ss;
 				ss << std::fixed << std::setprecision(precision);
 				ss << value;
 				return ss.str();
@@ -134,6 +134,7 @@ namespace XMLBuilder
 			const std::string m_tag;
 		};
 
+
 		/**
 		 * @brief Definition of class that can be generated
 		 * @details Defines interface that generator classes can use as final string output
@@ -151,10 +152,34 @@ namespace XMLBuilder
 			 */
 			std::string Generate(const std::string& version = "1.0", const std::string& encoding = "Windows-1250") const
 			{
-				std::stringstream outputStream;
+				std::ostringstream outputStream;
 				outputStream << "<?xml version=\"" << version << "\" encoding=\"" << encoding << "\"?>" << std::endl;
 				_Generate(outputStream, 0);
 				return outputStream.str();
+			}
+
+			/**
+			 * @brief Generate and output final string to stream
+			 * 
+			 * @param stream Reference to output stream
+			 * @return std::ostream& Reference to output stream
+			 */
+			std::ostream& Print(std::ostream& stream) const
+			{
+				stream << Generate();
+				return stream;
+			}
+
+			/**
+			 * @brief Operator for generating and outputing final string to stream
+			 * 
+			 * @param stream Reference to output stream
+			 * @param object Reference to object being printed
+			 * @return std::ostream& Reference to output stream
+			 */
+			friend std::ostream& operator<<(std::ostream& stream, const Generatable& object)
+			{
+				return object.Print(stream);
 			}
 
 			/**
@@ -191,8 +216,9 @@ namespace XMLBuilder
 			 * @param outputStream Output stream
 			 * @param depth Current depth of the node
 			 */
-			virtual void _Generate(std::stringstream& outputStream, size_t depth) const = 0;
+			virtual void _Generate(std::ostringstream& outputStream, size_t depth) const = 0;
 		};
+
 
 		/**
 		 * @brief Store of attributes
@@ -424,7 +450,7 @@ namespace XMLBuilder
 			 * 
 			 * @param outputStream Output stream
 			 */
-			void _WriteAttributes(std::stringstream& outputStream) const
+			void _WriteAttributes(std::ostringstream& outputStream) const
 			{
 				for (const auto& [attributeName, attributeValue] : m_attributes)
 					outputStream << ' ' << attributeName << "=\"" << attributeValue << '\"';
@@ -461,7 +487,7 @@ namespace XMLBuilder
 			 * @param depth Depth of current node
 			 */
 			// Inherited via Generatable
-			virtual void _Generate(std::stringstream& outputStream, size_t depth) const override
+			virtual void _Generate(std::ostringstream& outputStream, size_t depth) const override
 			{
 				throw std::runtime_error("Unimplemented");
 			}
@@ -589,7 +615,7 @@ namespace XMLBuilder
 			 * @param outputStream Output stream
 			 * @param depth Current depth of the node
 			 */
-			void _WriteChildren(std::stringstream& outputStream, size_t depth) const
+			void _WriteChildren(std::ostringstream& outputStream, size_t depth) const
 			{
 				for (auto& child : m_children)
 					child->_Generate(outputStream, depth);
@@ -630,7 +656,7 @@ namespace XMLBuilder
 		 * @param depth Current node depth
 		 */
 		// Inherited via NodeBase
-		virtual void _Generate(std::stringstream& outputStream, size_t depth) const override
+		virtual void _Generate(std::ostringstream& outputStream, size_t depth) const override
 		{
 			std::string paddingString = _GenerateDepthPadding(depth);
 			outputStream << paddingString;
@@ -641,6 +667,7 @@ namespace XMLBuilder
 			outputStream << "/>" << std::endl;
 		}
 	};
+
 
 	/**
 	 * @brief Node for storing value
@@ -755,7 +782,7 @@ namespace XMLBuilder
 		 * @param depth Current node depth
 		 */
 		// Inherited via NodeBase
-		virtual void _Generate(std::stringstream& outputStream, size_t depth) const override
+		virtual void _Generate(std::ostringstream& outputStream, size_t depth) const override
 		{
 			std::string paddingString = _GenerateDepthPadding(depth);
 			outputStream << paddingString;
@@ -772,6 +799,7 @@ namespace XMLBuilder
 		 */
 		std::string m_value;
 	};
+
 
 	/**
 	 * @brief Node for storing other nodes
@@ -800,7 +828,7 @@ namespace XMLBuilder
 		 * @param depth Current node depth
 		 */
 		// Inherited via NodeBase
-		virtual void _Generate(std::stringstream& outputStream, size_t depth) const override
+		virtual void _Generate(std::ostringstream& outputStream, size_t depth) const override
 		{
 			std::string paddingString = _GenerateDepthPadding(depth);
 			outputStream << paddingString;
@@ -824,6 +852,7 @@ namespace XMLBuilder
 		}
 	};
 
+
 	/**
 	 * @brief Node for storing other nodes
 	 * @details Node without interface of other standard nodes, used only for storing nodes on the highest level
@@ -846,7 +875,7 @@ namespace XMLBuilder
 		 * @param depth Current node depth
 		 */
 		// Inherited via Generatable
-		virtual void _Generate(std::stringstream& outputStream, size_t depth) const override
+		virtual void _Generate(std::ostringstream& outputStream, size_t depth) const override
 		{
 			_WriteChildren(outputStream, depth);
 		}

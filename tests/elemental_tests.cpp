@@ -16,6 +16,24 @@ TEST(Generate, ByString)
   EXPECT_EQ(std::string(rootNode), DEFAULT_HEADER);
 }
 
+TEST(Generate, ByPrint)
+{
+  std::ostringstream stream;
+  XMLBuilder::RootNode rootNode;
+  rootNode.Print(stream);
+
+  EXPECT_EQ(stream.str(), DEFAULT_HEADER);
+}
+
+TEST(Generate, ByPrintOperator)
+{
+  std::ostringstream stream;
+  XMLBuilder::RootNode rootNode;
+  stream << rootNode;
+
+  EXPECT_EQ(stream.str(), DEFAULT_HEADER);
+}
+
 TEST(Generate, CustomHeader)
 {
   XMLBuilder::RootNode rootNode;
