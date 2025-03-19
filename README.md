@@ -2,7 +2,7 @@
 
 ## Note
 
-This library is still in development so lot of things may change. There isn't any documentation becase of that reason but I plan to make some soon.
+This library is still in development so lot of things may change.
 
 ## About XML Builder Library
 
@@ -21,6 +21,7 @@ The absence of a simple, lightweight, and header-only solution inspired me to cr
 
 - Single header file
 - Use with any build system
+- [Documentation](https://matesxs.github.io/XMLBuilder/)
 
 ## Limitations
 
@@ -31,3 +32,7 @@ The absence of a simple, lightweight, and header-only solution inspired me to cr
 
 - **include** folder contains the library itself, feel free to include it in your project
 - **tests** folder contains tests of functionality of the library
+
+## Support
+
+Currently there are no official example, FAQ or anything like that. If you want examples of usage you can refer to tests. In **special_tests.cpp** there is example of real life usage of the library. If you want to explore the library you can go directly to the source code in **include** folder and read through the code. It's documented by doxygen comments and if you find any mistake feel free to report it in issues or create PR yourself. If you are more into web page documentation then there is hosted version of the doxygen documentation on [Documentation](https://matesxs.github.io/XMLBuilder/).
