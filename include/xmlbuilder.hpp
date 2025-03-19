@@ -231,10 +231,10 @@ namespace XMLBuilder
 		{
 		public:
 			/**
-			 * @brief Add stringlike attribute
+			 * @brief Add or modify stringlike attribute
 			 * @details Add new stringlike attribute if the attribute name is not present in this node
 			 * @warning Attribute names are unique
-			 * @warning Attribute names can't be empty
+			 * @warning Throws invalid_argument exception if called with empty attribute name
 			 * 
 			 * @tparam N types::Strings type for name of the attribute
 			 * @tparam V types::Stringlike type of the attribute value
@@ -243,23 +243,21 @@ namespace XMLBuilder
 			 * @return ParentType& Return self reference based on parent type for chaining
 			 */
 			template<types::Strings N, types::Stringlike V>
-			ParentType& AddAttribute(const N& name, const V& value)
+			ParentType& AddOrModifyAttribute(const N& name, const V& value)
 			{
 				std::string key(name);
 				if (key.empty())
 					throw std::invalid_argument("Key can't be empty");
 
-				// Just to not overwrite existing attribute
-				if (!ContainsAttribute(key))
-					m_attributes.insert({key, types::converters::toString(value)});
+				m_attributes.insert_or_assign(key, types::converters::toString(value));
 				return static_cast<ParentType&>(*this);
 			}
 
 			/**
-			 * @brief Add floating point attribute
+			 * @brief Add or modify floating point attribute
 			 * @details Add new floating point attribute if the attribute name is not present in this node
 			 * @warning Attribute names are unique
-			 * @warning Attribute names can't be empty
+			 * @warning Throws invalid_argument exception if called with empty attribute name
 			 * 
 			 * @tparam N types::Strings type for name of the attribute
 			 * @tparam V types::Floating type of attribute value
@@ -269,15 +267,13 @@ namespace XMLBuilder
 			 * @return ParentType& Return self reference based on parent type for chaining
 			 */
 			template<types::Strings N, types::Floating V>
-			ParentType& AddAttribute(const N& name, const V value, size_t precision)
+			ParentType& AddOrModifyAttribute(const N& name, const V value, size_t precision)
 			{
 				std::string key(name);
 				if (key.empty())
 					throw std::invalid_argument("Key can't be empty");
 
-				// Just to not overwrite existing attribute
-				if (!ContainsAttribute(key))
-					m_attributes.insert({key, types::converters::floatingToString(value, precision)});
+				m_attributes.insert_or_assign(key, types::converters::floatingToString(value, precision));
 				return static_cast<ParentType&>(*this);
 			}
 
@@ -295,55 +291,6 @@ namespace XMLBuilder
 				std::string key(name);
 				if (key.empty()) return false;
 				return m_attributes.contains(key);
-			}
-
-			/**
-			 * @brief Modify existing attribute by stringlike value
-			 * @details Replace value of attribute by stringlike value if attribute exist
-			 * @warning Attribute name need to be present in the node
-			 * 
-			 * @tparam N types::Strings type for name of the attribute
-			 * @tparam V types::Stringlike type of the attribute value
-			 * @param name Name of attribute
-			 * @param value New value of attribute
-			 * @return true Attribute value modified
-			 * @return false Invalid name or attribute name is not present in node
-			 */
-			template<types::Strings N, types::Stringlike V>
-			bool ModifyAttribute(const N& name, const V& value)
-			{
-				std::string key(name);
-				if (key.empty()) return false;
-				if (!ContainsAttribute(key)) return false;
-
-				m_attributes.insert_or_assign(key, types::converters::toString(value));
-
-				return true;
-			}
-
-			/**
-			 * @brief Modify existing attribute by floating point value
-			 * @details Replace value of attribute by floating point value if attribute exist
-			 * @warning Attribute name need to be present in the node
-			 * 
-			 * @tparam N types::Strings type for name of the attribute
-			 * @tparam V types::Floating type of the attribute value
-			 * @param name Name of attribute
-			 * @param value New value of attribute
-			 * @param precision Fixed precision of new floating point value
-			 * @return true Attribute value modified
-			 * @return false Invalid name or attribute name is not present in node
-			 */
-			template<types::Strings N, types::Floating V>
-			bool ModifyAttribute(const N& name, const V value, size_t precision)
-			{
-				std::string key(name);
-				if (key.empty()) return false;
-				if (!ContainsAttribute(key)) return false;
-
-				m_attributes.insert_or_assign(key, types::converters::floatingToString(value, precision));
-
-				return true;
 			}
 
 			/**
@@ -441,6 +388,27 @@ namespace XMLBuilder
 			std::string operator[](const N& name) const
 			{
 				return attAt(name);
+			}
+
+			/**
+			 * @brief Operator for adding or modifying attribute
+			 * @warning Throws invalid_argument exception if called with empty attribute name
+			 * 
+			 * @tparam N types::Strings type for name of the attribute
+			 * @tparam V types::Stringlike type of the attribute value
+			 * @param data Data pair of attribute name and new attribute value
+			 * @return ParentType& Return self reference based on parent type for chaining
+			 */
+			template<types::Strings N, types::Stringlike V>
+			ParentType& operator<<(const std::pair<N, V> data)
+			{
+				std::string key(data.first);
+				if (key.empty())
+					throw std::invalid_argument("Key can't be empty");
+
+				m_attributes.insert_or_assign(key, types::converters::toString(data.second));
+
+				return static_cast<ParentType&>(*this);
 			}
 
 		protected:
