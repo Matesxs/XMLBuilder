@@ -16,14 +16,16 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install Doxygen
-      run: apt-get install -y doxygen graphviz ttf-freefont
-        
     - name: Set reusable strings
       id: strings
       shell: bash
       run: |
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+
+    - name: Install Doxygen
+      uses: ssciwr/doxygen-install@v1
+      with:
+        version: "1.13.2"
 
     - name: Configure CMake
       run: >
