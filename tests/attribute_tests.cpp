@@ -6,7 +6,7 @@
 
 using namespace std::string_view_literals;
 
-TEST(Attributes, charArrayKey)
+TEST(Attributes, AddByCharArrayKey)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", "value1");
 
@@ -30,7 +30,7 @@ TEST(Attributes, charArrayKey)
   EXPECT_EQ(node5.Generate(), std::format("{}<test{} testAtt{}=\"value{}\"/>\n", DEFAULT_HEADER, 5, 5, 5));
 }
 
-TEST(Attributes, stringKey)
+TEST(Attributes, AddByStringKey)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute(std::string("testAtt1"), "value1");
 
@@ -45,7 +45,7 @@ TEST(Attributes, stringKey)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"value{}\"/>\n", DEFAULT_HEADER, 3, 3, 3));
 }
 
-TEST(Attributes, stringViewKey)
+TEST(Attributes, AddByStringViewKey)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1"sv, "value1");
 
@@ -60,7 +60,7 @@ TEST(Attributes, stringViewKey)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"value{}\"/>\n", DEFAULT_HEADER, 3, 3, 3));
 }
 
-TEST(Attributes, charArrayValue)
+TEST(Attributes, AddCharArrayValue)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", "value1");
 
@@ -84,7 +84,7 @@ TEST(Attributes, charArrayValue)
   EXPECT_EQ(node5.Generate(), std::format("{}<test{} testAtt{}=\"value{}\"/>\n", DEFAULT_HEADER, 5, 5, 5));
 }
 
-TEST(Attributes, stringValue)
+TEST(Attributes, AddStringValue)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", std::string("value1"));
 
@@ -99,7 +99,7 @@ TEST(Attributes, stringValue)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"value{}\"/>\n", DEFAULT_HEADER, 3, 3, 3));
 }
 
-TEST(Attributes, stringViewValue)
+TEST(Attributes, AddStringViewValue)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", "value1"sv);
 
@@ -114,7 +114,7 @@ TEST(Attributes, stringViewValue)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"value{}\"/>\n", DEFAULT_HEADER, 3, 3, 3));
 }
 
-TEST(Attributes, charArrayValueOperator)
+TEST(Attributes, AddByOperatorCharArrayValue)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1");
   node1 << std::pair{"testAtt1", "value1"};
@@ -143,7 +143,7 @@ TEST(Attributes, charArrayValueOperator)
   EXPECT_EQ(node5.Generate(), std::format("{}<test{} testAtt{}=\"value{}\"/>\n", DEFAULT_HEADER, 5, 5, 5));
 }
 
-TEST(Attributes, stringValueOperator)
+TEST(Attributes, AddByOperatorStringValue)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1");
   node1 << std::pair{"testAtt1", std::string("value1")};
@@ -161,7 +161,7 @@ TEST(Attributes, stringValueOperator)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"value{}\"/>\n", DEFAULT_HEADER, 3, 3, 3));
 }
 
-TEST(Attributes, stringViewValueOperator)
+TEST(Attributes, AddByOperatorStringViewValue)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1");
   node1 << std::pair{"testAtt1", "value1"sv};
@@ -179,7 +179,7 @@ TEST(Attributes, stringViewValueOperator)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"value{}\"/>\n", DEFAULT_HEADER, 3, 3, 3));
 }
 
-TEST(Attributes, BoolValue)
+TEST(Attributes, AddBoolValue)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", true);
   XMLBuilder::Node node2 = XMLBuilder::Node("test2").AddOrModifyAttribute("testAtt2", false);
@@ -188,7 +188,7 @@ TEST(Attributes, BoolValue)
   EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 2, 2, "false"));
 }
 
-TEST(Attributes, ShortValue)
+TEST(Attributes, AddShortValue)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", static_cast<short>(123));
   XMLBuilder::Node node2 = XMLBuilder::Node("test2").AddOrModifyAttribute("testAtt2", static_cast<short>(-123));
@@ -199,7 +199,7 @@ TEST(Attributes, ShortValue)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, 123));
 }
 
-TEST(Attributes, IntValue)
+TEST(Attributes, AddIntValue)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", static_cast<int>(123));
   XMLBuilder::Node node2 = XMLBuilder::Node("test2").AddOrModifyAttribute("testAtt2", static_cast<int>(-123));
@@ -210,7 +210,7 @@ TEST(Attributes, IntValue)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, 123));
 }
 
-TEST(Attributes, LongValue)
+TEST(Attributes, AddLongValue)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", static_cast<long>(123));
   XMLBuilder::Node node2 = XMLBuilder::Node("test2").AddOrModifyAttribute("testAtt2", static_cast<long>(-123));
@@ -221,7 +221,7 @@ TEST(Attributes, LongValue)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, 123));
 }
 
-TEST(Attributes, LongLongValue)
+TEST(Attributes, AddLongLongValue)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", static_cast<long long>(123));
   XMLBuilder::Node node2 = XMLBuilder::Node("test2").AddOrModifyAttribute("testAtt2", static_cast<long long>(-123));
@@ -232,7 +232,7 @@ TEST(Attributes, LongLongValue)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, 123));
 }
 
-TEST(Attributes, int8Value)
+TEST(Attributes, AddInt8Value)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", static_cast<int8_t>(123));
   XMLBuilder::Node node2 = XMLBuilder::Node("test2").AddOrModifyAttribute("testAtt2", static_cast<int8_t>(-123));
@@ -243,7 +243,7 @@ TEST(Attributes, int8Value)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, 123));
 }
 
-TEST(Attributes, int16Value)
+TEST(Attributes, AddInt16Value)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", static_cast<int16_t>(123));
   XMLBuilder::Node node2 = XMLBuilder::Node("test2").AddOrModifyAttribute("testAtt2", static_cast<int16_t>(-123));
@@ -254,7 +254,7 @@ TEST(Attributes, int16Value)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, 123));
 }
 
-TEST(Attributes, int32Value)
+TEST(Attributes, AddInt32Value)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", static_cast<int32_t>(123));
   XMLBuilder::Node node2 = XMLBuilder::Node("test2").AddOrModifyAttribute("testAtt2", static_cast<int32_t>(-123));
@@ -265,7 +265,7 @@ TEST(Attributes, int32Value)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, 123));
 }
 
-TEST(Attributes, int64Value)
+TEST(Attributes, AddInt64Value)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", static_cast<int64_t>(123));
   XMLBuilder::Node node2 = XMLBuilder::Node("test2").AddOrModifyAttribute("testAtt2", static_cast<int64_t>(-123));
@@ -276,7 +276,104 @@ TEST(Attributes, int64Value)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, 123));
 }
 
-TEST(Attributes, floatValueRaw)
+TEST(Attributes, AddByOperatorBoolValue)
+{
+  XMLBuilder::Node node1 = XMLBuilder::Node("test1") << std::pair("testAtt1", true);
+  XMLBuilder::Node node2 = XMLBuilder::Node("test2") << std::pair("testAtt2", false);
+
+  EXPECT_EQ(node1.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 1, 1, "true"));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 2, 2, "false"));
+}
+
+TEST(Attributes, AddByOperatorShortValue)
+{
+  XMLBuilder::Node node1 = XMLBuilder::Node("test1") << std::pair("testAtt1", static_cast<short>(123));
+  XMLBuilder::Node node2 = XMLBuilder::Node("test2") << std::pair("testAtt2", static_cast<short>(-123));
+  XMLBuilder::Node node3 = XMLBuilder::Node("test3") << std::pair("testAtt3", static_cast<unsigned short>(123));
+
+  EXPECT_EQ(node1.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 1, 1, 123));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 2, 2, -123));
+  EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, 123));
+}
+
+TEST(Attributes, AddByOperatorIntValue)
+{
+  XMLBuilder::Node node1 = XMLBuilder::Node("test1") << std::pair("testAtt1", static_cast<int>(123));
+  XMLBuilder::Node node2 = XMLBuilder::Node("test2") << std::pair("testAtt2", static_cast<int>(-123));
+  XMLBuilder::Node node3 = XMLBuilder::Node("test3") << std::pair("testAtt3", static_cast<unsigned int>(123));
+
+  EXPECT_EQ(node1.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 1, 1, 123));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 2, 2, -123));
+  EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, 123));
+}
+
+TEST(Attributes, AddByOperatorLongValue)
+{
+  XMLBuilder::Node node1 = XMLBuilder::Node("test1") << std::pair("testAtt1", static_cast<long>(123));
+  XMLBuilder::Node node2 = XMLBuilder::Node("test2") << std::pair("testAtt2", static_cast<long>(-123));
+  XMLBuilder::Node node3 = XMLBuilder::Node("test3") << std::pair("testAtt3", static_cast<unsigned long>(123));
+
+  EXPECT_EQ(node1.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 1, 1, 123));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 2, 2, -123));
+  EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, 123));
+}
+
+TEST(Attributes, AddByOperatorLongLongValue)
+{
+  XMLBuilder::Node node1 = XMLBuilder::Node("test1") << std::pair("testAtt1", static_cast<long long>(123));
+  XMLBuilder::Node node2 = XMLBuilder::Node("test2") << std::pair("testAtt2", static_cast<long long>(-123));
+  XMLBuilder::Node node3 = XMLBuilder::Node("test3") << std::pair("testAtt3", static_cast<unsigned long long>(123));
+
+  EXPECT_EQ(node1.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 1, 1, 123));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 2, 2, -123));
+  EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, 123));
+}
+
+TEST(Attributes, AddByOperatorInt8Value)
+{
+  XMLBuilder::Node node1 = XMLBuilder::Node("test1") << std::pair("testAtt1", static_cast<int8_t>(123));
+  XMLBuilder::Node node2 = XMLBuilder::Node("test2") << std::pair("testAtt2", static_cast<int8_t>(-123));
+  XMLBuilder::Node node3 = XMLBuilder::Node("test3") << std::pair("testAtt3", static_cast<uint8_t>(123));
+
+  EXPECT_EQ(node1.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 1, 1, 123));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 2, 2, -123));
+  EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, 123));
+}
+
+TEST(Attributes, AddByOperatorInt16Value)
+{
+  XMLBuilder::Node node1 = XMLBuilder::Node("test1") << std::pair("testAtt1", static_cast<int16_t>(123));
+  XMLBuilder::Node node2 = XMLBuilder::Node("test2") << std::pair("testAtt2", static_cast<int16_t>(-123));
+  XMLBuilder::Node node3 = XMLBuilder::Node("test3") << std::pair("testAtt3", static_cast<uint16_t>(123));
+
+  EXPECT_EQ(node1.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 1, 1, 123));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 2, 2, -123));
+  EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, 123));
+}
+
+TEST(Attributes, AddByOperatorInt32Value)
+{
+  XMLBuilder::Node node1 = XMLBuilder::Node("test1") << std::pair("testAtt1", static_cast<int32_t>(123));
+  XMLBuilder::Node node2 = XMLBuilder::Node("test2") << std::pair("testAtt2", static_cast<int32_t>(-123));
+  XMLBuilder::Node node3 = XMLBuilder::Node("test3") << std::pair("testAtt3", static_cast<uint32_t>(123));
+
+  EXPECT_EQ(node1.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 1, 1, 123));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 2, 2, -123));
+  EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, 123));
+}
+
+TEST(Attributes, AddByOperatorInt64Value)
+{
+  XMLBuilder::Node node1 = XMLBuilder::Node("test1") << std::pair("testAtt1", static_cast<int64_t>(123));
+  XMLBuilder::Node node2 = XMLBuilder::Node("test2") << std::pair("testAtt2", static_cast<int64_t>(-123));
+  XMLBuilder::Node node3 = XMLBuilder::Node("test3") << std::pair("testAtt3", static_cast<uint64_t>(123));
+
+  EXPECT_EQ(node1.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 1, 1, 123));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 2, 2, -123));
+  EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, 123));
+}
+
+TEST(Attributes, AddFloatValueRaw)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", 123.456789f);
   XMLBuilder::Node node2 = XMLBuilder::Node("test2").AddOrModifyAttribute("testAtt2", -123.456789f);
@@ -287,7 +384,7 @@ TEST(Attributes, floatValueRaw)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, "nan"));
 }
 
-TEST(Attributes, doubleValueRaw)
+TEST(Attributes, AddDoubleValueRaw)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", 123.456789);
   XMLBuilder::Node node2 = XMLBuilder::Node("test2").AddOrModifyAttribute("testAtt2", -123.456789);
@@ -298,7 +395,7 @@ TEST(Attributes, doubleValueRaw)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, "nan"));
 }
 
-TEST(Attributes, longDoubleValueRaw)
+TEST(Attributes, AddLongDoubleValueRaw)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", 123.456789l);
   XMLBuilder::Node node2 = XMLBuilder::Node("test2").AddOrModifyAttribute("testAtt2", -123.456789l);
@@ -309,7 +406,7 @@ TEST(Attributes, longDoubleValueRaw)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, "nan"));
 }
 
-TEST(Attributes, floatValueLimitPrecision)
+TEST(Attributes, AddFloatValueLimitPrecision)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", 123.456789f, 2);
   XMLBuilder::Node node2 = XMLBuilder::Node("test2").AddOrModifyAttribute("testAtt2", -123.456789f, 2);
@@ -320,7 +417,7 @@ TEST(Attributes, floatValueLimitPrecision)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, "nan"));
 }
 
-TEST(Attributes, doubleValueLimitPrecision)
+TEST(Attributes, AddDoubleValueLimitPrecision)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", 123.456789, 2);
   XMLBuilder::Node node2 = XMLBuilder::Node("test2").AddOrModifyAttribute("testAtt2", -123.456789, 2);
@@ -331,7 +428,7 @@ TEST(Attributes, doubleValueLimitPrecision)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, "nan"));
 }
 
-TEST(Attributes, longDoubleValueLimitPrecision)
+TEST(Attributes, AddLongDoubleValueLimitPrecision)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", 123.456789l, 2);
   XMLBuilder::Node node2 = XMLBuilder::Node("test2").AddOrModifyAttribute("testAtt2", -123.456789l, 2);
@@ -342,7 +439,7 @@ TEST(Attributes, longDoubleValueLimitPrecision)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, "nan"));
 }
 
-TEST(Attributes, floatValueLimitExtendPrecision)
+TEST(Attributes, AddFloatValueExtendPrecision)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", 123.45f, 8);
   XMLBuilder::Node node2 = XMLBuilder::Node("test2").AddOrModifyAttribute("testAtt2", -123.45f, 8);
@@ -353,7 +450,7 @@ TEST(Attributes, floatValueLimitExtendPrecision)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, "nan"));
 }
 
-TEST(Attributes, doubleValueLimitExtendPrecision)
+TEST(Attributes, AddDoubleValueExtendPrecision)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", 123.45, 8);
   XMLBuilder::Node node2 = XMLBuilder::Node("test2").AddOrModifyAttribute("testAtt2", -123.45, 8);
@@ -364,7 +461,7 @@ TEST(Attributes, doubleValueLimitExtendPrecision)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, "nan"));
 }
 
-TEST(Attributes, longDoubleValueLimitExtendPrecision)
+TEST(Attributes, AddLongDoubleValueExtendPrecision)
 {
   XMLBuilder::Node node1 = XMLBuilder::Node("test1").AddOrModifyAttribute("testAtt1", 123.45l, 8);
   XMLBuilder::Node node2 = XMLBuilder::Node("test2").AddOrModifyAttribute("testAtt2", -123.45l, 8);
@@ -375,7 +472,106 @@ TEST(Attributes, longDoubleValueLimitExtendPrecision)
   EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, "nan"));
 }
 
-TEST(Attributes, CatchEmptyAttributeKey)
+TEST(Attributes, AddByOperatorFloatValueRaw)
+{
+  XMLBuilder::Node node1 = XMLBuilder::Node("test1") << std::pair("testAtt1", 123.456789f);
+  XMLBuilder::Node node2 = XMLBuilder::Node("test2") << std::pair("testAtt2", -123.456789f);
+  XMLBuilder::Node node3 = XMLBuilder::Node("test3") << std::pair("testAtt3", std::nanf("1"));
+
+  EXPECT_EQ(node1.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 1, 1, 123.456789f));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 2, 2, -123.456789f));
+  EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, "nan"));
+}
+
+TEST(Attributes, AddByOperatorDoubleValueRaw)
+{
+  XMLBuilder::Node node1 = XMLBuilder::Node("test1") << std::pair("testAtt1", 123.456789);
+  XMLBuilder::Node node2 = XMLBuilder::Node("test2") << std::pair("testAtt2", -123.456789);
+  XMLBuilder::Node node3 = XMLBuilder::Node("test3") << std::pair("testAtt3", std::nan("1"));
+
+  EXPECT_EQ(node1.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 1, 1, 123.456789));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 2, 2, -123.456789));
+  EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, "nan"));
+}
+
+TEST(Attributes, AddByOperatorLongDoubleValueRaw)
+{
+  XMLBuilder::Node node1 = XMLBuilder::Node("test1") << std::pair("testAtt1", 123.456789l);
+  XMLBuilder::Node node2 = XMLBuilder::Node("test2") << std::pair("testAtt2", -123.456789l);
+  XMLBuilder::Node node3 = XMLBuilder::Node("test3") << std::pair("testAtt3", std::nanl("1"));
+
+  EXPECT_EQ(node1.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 1, 1, 123.456789l));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 2, 2, -123.456789l));
+  EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, "nan"));
+}
+
+TEST(Attributes, AddByOperatorFloatValueLimitPrecision)
+{
+  XMLBuilder::Node node1 = XMLBuilder::Node("test1") << std::pair("testAtt1", std::pair(123.456789f, 2));
+  XMLBuilder::Node node2 = XMLBuilder::Node("test2") << std::pair("testAtt2", std::pair(-123.456789f, 2));
+  XMLBuilder::Node node3 = XMLBuilder::Node("test3") << std::pair("testAtt3", std::pair(std::nanf("1"), 2));
+
+  EXPECT_EQ(node1.Generate(), std::format("{}<test{} testAtt{}=\"{:.2f}\"/>\n", DEFAULT_HEADER, 1, 1, 123.456789f));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{:.2f}\"/>\n", DEFAULT_HEADER, 2, 2, -123.456789f));
+  EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, "nan"));
+}
+
+TEST(Attributes, AddByOperatorDoubleValueLimitPrecision)
+{
+  XMLBuilder::Node node1 = XMLBuilder::Node("test1") << std::pair("testAtt1", std::pair(123.456789, 2));
+  XMLBuilder::Node node2 = XMLBuilder::Node("test2") << std::pair("testAtt2", std::pair(-123.456789, 2));
+  XMLBuilder::Node node3 = XMLBuilder::Node("test3") << std::pair("testAtt3", std::pair(std::nan("1"), 2));
+
+  EXPECT_EQ(node1.Generate(), std::format("{}<test{} testAtt{}=\"{:.2f}\"/>\n", DEFAULT_HEADER, 1, 1, 123.456789));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{:.2f}\"/>\n", DEFAULT_HEADER, 2, 2, -123.456789));
+  EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, "nan"));
+}
+
+TEST(Attributes, AddByOperatorLongDoubleValueLimitPrecision)
+{
+  XMLBuilder::Node node1 = XMLBuilder::Node("test1") << std::pair("testAtt1", std::pair(123.456789l, 2));
+  XMLBuilder::Node node2 = XMLBuilder::Node("test2") << std::pair("testAtt2", std::pair(-123.456789l, 2));
+  XMLBuilder::Node node3 = XMLBuilder::Node("test3") << std::pair("testAtt3", std::pair(std::nanl("1"), 2));
+
+  EXPECT_EQ(node1.Generate(), std::format("{}<test{} testAtt{}=\"{:.2f}\"/>\n", DEFAULT_HEADER, 1, 1, 123.456789l));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{:.2f}\"/>\n", DEFAULT_HEADER, 2, 2, -123.456789l));
+  EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, "nan"));
+}
+
+TEST(Attributes, AddByOperatorFloatValueExtendPrecision)
+{
+  XMLBuilder::Node node1 = XMLBuilder::Node("test1") << std::pair("testAtt1", std::pair(123.45f, 8));
+  XMLBuilder::Node node2 = XMLBuilder::Node("test2") << std::pair("testAtt2", std::pair(-123.45f, 8));
+  XMLBuilder::Node node3 = XMLBuilder::Node("test3") << std::pair("testAtt3", std::pair(std::nanf("1"), 8));
+
+  EXPECT_EQ(node1.Generate(), std::format("{}<test{} testAtt{}=\"{:.8f}\"/>\n", DEFAULT_HEADER, 1, 1, 123.45f));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{:.8f}\"/>\n", DEFAULT_HEADER, 2, 2, -123.45f));
+  EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, "nan"));
+}
+
+TEST(Attributes, AddByOperatorDoubleValueExtendPrecision)
+{
+  XMLBuilder::Node node1 = XMLBuilder::Node("test1") << std::pair("testAtt1", std::pair(123.45, 8));
+  XMLBuilder::Node node2 = XMLBuilder::Node("test2") << std::pair("testAtt2", std::pair(-123.45, 8));
+  XMLBuilder::Node node3 = XMLBuilder::Node("test3") << std::pair("testAtt3", std::pair(std::nan("1"), 8));
+
+  EXPECT_EQ(node1.Generate(), std::format("{}<test{} testAtt{}=\"{:.8f}\"/>\n", DEFAULT_HEADER, 1, 1, 123.45));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{:.8f}\"/>\n", DEFAULT_HEADER, 2, 2, -123.45));
+  EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, "nan"));
+}
+
+TEST(Attributes, AddByOperatorLongDoubleValueExtendPrecision)
+{
+  XMLBuilder::Node node1 = XMLBuilder::Node("test1") << std::pair("testAtt1", std::pair(123.45l, 8));
+  XMLBuilder::Node node2 = XMLBuilder::Node("test2") << std::pair("testAtt2", std::pair(-123.45l, 8));
+  XMLBuilder::Node node3 = XMLBuilder::Node("test3") << std::pair("testAtt3", std::pair(std::nanl("1"), 8));
+
+  EXPECT_EQ(node1.Generate(), std::format("{}<test{} testAtt{}=\"{:.8f}\"/>\n", DEFAULT_HEADER, 1, 1, 123.45l));
+  EXPECT_EQ(node2.Generate(), std::format("{}<test{} testAtt{}=\"{:.8f}\"/>\n", DEFAULT_HEADER, 2, 2, -123.45l));
+  EXPECT_EQ(node3.Generate(), std::format("{}<test{} testAtt{}=\"{}\"/>\n", DEFAULT_HEADER, 3, 3, "nan"));
+}
+
+TEST(Attributes, CatchEmptyKey)
 {
   EXPECT_THROW(XMLBuilder::Node("test").AddOrModifyAttribute("", "test"), std::invalid_argument);
 }
@@ -409,7 +605,7 @@ TEST(Attributes, CatchEmptyAttributeKeyMultiple)
   EXPECT_THROW(XMLBuilder::Node("test").AddOrModifyAttribute("test1", static_cast<uint16_t>(123)).AddOrModifyAttribute("test2", 123.4).AddOrModifyAttribute("test3", "test").AddOrModifyAttribute("test4", 1234.567f).AddOrModifyAttribute("", "test"), std::invalid_argument);
 }
 
-TEST(Attributes, ContainsAttribute)
+TEST(Attributes, Contains)
 {
   XMLBuilder::Node node("test");
   node.AddOrModifyAttribute("testAttr", 123);
@@ -419,7 +615,7 @@ TEST(Attributes, ContainsAttribute)
   EXPECT_FALSE(node.ContainsAttribute(""));
 }
 
-TEST(Attributes, ModifyAttributeString)
+TEST(Attributes, ModifyStringValue)
 {
   XMLBuilder::Node node("test");
   node.AddOrModifyAttribute("testAttr", 123);
@@ -456,7 +652,7 @@ TEST(Attributes, ModifyAttributeString)
   EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{}\"/>\n", DEFAULT_HEADER, value8));
 }
 
-TEST(Attributes, ModifyAttributeStringOperator)
+TEST(Attributes, ModifyByOperatorStringValue)
 {
   XMLBuilder::Node node("test");
   node << std::pair("testAttr", 123);
@@ -493,7 +689,7 @@ TEST(Attributes, ModifyAttributeStringOperator)
   EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{}\"/>\n", DEFAULT_HEADER, value8));
 }
 
-TEST(Attributes, ModifyAttributeWholeNumber)
+TEST(Attributes, ModifyWholeNumberValue)
 {
   XMLBuilder::Node node("test");
   node.AddOrModifyAttribute("testAttr", 123);
@@ -523,7 +719,7 @@ TEST(Attributes, ModifyAttributeWholeNumber)
   EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{}\"/>\n", DEFAULT_HEADER, 123));
 }
 
-TEST(Attributes, ModifyAttributeFloating)
+TEST(Attributes, ModifyFloatingValue)
 {
   XMLBuilder::Node node("test");
   node.AddOrModifyAttribute("testAttr", 123);
@@ -556,7 +752,40 @@ TEST(Attributes, ModifyAttributeFloating)
   EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{:.6f}\"/>\n", DEFAULT_HEADER, 123.123l));
 }
 
-TEST(Attributes, RemoveAttribute)
+TEST(Attributes, ModifyByOperatorFloatingValue)
+{
+  XMLBuilder::Node node("test");
+  node.AddOrModifyAttribute("testAttr", 123);
+
+  node << std::pair("testAttr", 123.123f);
+  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{}\"/>\n", DEFAULT_HEADER, 123.123f));
+
+  node << std::pair("testAttr", -123.123);
+  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{}\"/>\n", DEFAULT_HEADER, -123.123));
+
+  node << std::pair("testAttr", 123.123l);
+  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{}\"/>\n", DEFAULT_HEADER, 123.123l));
+
+  node << std::pair("testAttr", std::pair(-123.123f, 1));
+  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{:.1f}\"/>\n", DEFAULT_HEADER, -123.123f));
+
+  node << std::pair("testAttr", std::pair(123.123, 1));
+  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{:.1f}\"/>\n", DEFAULT_HEADER, 123.123));
+
+  node << std::pair("testAttr", std::pair(-123.123l, 1));
+  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{:.1f}\"/>\n", DEFAULT_HEADER, -123.123l));
+
+  node << std::pair("testAttr", std::pair(123.123f, 6));
+  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{:.6f}\"/>\n", DEFAULT_HEADER, 123.123f));
+
+  node << std::pair("testAttr", std::pair(-123.123, 6));
+  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{:.6f}\"/>\n", DEFAULT_HEADER, -123.123));
+
+  node << std::pair("testAttr", std::pair(123.123l, 6));
+  EXPECT_EQ(node.Generate(), std::format("{}<test testAttr=\"{:.6f}\"/>\n", DEFAULT_HEADER, 123.123l));
+}
+
+TEST(Attributes, Remove)
 {
   XMLBuilder::Node node = XMLBuilder::Node("test").AddOrModifyAttribute("test1"sv, "123").AddOrModifyAttribute(std::string("test2"), 92.2).AddOrModifyAttribute("test3", static_cast<int8_t>(-8)).AddOrModifyAttribute("test4", 32.448888l, 3).AddOrModifyAttribute("test5"sv, static_cast<uint64_t>(1850000000));
 
@@ -573,7 +802,7 @@ TEST(Attributes, RemoveAttribute)
   EXPECT_EQ(node.Generate(), std::format("{}<test test1=\"{}\" test2=\"{}\" test4=\"{}\"/>\n", DEFAULT_HEADER, 123, 92.2, 32.449));
 }
 
-TEST(Attributes, GetByOperator)
+TEST(Attributes, GetByIndexOperator)
 {
   XMLBuilder::Node node("test");
   node.AddOrModifyAttribute("testAttr", 123);
@@ -587,7 +816,7 @@ TEST(Attributes, GetByOperator)
   EXPECT_THROW(node[""], std::invalid_argument);
 }
 
-TEST(Attributes, ModifyByOperator)
+TEST(Attributes, ModifyByIndexOperator)
 {
   XMLBuilder::Node node("test");
   node.AddOrModifyAttribute("testAttr", 123);
