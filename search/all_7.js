@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['node_0',['Node',['../classXMLBuilder_1_1Node.html',1,'XMLBuilder::Node'],['../classXMLBuilder_1_1Node.html#aa46cd617ed267f242466610a1cd8a65a',1,'XMLBuilder::Node::Node()']]],
-  ['nodebase_1',['NodeBase',['../classXMLBuilder_1_1meta_1_1NodeBase.html',1,'XMLBuilder::meta']]]
+  ['library_0',['Library',['../index.html#autotoc_md2',1,'About XML Builder Library'],['../index.html#autotoc_md4',1,'Why Create This Library?']]],
+  ['library_20for_20c_1',['XML Builder library for C++',['../index.html',1,'']]],
+  ['limitations_2',['Limitations',['../index.html#autotoc_md6',1,'']]],
+  ['list_3',['Todo List',['../todo.html',1,'']]]
 ];

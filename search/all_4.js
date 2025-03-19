@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['generatable_0',['Generatable',['../classXMLBuilder_1_1meta_1_1Generatable.html',1,'XMLBuilder::meta']]],
-  ['generate_1',['Generate',['../classXMLBuilder_1_1meta_1_1Generatable.html#a67f4053fb506323c43a9f4d751501e0f',1,'XMLBuilder::meta::Generatable']]],
-  ['get_2',['Get',['../classXMLBuilder_1_1ValueNode.html#add6c88e812b0119e38a3481a9dddeb24',1,'XMLBuilder::ValueNode::Get()'],['../classXMLBuilder_1_1ValueNode.html#a79a9d932a8b28d2f432b7db700a9879c',1,'XMLBuilder::ValueNode::Get() const']]]
+  ['features_0',['Features',['../index.html#autotoc_md5',1,'']]],
+  ['floating_1',['Floating',['../conceptXMLBuilder_1_1types_1_1Floating.html',1,'XMLBuilder::types']]],
+  ['floatingtostring_2',['floatingToString',['../namespaceXMLBuilder_1_1types_1_1converters.html#a991095974e44c19814d2aa609073c075',1,'XMLBuilder::types::converters']]],
+  ['for_20c_3',['XML Builder library for C++',['../index.html',1,'']]]
 ];

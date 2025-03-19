@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "XMLBuilder", "index.html", [
+    [ "XML Builder library for C++", "index.html", "index" ],
     [ "Todo List", "todo.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>XMLBuilder: Main Page</title>
+<title>XMLBuilder: XML Builder library for C++</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -101,10 +101,50 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">XMLBuilder Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">XML Builder library for C++ </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p><a class="anchor" id="md__2home_2runner_2work_2XMLBuilder_2XMLBuilder_2README"></a></p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Note</h1>
+<p>This library is still in development so lot of things may change.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+About XML Builder Library</h1>
+<p>This library is designed to simplify the process of generating XML documents programmatically. The primary motivation behind creating this library stems from the observation that many existing XML generation tools or libraries can be overly complex, difficult to integrate, or lack flexibility for developers who need a easy-to-use solution.</p>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Key Motivations:</h2>
+<ul>
+<li><b>Simplicity</b>: Many existing XML generators are either too verbose or require extensive setup. This library aims to provide a straightforward and intuitive interface.</li>
+<li><b>Header-Only Design</b>: The library is designed as a single header file, making it easy to integrate into projects without the need for complex build configurations or dependencies.</li>
+<li><b>Flexibility</b>: Whether you're building a small script or integrating XML generation into a larger application, this library provides the tools you need.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Why Create This Library?</h2>
+<p>The absence of a simple, lightweight, and header-only solution inspired me to create this XML builder library. My goal was to create simple library for my projects that don't need extensive setup and is ready to use with friendly interface.</p>
+<h1><a class="anchor" id="autotoc_md5"></a>
+Features</h1>
+<ul>
+<li>Single header file</li>
+<li>Use with any build system</li>
+<li><a href="https://matesxs.github.io/XMLBuilder/">Documentation</a></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md6"></a>
+Limitations</h1>
+<ul>
+<li>Use of modern C++ standard C++20</li>
+<li>No XML check, only check done is on repeating attribute names</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md7"></a>
+Repository structure</h1>
+<ul>
+<li><b>include</b> folder contains the library itself, feel free to include it in your project</li>
+<li><b>tests</b> folder contains tests of functionality of the library</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md8"></a>
+Support</h1>
+<p>Currently there are no official example, FAQ or anything like that. If you want examples of usage you can refer to tests. In <b>special_tests.cpp</b> there is example of real life usage of the library. If you want to explore the library you can go directly to the source code in <b>include</b> folder and read through the code. It's documented by doxygen comments and if you find any mistake feel free to report it in issues or create PR yourself. If you are more into web page documentation then there is hosted version of the doxygen documentation on <a href="https://matesxs.github.io/XMLBuilder/">Documentation</a>. </p>
+</div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
 </div><!-- doc-content -->

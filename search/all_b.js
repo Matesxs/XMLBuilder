@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['stringable_0',['Stringable',['../conceptXMLBuilder_1_1types_1_1Stringable.html',1,'XMLBuilder::types']]],
-  ['stringlike_1',['Stringlike',['../conceptXMLBuilder_1_1types_1_1Stringlike.html',1,'XMLBuilder::types']]],
-  ['strings_2',['Strings',['../conceptXMLBuilder_1_1types_1_1Strings.html',1,'XMLBuilder::types']]]
+  ['parentnode_0',['ParentNode',['../classXMLBuilder_1_1ParentNode.html',1,'XMLBuilder::ParentNode'],['../classXMLBuilder_1_1ParentNode.html#a2590be8426d5021c41c10119b3f3bd7e',1,'XMLBuilder::ParentNode::ParentNode()']]]
 ];

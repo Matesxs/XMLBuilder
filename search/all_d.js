@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['valuenode_0',['ValueNode',['../classXMLBuilder_1_1ValueNode.html',1,'XMLBuilder::ValueNode'],['../classXMLBuilder_1_1ValueNode.html#ab803ebd50bbd75ee38c0acd24ba3e6cf',1,'XMLBuilder::ValueNode::ValueNode(const T &amp;tag, const V &amp;value)'],['../classXMLBuilder_1_1ValueNode.html#a8981d77ec58d238933dca2ddea188f45',1,'XMLBuilder::ValueNode::ValueNode(const T &amp;tag, const V value, size_t precision)']]]
+  ['stringable_0',['Stringable',['../conceptXMLBuilder_1_1types_1_1Stringable.html',1,'XMLBuilder::types']]],
+  ['stringlike_1',['Stringlike',['../conceptXMLBuilder_1_1types_1_1Stringlike.html',1,'XMLBuilder::types']]],
+  ['strings_2',['Strings',['../conceptXMLBuilder_1_1types_1_1Strings.html',1,'XMLBuilder::types']]],
+  ['structure_3',['Repository structure',['../index.html#autotoc_md7',1,'']]],
+  ['support_4',['Support',['../index.html#autotoc_md8',1,'']]]
 ];

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['removeattribute_0',['RemoveAttribute',['../classXMLBuilder_1_1meta_1_1Attributable.html#a134c0686b98a050b023523e4dd8c1f5e',1,'XMLBuilder::meta::Attributable']]],
-  ['removechild_1',['RemoveChild',['../classXMLBuilder_1_1meta_1_1ChildrenStore.html#a1d78596d77ade9323a0d967289c9f7cf',1,'XMLBuilder::meta::ChildrenStore']]],
-  ['rootnode_2',['RootNode',['../classXMLBuilder_1_1RootNode.html',1,'XMLBuilder::RootNode'],['../classXMLBuilder_1_1RootNode.html#a14152ec999d488498402d20f3fe9e5ea',1,'XMLBuilder::RootNode::RootNode()']]]
+  ['operator_20std_3a_3astring_0',['string',['../classXMLBuilder_1_1meta_1_1Generatable.html#a08a8849879f5b6a4f5c7cdf15077df16',1,'XMLBuilder::meta::Generatable']]],
+  ['operator_5b_5d_1',['operator[]',['../classXMLBuilder_1_1meta_1_1Attributable.html#aecc2c05377c24c4ff50b3b4858ca6675',1,'XMLBuilder::meta::Attributable::operator[](const N &amp;name)'],['../classXMLBuilder_1_1meta_1_1Attributable.html#a31375e87ba90c751864006b5cbd5691e',1,'XMLBuilder::meta::Attributable::operator[](const N &amp;name) const']]]
 ];
