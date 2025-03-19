@@ -5,18 +5,18 @@ XMLBuilder::RootNode testReturnRoot()
   XMLBuilder::RootNode root;
 
   XMLBuilder::ParentNode parent11("parent11");
-  parent11.AddAttribute("test", 14.358f, 2);
-  parent11.AddChild<XMLBuilder::Node>("parent11Child1").AddChild(XMLBuilder::ValueNode("parent11Child2", 14.2l, 4).AddAttribute("child2", "ack"));
+  parent11.AddOrModifyAttribute("test", 14.358f, 2);
+  parent11.AddChild<XMLBuilder::Node>("parent11Child1").AddChild(XMLBuilder::ValueNode("parent11Child2", 14.2l, 4).AddOrModifyAttribute("child2", "ack"));
 
   XMLBuilder::ParentNode parent1("parent1");
-  parent1.AddAttribute("test1", 123).AddAttribute("test2", "parent");
+  parent1.AddOrModifyAttribute("test1", 123).AddOrModifyAttribute("test2", "parent");
   parent1.AddChild(parent11);
 
   XMLBuilder::ParentNode parent2("parent2");
-  parent2.AddAttribute("test1", "parent2").AddAttribute("test2", static_cast<uint32_t>(120500));
-  parent2.AddChild<XMLBuilder::ValueNode>({"parent2Child1", "hi"}).AddChild(XMLBuilder::Node("parent2Child2").AddAttribute("test1", "test"));
+  parent2.AddOrModifyAttribute("test1", "parent2").AddOrModifyAttribute("test2", static_cast<uint32_t>(120500));
+  parent2.AddChild<XMLBuilder::ValueNode>({"parent2Child1", "hi"}).AddChild(XMLBuilder::Node("parent2Child2").AddOrModifyAttribute("test1", "test"));
 
-  root.AddChild(parent1).AddChild(parent2).AddChild(XMLBuilder::ValueNode("test3", 14).AddAttribute("root", "root"));
+  root.AddChild(parent1).AddChild(parent2).AddChild(XMLBuilder::ValueNode("test3", 14).AddOrModifyAttribute("root", "root"));
 
   return root;
 }
@@ -30,9 +30,9 @@ TEST(Special, DataRetention)
 TEST(Special, FullRLTest)
 {
   XMLBuilder::RootNode root;
-  root.AddChild(XMLBuilder::ParentNode("dat:dataPack").AddAttribute("version", "1.0").AddAttribute("id", "1741957155-1").AddAttribute("application", "ATP").AddAttribute("programVersion", "2.0.0")
-                .AddChild(XMLBuilder::ParentNode("dat:dataPackItem").AddAttribute("version", "2.0").AddAttribute("id", "23230971452/19/1")
-                          .AddChild(XMLBuilder::ParentNode("bnk:bank").AddAttribute("version", "2.0")
+  root.AddChild(XMLBuilder::ParentNode("dat:dataPack").AddOrModifyAttribute("version", "1.0").AddOrModifyAttribute("id", "1741957155-1").AddOrModifyAttribute("application", "ATP").AddOrModifyAttribute("programVersion", "2.0.0")
+                .AddChild(XMLBuilder::ParentNode("dat:dataPackItem").AddOrModifyAttribute("version", "2.0").AddOrModifyAttribute("id", "23230971452/19/1")
+                          .AddChild(XMLBuilder::ParentNode("bnk:bank").AddOrModifyAttribute("version", "2.0")
                                     .AddChild(XMLBuilder::ParentNode("bnk:bankHeader")
                                               .AddChild(XMLBuilder::ValueNode("bnk:bankType", "receipt"))
                                               .AddChild(XMLBuilder::ParentNode("bnk:account")
@@ -46,8 +46,8 @@ TEST(Special, FullRLTest)
                                                                   .AddChild(XMLBuilder::ValueNode("typ:ids", "EUR")))
                                                         .AddChild(XMLBuilder::ValueNode("typ:amount", 1))
                                                         .AddChild(XMLBuilder::ValueNode("typ:priceSum", 74.13l, 2))))))
-                .AddChild(XMLBuilder::ParentNode("dat:dataPackItem").AddAttribute("version", "2.0").AddAttribute("id", "23230971452/61/1")
-                          .AddChild(XMLBuilder::ParentNode("bnk:bank").AddAttribute("version", "2.0")
+                .AddChild(XMLBuilder::ParentNode("dat:dataPackItem").AddOrModifyAttribute("version", "2.0").AddOrModifyAttribute("id", "23230971452/61/1")
+                          .AddChild(XMLBuilder::ParentNode("bnk:bank").AddOrModifyAttribute("version", "2.0")
                                     .AddChild(XMLBuilder::ParentNode("bnk:bankHeader")
                                               .AddChild(XMLBuilder::ValueNode("bnk:bankType", "receipt"))
                                               .AddChild(XMLBuilder::ParentNode("bnk:account")

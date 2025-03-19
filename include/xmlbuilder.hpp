@@ -89,7 +89,7 @@ namespace XMLBuilder
 			template<Floating T>
 			inline std::string floatingToString(const T value, size_t precision)
 			{
-				std::stringstream ss;
+				std::ostringstream ss;
 				ss << std::fixed << std::setprecision(precision);
 				ss << value;
 				return ss.str();
@@ -134,6 +134,7 @@ namespace XMLBuilder
 			const std::string m_tag;
 		};
 
+
 		/**
 		 * @brief Definition of class that can be generated
 		 * @details Defines interface that generator classes can use as final string output
@@ -151,10 +152,34 @@ namespace XMLBuilder
 			 */
 			std::string Generate(const std::string& version = "1.0", const std::string& encoding = "Windows-1250") const
 			{
-				std::stringstream outputStream;
+				std::ostringstream outputStream;
 				outputStream << "<?xml version=\"" << version << "\" encoding=\"" << encoding << "\"?>" << std::endl;
 				_Generate(outputStream, 0);
 				return outputStream.str();
+			}
+
+			/**
+			 * @brief Generate and output final string to stream
+			 * 
+			 * @param stream Reference to output stream
+			 * @return std::ostream& Reference to output stream
+			 */
+			std::ostream& Print(std::ostream& stream) const
+			{
+				stream << Generate();
+				return stream;
+			}
+
+			/**
+			 * @brief Operator for generating and outputing final string to stream
+			 * 
+			 * @param stream Reference to output stream
+			 * @param object Reference to object being printed
+			 * @return std::ostream& Reference to output stream
+			 */
+			friend std::ostream& operator<<(std::ostream& stream, const Generatable& object)
+			{
+				return object.Print(stream);
 			}
 
 			/**
@@ -191,8 +216,9 @@ namespace XMLBuilder
 			 * @param outputStream Output stream
 			 * @param depth Current depth of the node
 			 */
-			virtual void _Generate(std::stringstream& outputStream, size_t depth) const = 0;
+			virtual void _Generate(std::ostringstream& outputStream, size_t depth) const = 0;
 		};
+
 
 		/**
 		 * @brief Store of attributes
@@ -205,10 +231,10 @@ namespace XMLBuilder
 		{
 		public:
 			/**
-			 * @brief Add stringlike attribute
+			 * @brief Add or modify stringlike attribute
 			 * @details Add new stringlike attribute if the attribute name is not present in this node
 			 * @warning Attribute names are unique
-			 * @warning Attribute names can't be empty
+			 * @warning Throws invalid_argument exception if called with empty attribute name
 			 * 
 			 * @tparam N types::Strings type for name of the attribute
 			 * @tparam V types::Stringlike type of the attribute value
@@ -217,23 +243,21 @@ namespace XMLBuilder
 			 * @return ParentType& Return self reference based on parent type for chaining
 			 */
 			template<types::Strings N, types::Stringlike V>
-			ParentType& AddAttribute(const N& name, const V& value)
+			ParentType& AddOrModifyAttribute(const N& name, const V& value)
 			{
 				std::string key(name);
 				if (key.empty())
 					throw std::invalid_argument("Key can't be empty");
 
-				// Just to not overwrite existing attribute
-				if (!ContainsAttribute(key))
-					m_attributes.insert({key, types::converters::toString(value)});
+				m_attributes.insert_or_assign(key, types::converters::toString(value));
 				return static_cast<ParentType&>(*this);
 			}
 
 			/**
-			 * @brief Add floating point attribute
+			 * @brief Add or modify floating point attribute
 			 * @details Add new floating point attribute if the attribute name is not present in this node
 			 * @warning Attribute names are unique
-			 * @warning Attribute names can't be empty
+			 * @warning Throws invalid_argument exception if called with empty attribute name
 			 * 
 			 * @tparam N types::Strings type for name of the attribute
 			 * @tparam V types::Floating type of attribute value
@@ -243,15 +267,13 @@ namespace XMLBuilder
 			 * @return ParentType& Return self reference based on parent type for chaining
 			 */
 			template<types::Strings N, types::Floating V>
-			ParentType& AddAttribute(const N& name, const V value, size_t precision)
+			ParentType& AddOrModifyAttribute(const N& name, const V value, size_t precision)
 			{
 				std::string key(name);
 				if (key.empty())
 					throw std::invalid_argument("Key can't be empty");
 
-				// Just to not overwrite existing attribute
-				if (!ContainsAttribute(key))
-					m_attributes.insert({key, types::converters::floatingToString(value, precision)});
+				m_attributes.insert_or_assign(key, types::converters::floatingToString(value, precision));
 				return static_cast<ParentType&>(*this);
 			}
 
@@ -269,55 +291,6 @@ namespace XMLBuilder
 				std::string key(name);
 				if (key.empty()) return false;
 				return m_attributes.contains(key);
-			}
-
-			/**
-			 * @brief Modify existing attribute by stringlike value
-			 * @details Replace value of attribute by stringlike value if attribute exist
-			 * @warning Attribute name need to be present in the node
-			 * 
-			 * @tparam N types::Strings type for name of the attribute
-			 * @tparam V types::Stringlike type of the attribute value
-			 * @param name Name of attribute
-			 * @param value New value of attribute
-			 * @return true Attribute value modified
-			 * @return false Invalid name or attribute name is not present in node
-			 */
-			template<types::Strings N, types::Stringlike V>
-			bool ModifyAttribute(const N& name, const V& value)
-			{
-				std::string key(name);
-				if (key.empty()) return false;
-				if (!ContainsAttribute(key)) return false;
-
-				m_attributes.insert_or_assign(key, types::converters::toString(value));
-
-				return true;
-			}
-
-			/**
-			 * @brief Modify existing attribute by floating point value
-			 * @details Replace value of attribute by floating point value if attribute exist
-			 * @warning Attribute name need to be present in the node
-			 * 
-			 * @tparam N types::Strings type for name of the attribute
-			 * @tparam V types::Floating type of the attribute value
-			 * @param name Name of attribute
-			 * @param value New value of attribute
-			 * @param precision Fixed precision of new floating point value
-			 * @return true Attribute value modified
-			 * @return false Invalid name or attribute name is not present in node
-			 */
-			template<types::Strings N, types::Floating V>
-			bool ModifyAttribute(const N& name, const V value, size_t precision)
-			{
-				std::string key(name);
-				if (key.empty()) return false;
-				if (!ContainsAttribute(key)) return false;
-
-				m_attributes.insert_or_assign(key, types::converters::floatingToString(value, precision));
-
-				return true;
 			}
 
 			/**
@@ -417,6 +390,27 @@ namespace XMLBuilder
 				return attAt(name);
 			}
 
+			/**
+			 * @brief Operator for adding or modifying attribute
+			 * @warning Throws invalid_argument exception if called with empty attribute name
+			 * 
+			 * @tparam N types::Strings type for name of the attribute
+			 * @tparam V types::Stringlike type of the attribute value
+			 * @param data Data pair of attribute name and new attribute value
+			 * @return ParentType& Return self reference based on parent type for chaining
+			 */
+			template<types::Strings N, types::Stringlike V>
+			ParentType& operator<<(const std::pair<N, V> data)
+			{
+				std::string key(data.first);
+				if (key.empty())
+					throw std::invalid_argument("Key can't be empty");
+
+				m_attributes.insert_or_assign(key, types::converters::toString(data.second));
+
+				return static_cast<ParentType&>(*this);
+			}
+
 		protected:
 			/**
 			 * @brief Writes attributes to output stream
@@ -424,7 +418,7 @@ namespace XMLBuilder
 			 * 
 			 * @param outputStream Output stream
 			 */
-			void _WriteAttributes(std::stringstream& outputStream) const
+			void _WriteAttributes(std::ostringstream& outputStream) const
 			{
 				for (const auto& [attributeName, attributeValue] : m_attributes)
 					outputStream << ' ' << attributeName << "=\"" << attributeValue << '\"';
@@ -447,24 +441,10 @@ namespace XMLBuilder
 		{
 		/**
 		 * @brief Friend of meta::ChildrenStore class because child store access NodeBase::_Generate method of its child nodes
-		 * @tparam ParentType 
+		 * @tparam ParentType Parent type of child store
 		 */
 		template<class ParentType>
 		friend class meta::ChildrenStore;
-
-		protected:
-			/**
-			 * @brief Basic implementation of Generatable::_Generate method
-			 * @details Implementation guarded by runtime_error exception so nobody would try to use this node as regular node
-			 * 
-			 * @param outputStream Output stream
-			 * @param depth Depth of current node
-			 */
-			// Inherited via Generatable
-			virtual void _Generate(std::stringstream& outputStream, size_t depth) const override
-			{
-				throw std::runtime_error("Unimplemented");
-			}
 		};
 	}
 
@@ -589,7 +569,7 @@ namespace XMLBuilder
 			 * @param outputStream Output stream
 			 * @param depth Current depth of the node
 			 */
-			void _WriteChildren(std::stringstream& outputStream, size_t depth) const
+			void _WriteChildren(std::ostringstream& outputStream, size_t depth) const
 			{
 				for (auto& child : m_children)
 					child->_Generate(outputStream, depth);
@@ -630,7 +610,7 @@ namespace XMLBuilder
 		 * @param depth Current node depth
 		 */
 		// Inherited via NodeBase
-		virtual void _Generate(std::stringstream& outputStream, size_t depth) const override
+		virtual void _Generate(std::ostringstream& outputStream, size_t depth) const override
 		{
 			std::string paddingString = _GenerateDepthPadding(depth);
 			outputStream << paddingString;
@@ -641,6 +621,7 @@ namespace XMLBuilder
 			outputStream << "/>" << std::endl;
 		}
 	};
+
 
 	/**
 	 * @brief Node for storing value
@@ -746,6 +727,26 @@ namespace XMLBuilder
 			return m_value;
 		}
 
+		/**
+		 * @brief Modify value of node by stringlike value
+		 * @warning Throws invalid_argument exception if value is empty, value can't be empty
+		 * 
+		 * @tparam V types::Stringlike type of value
+		 * @param value New value for the node
+		 * @return ValueNode& Return self reference for chaining
+		 */
+		template<types::Stringlike V>
+		ValueNode& operator=(const V& value)
+		{
+			std::string newValue(types::converters::toString(value));
+			if (newValue.empty())
+				throw std::invalid_argument("Value can't be empty");
+
+			m_value = newValue;
+
+			return *this;
+		}
+
 	protected:
 		/**
 		 * @brief Implementation of meta::NodeBase::_Generate method
@@ -755,7 +756,7 @@ namespace XMLBuilder
 		 * @param depth Current node depth
 		 */
 		// Inherited via NodeBase
-		virtual void _Generate(std::stringstream& outputStream, size_t depth) const override
+		virtual void _Generate(std::ostringstream& outputStream, size_t depth) const override
 		{
 			std::string paddingString = _GenerateDepthPadding(depth);
 			outputStream << paddingString;
@@ -772,6 +773,7 @@ namespace XMLBuilder
 		 */
 		std::string m_value;
 	};
+
 
 	/**
 	 * @brief Node for storing other nodes
@@ -800,7 +802,7 @@ namespace XMLBuilder
 		 * @param depth Current node depth
 		 */
 		// Inherited via NodeBase
-		virtual void _Generate(std::stringstream& outputStream, size_t depth) const override
+		virtual void _Generate(std::ostringstream& outputStream, size_t depth) const override
 		{
 			std::string paddingString = _GenerateDepthPadding(depth);
 			outputStream << paddingString;
@@ -824,6 +826,7 @@ namespace XMLBuilder
 		}
 	};
 
+
 	/**
 	 * @brief Node for storing other nodes
 	 * @details Node without interface of other standard nodes, used only for storing nodes on the highest level
@@ -846,7 +849,7 @@ namespace XMLBuilder
 		 * @param depth Current node depth
 		 */
 		// Inherited via Generatable
-		virtual void _Generate(std::stringstream& outputStream, size_t depth) const override
+		virtual void _Generate(std::ostringstream& outputStream, size_t depth) const override
 		{
 			_WriteChildren(outputStream, depth);
 		}
