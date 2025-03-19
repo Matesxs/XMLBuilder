@@ -17,7 +17,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Install Doxygen
-      run: apk add doxygen graphviz ttf-freefont
+      run: apt-get install -y doxygen graphviz ttf-freefont
         
     - name: Set reusable strings
       id: strings
