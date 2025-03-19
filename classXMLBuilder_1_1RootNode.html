@@ -135,6 +135,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a67f4053fb506323c43a9f4d751501e0f inherit pub_methods_classXMLBuilder_1_1meta_1_1Generatable" id="r_a67f4053fb506323c43a9f4d751501e0f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXMLBuilder_1_1meta_1_1Generatable.html#a67f4053fb506323c43a9f4d751501e0f">Generate</a> (const std::string &amp;version=&quot;1.0&quot;, const std::string &amp;encoding=&quot;Windows-1250&quot;) const</td></tr>
 <tr class="memdesc:a67f4053fb506323c43a9f4d751501e0f inherit pub_methods_classXMLBuilder_1_1meta_1_1Generatable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to generate final string.  <br /></td></tr>
 <tr class="separator:a67f4053fb506323c43a9f4d751501e0f inherit pub_methods_classXMLBuilder_1_1meta_1_1Generatable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fccabecb67c36521fb38ccc42b740ee inherit pub_methods_classXMLBuilder_1_1meta_1_1Generatable" id="r_a4fccabecb67c36521fb38ccc42b740ee"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXMLBuilder_1_1meta_1_1Generatable.html#a4fccabecb67c36521fb38ccc42b740ee">Print</a> (std::ostream &amp;stream) const</td></tr>
+<tr class="memdesc:a4fccabecb67c36521fb38ccc42b740ee inherit pub_methods_classXMLBuilder_1_1meta_1_1Generatable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate and output final string to stream.  <br /></td></tr>
+<tr class="separator:a4fccabecb67c36521fb38ccc42b740ee inherit pub_methods_classXMLBuilder_1_1meta_1_1Generatable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08a8849879f5b6a4f5c7cdf15077df16 inherit pub_methods_classXMLBuilder_1_1meta_1_1Generatable" id="r_a08a8849879f5b6a4f5c7cdf15077df16"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXMLBuilder_1_1meta_1_1Generatable.html#a08a8849879f5b6a4f5c7cdf15077df16">operator std::string</a> () const</td></tr>
 <tr class="memdesc:a08a8849879f5b6a4f5c7cdf15077df16 inherit pub_methods_classXMLBuilder_1_1meta_1_1Generatable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate final string on direct string conversion.  <br /></td></tr>
 <tr class="separator:a08a8849879f5b6a4f5c7cdf15077df16 inherit pub_methods_classXMLBuilder_1_1meta_1_1Generatable"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,9 +160,9 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:af98cd923ec3c8a4c1cea0e1571134d53" id="r_af98cd923ec3c8a4c1cea0e1571134d53"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af98cd923ec3c8a4c1cea0e1571134d53">_Generate</a> (std::stringstream &amp;outputStream, size_t depth) const override</td></tr>
-<tr class="memdesc:af98cd923ec3c8a4c1cea0e1571134d53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation of <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html#af488f86259319ec006950c485464839f" title="Basic implementation of Generatable::_Generate method.">meta::NodeBase::_Generate</a> method.  <br /></td></tr>
-<tr class="separator:af98cd923ec3c8a4c1cea0e1571134d53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc7df33161c32c4a502e6e1b53f98e32" id="r_acc7df33161c32c4a502e6e1b53f98e32"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc7df33161c32c4a502e6e1b53f98e32">_Generate</a> (std::ostringstream &amp;outputStream, size_t depth) const override</td></tr>
+<tr class="memdesc:acc7df33161c32c4a502e6e1b53f98e32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation of <a class="el" href="classXMLBuilder_1_1meta_1_1Generatable.html#a82aac4825ed31028c7b1c30a634f4002" title="Interface for generating output to stream of a node.">meta::NodeBase::_Generate</a> method.  <br /></td></tr>
+<tr class="separator:acc7df33161c32c4a502e6e1b53f98e32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classXMLBuilder_1_1meta_1_1Generatable"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classXMLBuilder_1_1meta_1_1Generatable')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classXMLBuilder_1_1meta_1_1Generatable.html">XMLBuilder::meta::Generatable</a></td></tr>
 <tr class="memitem:a0d9e2250318b94c7c78fca440ceef9c9 inherit pro_methods_classXMLBuilder_1_1meta_1_1Generatable" id="r_a0d9e2250318b94c7c78fca440ceef9c9"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXMLBuilder_1_1meta_1_1Generatable.html#a0d9e2250318b94c7c78fca440ceef9c9">_GenerateDepthPadding</a> (size_t depth) const</td></tr>
 <tr class="memdesc:a0d9e2250318b94c7c78fca440ceef9c9 inherit pro_methods_classXMLBuilder_1_1meta_1_1Generatable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Padding string generator.  <br /></td></tr>
@@ -168,9 +171,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a55ce1a8c4762ea676af10fc6c56fe825 inherit pro_methods_classXMLBuilder_1_1meta_1_1ChildrenStore" id="r_a55ce1a8c4762ea676af10fc6c56fe825"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html#a55ce1a8c4762ea676af10fc6c56fe825">_HaveChildren</a> () const</td></tr>
 <tr class="memdesc:a55ce1a8c4762ea676af10fc6c56fe825 inherit pro_methods_classXMLBuilder_1_1meta_1_1ChildrenStore"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if node have children.  <br /></td></tr>
 <tr class="separator:a55ce1a8c4762ea676af10fc6c56fe825 inherit pro_methods_classXMLBuilder_1_1meta_1_1ChildrenStore"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85e4d1b0fd4d0b251d02f5163086702a inherit pro_methods_classXMLBuilder_1_1meta_1_1ChildrenStore" id="r_a85e4d1b0fd4d0b251d02f5163086702a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html#a85e4d1b0fd4d0b251d02f5163086702a">_WriteChildren</a> (std::stringstream &amp;outputStream, size_t depth) const</td></tr>
-<tr class="memdesc:a85e4d1b0fd4d0b251d02f5163086702a inherit pro_methods_classXMLBuilder_1_1meta_1_1ChildrenStore"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write data of each child to output stream.  <br /></td></tr>
-<tr class="separator:a85e4d1b0fd4d0b251d02f5163086702a inherit pro_methods_classXMLBuilder_1_1meta_1_1ChildrenStore"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45b871a39620cc9f0b10861186f6806b inherit pro_methods_classXMLBuilder_1_1meta_1_1ChildrenStore" id="r_a45b871a39620cc9f0b10861186f6806b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html#a45b871a39620cc9f0b10861186f6806b">_WriteChildren</a> (std::ostringstream &amp;outputStream, size_t depth) const</td></tr>
+<tr class="memdesc:a45b871a39620cc9f0b10861186f6806b inherit pro_methods_classXMLBuilder_1_1meta_1_1ChildrenStore"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write data of each child to output stream.  <br /></td></tr>
+<tr class="separator:a45b871a39620cc9f0b10861186f6806b inherit pro_methods_classXMLBuilder_1_1meta_1_1ChildrenStore"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -184,8 +187,8 @@ std::vector&lt; std::shared_ptr&lt; <a class="el" href="classXMLBuilder_1_1meta_
 <div class="textblock"><p><a class="el" href="classXMLBuilder_1_1Node.html" title="Most basic node.">Node</a> for storing other nodes. </p>
 <p><a class="el" href="classXMLBuilder_1_1Node.html" title="Most basic node.">Node</a> without interface of other standard nodes, used only for storing nodes on the highest level </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="af98cd923ec3c8a4c1cea0e1571134d53" name="af98cd923ec3c8a4c1cea0e1571134d53"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af98cd923ec3c8a4c1cea0e1571134d53">&#9670;&#160;</a></span>_Generate()</h2>
+<a id="acc7df33161c32c4a502e6e1b53f98e32" name="acc7df33161c32c4a502e6e1b53f98e32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc7df33161c32c4a502e6e1b53f98e32">&#9670;&#160;</a></span>_Generate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -196,7 +199,7 @@ std::vector&lt; std::shared_ptr&lt; <a class="el" href="classXMLBuilder_1_1meta_
         <tr>
           <td class="memname">virtual void XMLBuilder::RootNode::_Generate </td>
           <td>(</td>
-          <td class="paramtype">std::stringstream &amp;</td>          <td class="paramname"><span class="paramname"><em>outputStream</em></span>, </td>
+          <td class="paramtype">std::ostringstream &amp;</td>          <td class="paramname"><span class="paramname"><em>outputStream</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -211,7 +214,7 @@ std::vector&lt; std::shared_ptr&lt; <a class="el" href="classXMLBuilder_1_1meta_
 </table>
 </div><div class="memdoc">
 
-<p>Implementation of <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html#af488f86259319ec006950c485464839f" title="Basic implementation of Generatable::_Generate method.">meta::NodeBase::_Generate</a> method. </p>
+<p>Implementation of <a class="el" href="classXMLBuilder_1_1meta_1_1Generatable.html#a82aac4825ed31028c7b1c30a634f4002" title="Interface for generating output to stream of a node.">meta::NodeBase::_Generate</a> method. </p>
 <p>Method for outputing XML representation of children nodes stored in it to output stream</p>
 <p>This node don't have any other function than storing children and can't be used only as most top level node</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -222,7 +225,7 @@ std::vector&lt; std::shared_ptr&lt; <a class="el" href="classXMLBuilder_1_1meta_
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classXMLBuilder_1_1meta_1_1Generatable.html#ad4f9527142c61f7f95702f4f1a774b9f">XMLBuilder::meta::Generatable</a>.</p>
+<p>Implements <a class="el" href="classXMLBuilder_1_1meta_1_1Generatable.html#a82aac4825ed31028c7b1c30a634f4002">XMLBuilder::meta::Generatable</a>.</p>
 
 </div>
 </div>

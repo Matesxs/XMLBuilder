@@ -105,6 +105,7 @@ $(function(){initNavTree('classXMLBuilder_1_1meta_1_1Generatable.html',''); init
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="classXMLBuilder_1_1meta_1_1Generatable-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">XMLBuilder::meta::Generatable Class Reference<span class="mlabels"><span class="mlabel abstract">abstract</span></span></div></div>
 </div><!--header-->
@@ -133,6 +134,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a67f4053fb506323c43a9f4d751501e0f" id="r_a67f4053fb506323c43a9f4d751501e0f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67f4053fb506323c43a9f4d751501e0f">Generate</a> (const std::string &amp;version=&quot;1.0&quot;, const std::string &amp;encoding=&quot;Windows-1250&quot;) const</td></tr>
 <tr class="memdesc:a67f4053fb506323c43a9f4d751501e0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to generate final string.  <br /></td></tr>
 <tr class="separator:a67f4053fb506323c43a9f4d751501e0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fccabecb67c36521fb38ccc42b740ee" id="r_a4fccabecb67c36521fb38ccc42b740ee"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fccabecb67c36521fb38ccc42b740ee">Print</a> (std::ostream &amp;stream) const</td></tr>
+<tr class="memdesc:a4fccabecb67c36521fb38ccc42b740ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate and output final string to stream.  <br /></td></tr>
+<tr class="separator:a4fccabecb67c36521fb38ccc42b740ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08a8849879f5b6a4f5c7cdf15077df16" id="r_a08a8849879f5b6a4f5c7cdf15077df16"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08a8849879f5b6a4f5c7cdf15077df16">operator std::string</a> () const</td></tr>
 <tr class="memdesc:a08a8849879f5b6a4f5c7cdf15077df16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate final string on direct string conversion.  <br /></td></tr>
 <tr class="separator:a08a8849879f5b6a4f5c7cdf15077df16"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,16 +146,22 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a0d9e2250318b94c7c78fca440ceef9c9" id="r_a0d9e2250318b94c7c78fca440ceef9c9"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d9e2250318b94c7c78fca440ceef9c9">_GenerateDepthPadding</a> (size_t depth) const</td></tr>
 <tr class="memdesc:a0d9e2250318b94c7c78fca440ceef9c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Padding string generator.  <br /></td></tr>
 <tr class="separator:a0d9e2250318b94c7c78fca440ceef9c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4f9527142c61f7f95702f4f1a774b9f" id="r_ad4f9527142c61f7f95702f4f1a774b9f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4f9527142c61f7f95702f4f1a774b9f">_Generate</a> (std::stringstream &amp;outputStream, size_t depth) const =0</td></tr>
-<tr class="memdesc:ad4f9527142c61f7f95702f4f1a774b9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for generating output to stream of a node.  <br /></td></tr>
-<tr class="separator:ad4f9527142c61f7f95702f4f1a774b9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82aac4825ed31028c7b1c30a634f4002" id="r_a82aac4825ed31028c7b1c30a634f4002"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a82aac4825ed31028c7b1c30a634f4002">_Generate</a> (std::ostringstream &amp;outputStream, size_t depth) const =0</td></tr>
+<tr class="memdesc:a82aac4825ed31028c7b1c30a634f4002"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for generating output to stream of a node.  <br /></td></tr>
+<tr class="separator:a82aac4825ed31028c7b1c30a634f4002"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a94477623302c7e463ef817e4abe0de4c" id="r_a94477623302c7e463ef817e4abe0de4c"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94477623302c7e463ef817e4abe0de4c">operator&lt;&lt;</a> (std::ostream &amp;stream, const <a class="el" href="classXMLBuilder_1_1meta_1_1Generatable.html">Generatable</a> &amp;object)</td></tr>
+<tr class="memdesc:a94477623302c7e463ef817e4abe0de4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator for generating and outputing final string to stream.  <br /></td></tr>
+<tr class="separator:a94477623302c7e463ef817e4abe0de4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Definition of class that can be generated. </p>
 <p>Defines interface that generator classes can use as final string output </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad4f9527142c61f7f95702f4f1a774b9f" name="ad4f9527142c61f7f95702f4f1a774b9f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4f9527142c61f7f95702f4f1a774b9f">&#9670;&#160;</a></span>_Generate()</h2>
+<a id="a82aac4825ed31028c7b1c30a634f4002" name="a82aac4825ed31028c7b1c30a634f4002"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82aac4825ed31028c7b1c30a634f4002">&#9670;&#160;</a></span>_Generate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -162,7 +172,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual void XMLBuilder::meta::Generatable::_Generate </td>
           <td>(</td>
-          <td class="paramtype">std::stringstream &amp;</td>          <td class="paramname"><span class="paramname"><em>outputStream</em></span>, </td>
+          <td class="paramtype">std::ostringstream &amp;</td>          <td class="paramname"><span class="paramname"><em>outputStream</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -187,7 +197,7 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html#af488f86259319ec006950c485464839f">XMLBuilder::meta::NodeBase</a>, <a class="el" href="classXMLBuilder_1_1Node.html#aca99332acd559732bb1bfa3502737c2f">XMLBuilder::Node</a>, <a class="el" href="classXMLBuilder_1_1ParentNode.html#ac959b3fa90236eba6a1a96179f0f796b">XMLBuilder::ParentNode</a>, <a class="el" href="classXMLBuilder_1_1RootNode.html#af98cd923ec3c8a4c1cea0e1571134d53">XMLBuilder::RootNode</a>, and <a class="el" href="classXMLBuilder_1_1ValueNode.html#a68b79e7bdbcd57da111be93ac2521bba">XMLBuilder::ValueNode</a>.</p>
+<p>Implemented in <a class="el" href="classXMLBuilder_1_1Node.html#a1eadad6f98047c18231540d372b4694f">XMLBuilder::Node</a>, <a class="el" href="classXMLBuilder_1_1ParentNode.html#abc17e11aa540e9aaf4022858fb66ec61">XMLBuilder::ParentNode</a>, <a class="el" href="classXMLBuilder_1_1RootNode.html#acc7df33161c32c4a502e6e1b53f98e32">XMLBuilder::RootNode</a>, and <a class="el" href="classXMLBuilder_1_1ValueNode.html#a2c255867f4e35160b7f3326072fb7c6c">XMLBuilder::ValueNode</a>.</p>
 
 </div>
 </div>
@@ -292,6 +302,80 @@ Protected Member Functions</h2></td></tr>
 <p>Generate final string on direct string conversion. </p>
 <p>Returns result of Generate function</p>
 <dl class="section return"><dt>Returns</dt><dd>std::string Final output string </dd></dl>
+
+</div>
+</div>
+<a id="a4fccabecb67c36521fb38ccc42b740ee" name="a4fccabecb67c36521fb38ccc42b740ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fccabecb67c36521fb38ccc42b740ee">&#9670;&#160;</a></span>Print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; XMLBuilder::meta::Generatable::Print </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>stream</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Generate and output final string to stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stream</td><td>Reference to output stream </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::ostream&amp; Reference to output stream </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Symbol Documentation</h2>
+<a id="a94477623302c7e463ef817e4abe0de4c" name="a94477623302c7e463ef817e4abe0de4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94477623302c7e463ef817e4abe0de4c">&#9670;&#160;</a></span>operator&lt;&lt;</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>stream</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classXMLBuilder_1_1meta_1_1Generatable.html">Generatable</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>object</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Operator for generating and outputing final string to stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stream</td><td>Reference to output stream </td></tr>
+    <tr><td class="paramname">object</td><td>Reference to object being printed </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::ostream&amp; Reference to output stream </dd></dl>
 
 </div>
 </div>

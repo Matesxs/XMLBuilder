@@ -1,7 +1,7 @@
 var classXMLBuilder_1_1meta_1_1ChildrenStore =
 [
     [ "_HaveChildren", "classXMLBuilder_1_1meta_1_1ChildrenStore.html#a55ce1a8c4762ea676af10fc6c56fe825", null ],
-    [ "_WriteChildren", "classXMLBuilder_1_1meta_1_1ChildrenStore.html#a85e4d1b0fd4d0b251d02f5163086702a", null ],
+    [ "_WriteChildren", "classXMLBuilder_1_1meta_1_1ChildrenStore.html#a45b871a39620cc9f0b10861186f6806b", null ],
     [ "AddChild", "classXMLBuilder_1_1meta_1_1ChildrenStore.html#ab50820149b7986f9a67008932f844251", null ],
     [ "childAt", "classXMLBuilder_1_1meta_1_1ChildrenStore.html#a4cce3c5344648517640b04dd0519369d", null ],
     [ "childAt", "classXMLBuilder_1_1meta_1_1ChildrenStore.html#ab9df94f879af5496584d050a793a593a", null ],
