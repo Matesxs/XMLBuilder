@@ -759,6 +759,25 @@ namespace XMLBuilder
 			return m_value;
 		}
 
+		/**
+		 * @brief Modify value of node by stringlike value
+		 * 
+		 * @tparam V types::Stringlike type of value
+		 * @param value New value for the node
+		 * @return ValueNode& Reference to value node
+		 */
+		template<types::Stringlike V>
+		ValueNode& operator=(const V& value)
+		{
+			std::string newValue(types::converters::toString(value));
+			if (newValue.empty())
+				throw std::invalid_argument("Value can't be empty");
+
+			m_value = newValue;
+
+			return *this;
+		}
+
 	protected:
 		/**
 		 * @brief Implementation of meta::NodeBase::_Generate method
