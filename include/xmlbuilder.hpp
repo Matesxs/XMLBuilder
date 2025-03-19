@@ -403,7 +403,7 @@ namespace XMLBuilder
 			 * @return ParentType& Return self reference based on parent type for chaining
 			 */
 			template<types::Strings N, types::Stringlike V>
-			ParentType& operator<<(const std::pair<N, V> data)
+			ParentType& operator<<(const std::pair<N, V>& data)
 			{
 				std::string key(data.first);
 				if (key.empty())
@@ -420,11 +420,12 @@ namespace XMLBuilder
 			 * 
 			 * @tparam N types::Strings type for name of the attribute
 			 * @tparam V types::Floating type of the attribute value
+			 * @tparam P types::Integral type of attribute value precision
 			 * @param data Data pair of attribute name and pair of attribute value and fixed value precision
 			 * @return ParentType& Return self reference based on parent type for chaining
 			 */
 			template<types::Strings N, types::Floating V, types::Integral P>
-			ParentType& operator<<(const std::pair<N, std::pair<V, P>> data)
+			ParentType& operator<<(const std::pair<N, std::pair<V, P>>& data)
 			{
 				std::string key(data.first);
 				if (key.empty())
@@ -763,6 +764,27 @@ namespace XMLBuilder
 		ValueNode& operator=(const V& value)
 		{
 			std::string newValue(types::converters::toString(value));
+			if (newValue.empty())
+				throw std::invalid_argument("Value can't be empty");
+
+			m_value = newValue;
+
+			return *this;
+		}
+
+		/**
+		 * @brief Modify value of node by floating point value
+		 * @warning Throws invalid_argument exception if value is empty, value can't be empty
+		 * 
+		 * @tparam V types::Floating type of value
+		 * @tparam P types::Integral type of value precision
+		 * @param data Pair of value and fixed value precision
+		 * @return ValueNode& Return self reference for chaining
+		 */
+		template<types::Floating V, types::Integral P>
+		ValueNode& operator=(const std::pair<V, P>& data)
+		{
+			std::string newValue(types::converters::floatingToString(data.first, static_cast<size_t>(data.second)));
 			if (newValue.empty())
 				throw std::invalid_argument("Value can't be empty");
 
