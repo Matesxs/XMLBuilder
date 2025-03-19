@@ -55,6 +55,9 @@ namespace XMLBuilder
 		template<class T>
 		concept Floating = std::is_floating_point_v<T>;
 
+		template<class T>
+		concept Integral = std::is_integral_v<T>;
+
 		/**
 		 * @brief Type converters
 		 */
@@ -391,7 +394,7 @@ namespace XMLBuilder
 			}
 
 			/**
-			 * @brief Operator for adding or modifying attribute
+			 * @brief Operator for adding or modifying stringlike attribute
 			 * @warning Throws invalid_argument exception if called with empty attribute name
 			 * 
 			 * @tparam N types::Strings type for name of the attribute
@@ -407,6 +410,27 @@ namespace XMLBuilder
 					throw std::invalid_argument("Key can't be empty");
 
 				m_attributes.insert_or_assign(key, types::converters::toString(data.second));
+
+				return static_cast<ParentType&>(*this);
+			}
+
+			/**
+			 * @brief Operator for adding or modifying floating point attribute
+			 * @warning Throws invalid_argument exception if called with empty attribute name
+			 * 
+			 * @tparam N types::Strings type for name of the attribute
+			 * @tparam V types::Floating type of the attribute value
+			 * @param data Data pair of attribute name and pair of attribute value and fixed value precision
+			 * @return ParentType& Return self reference based on parent type for chaining
+			 */
+			template<types::Strings N, types::Floating V, types::Integral P>
+			ParentType& operator<<(const std::pair<N, std::pair<V, P>> data)
+			{
+				std::string key(data.first);
+				if (key.empty())
+					throw std::invalid_argument("Key can't be empty");
+
+				m_attributes.insert_or_assign(key, types::converters::floatingToString(data.second.first, static_cast<size_t>(data.second.second)));
 
 				return static_cast<ParentType&>(*this);
 			}
