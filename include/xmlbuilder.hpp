@@ -473,24 +473,10 @@ namespace XMLBuilder
 		{
 		/**
 		 * @brief Friend of meta::ChildrenStore class because child store access NodeBase::_Generate method of its child nodes
-		 * @tparam ParentType 
+		 * @tparam ParentType Parent type of child store
 		 */
 		template<class ParentType>
 		friend class meta::ChildrenStore;
-
-		protected:
-			/**
-			 * @brief Basic implementation of Generatable::_Generate method
-			 * @details Implementation guarded by runtime_error exception so nobody would try to use this node as regular node
-			 * 
-			 * @param outputStream Output stream
-			 * @param depth Depth of current node
-			 */
-			// Inherited via Generatable
-			virtual void _Generate(std::ostringstream& outputStream, size_t depth) const override
-			{
-				throw std::runtime_error("Unimplemented");
-			}
 		};
 	}
 
