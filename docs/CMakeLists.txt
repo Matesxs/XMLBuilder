@@ -10,6 +10,8 @@ set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
 
 configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
 
+message("Filled doxygen file and copied it to: ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile")
+
 if(BUILD_DOCUMENTATION)
   if (DOXYGEN_FOUND)
     add_custom_target(${PROJECT_NAME} ALL
