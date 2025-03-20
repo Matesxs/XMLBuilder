@@ -117,7 +117,7 @@ namespace XMLBuilder
 		public:
 			/**
 			 * @brief Construct a new Tagged object
-			 * @warning Throws invalid_argument exception when tag is empty, tag can't be empty
+			 * @warning Throws invalid_argument exception when tag is empty
 			 * 
 			 * @tparam T types::Strings type of tag
 			 * @param tag Value object of tag
@@ -417,6 +417,7 @@ namespace XMLBuilder
 			/**
 			 * @brief Operator for adding or modifying floating point attribute
 			 * @warning Throws invalid_argument exception if called with empty attribute name
+			 * @warning Throws invalid_argument exception if called with precision value lower than 0
 			 * 
 			 * @tparam N types::Strings type for name of the attribute
 			 * @tparam V types::Floating type of the attribute value
@@ -430,6 +431,9 @@ namespace XMLBuilder
 				std::string key(data.first);
 				if (key.empty())
 					throw std::invalid_argument("Key can't be empty");
+
+				if (data.second.second < 0)
+					throw std::invalid_argument("Precision can't be lower than 0");
 
 				m_attributes.insert_or_assign(key, types::converters::floatingToString(data.second.first, static_cast<size_t>(data.second.second)));
 
@@ -658,6 +662,7 @@ namespace XMLBuilder
 		/**
 		 * @brief Construct a new Value %Node object
 		 * @details Create node from tag and stringlike value
+		 * @warning Throws invalid_argument exception if called with precision value lower than 0
 		 * 
 		 * @tparam T types::Strings type of tag
 		 * @tparam V types::Stringlike type of value
@@ -676,7 +681,7 @@ namespace XMLBuilder
 		/**
 		 * @brief Construct a new Value Node object
 		 * @details Create node from tag and floating point value
-		 * @warning Throws invalid_argument exception if value is empty, value can't be empty
+		 * @warning Throws invalid_argument exception if value is empty
 		 * 
 		 * @tparam T types::Strings type of tag
 		 * @tparam V types::Floating type of value
@@ -754,7 +759,7 @@ namespace XMLBuilder
 
 		/**
 		 * @brief Modify value of node by stringlike value
-		 * @warning Throws invalid_argument exception if value is empty, value can't be empty
+		 * @warning Throws invalid_argument exception if value is empty
 		 * 
 		 * @tparam V types::Stringlike type of value
 		 * @param value New value for the node
@@ -774,7 +779,8 @@ namespace XMLBuilder
 
 		/**
 		 * @brief Modify value of node by floating point value
-		 * @warning Throws invalid_argument exception if value is empty, value can't be empty
+		 * @warning Throws invalid_argument exception if value is empty
+		 * @warning Throws invalid_argument exception if called with precision value lower than 0
 		 * 
 		 * @tparam V types::Floating type of value
 		 * @tparam P types::Integral type of value precision
@@ -784,6 +790,9 @@ namespace XMLBuilder
 		template<types::Floating V, types::Integral P>
 		ValueNode& operator=(const std::pair<V, P>& data)
 		{
+			if (data.second < 0)
+				throw std::invalid_argument("Precision can't be lower than 0");
+
 			std::string newValue(types::converters::floatingToString(data.first, static_cast<size_t>(data.second)));
 			if (newValue.empty())
 				throw std::invalid_argument("Value can't be empty");
