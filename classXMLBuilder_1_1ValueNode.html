@@ -262,7 +262,7 @@ template&lt;types::Strings T, types::Stringlike V&gt; </div>
 </div><div class="memdoc">
 
 <p>Construct a new Value Node object. </p>
-<p>Create node from tag and stringlike value</p>
+<p>Create node from tag and stringlike value </p><dl class="section warning"><dt>Warning</dt><dd>Throws invalid_argument exception if called with precision value lower than 0</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to string.">types::Strings</a> type of tag </td></tr>
@@ -315,7 +315,7 @@ template&lt;types::Strings T, types::Floating V&gt; </div>
 </div><div class="memdoc">
 
 <p>Construct a new Value <a class="el" href="classXMLBuilder_1_1Node.html" title="Most basic node.">Node</a> object. </p>
-<p>Create node from tag and floating point value </p><dl class="section warning"><dt>Warning</dt><dd>Throws invalid_argument exception if value is empty, value can't be empty</dd></dl>
+<p>Create node from tag and floating point value </p><dl class="section warning"><dt>Warning</dt><dd>Throws invalid_argument exception if value is empty</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to string.">types::Strings</a> type of tag </td></tr>
@@ -551,7 +551,9 @@ template&lt;types::Floating V, types::Integral P&gt; </div>
 </div><div class="memdoc">
 
 <p>Modify value of node by floating point value. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Throws invalid_argument exception if value is empty, value can't be empty</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Throws invalid_argument exception if value is empty </dd>
+<dd>
+Throws invalid_argument exception if called with precision value lower than 0</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">V</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Floating.html" title="Floating point numbers.">types::Floating</a> type of value </td></tr>
@@ -595,7 +597,7 @@ template&lt;types::Stringlike V&gt; </div>
 </div><div class="memdoc">
 
 <p>Modify value of node by stringlike value. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Throws invalid_argument exception if value is empty, value can't be empty</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Throws invalid_argument exception if value is empty</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">V</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Stringlike.html" title="String and non-string types convertible to string.">types::Stringlike</a> type of value </td></tr>
