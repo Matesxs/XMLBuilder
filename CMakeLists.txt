@@ -9,6 +9,8 @@ set(Headers
   include/xmlbuilder.hpp
 )
 
+enable_testing()
+
 add_library(${PROJECT_NAME} INTERFACE ${Headers})
 target_include_directories(${PROJECT_NAME} INTERFACE include/)
 

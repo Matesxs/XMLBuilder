@@ -19,8 +19,6 @@ FetchContent_MakeAvailable(googletest)
 file(GLOB TEST_SOURCES ./*.cpp ./*.hpp)
 file(GLOB UTILS_SOURCES ./utils/*.cpp ./utils/*.hpp)
 
-enable_testing()
-
 add_executable(
   ${PROJECT_NAME}
   ${TEST_SOURCES}
