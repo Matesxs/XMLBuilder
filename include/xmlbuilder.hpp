@@ -410,7 +410,7 @@ namespace XMLBuilder
 			template<types::Strings N, types::Stringlike V>
 			ParentType& operator<<(const std::pair<N, V>& data)
 			{
-				std::string key(data.first);
+				const std::string key(data.first);
 				if (key.empty())
 					throw std::invalid_argument("Key can't be empty");
 
@@ -433,7 +433,7 @@ namespace XMLBuilder
 			template<types::Strings N, types::Floating V, types::Integral P>
 			ParentType& operator<<(const std::pair<N, std::pair<V, P>>& data)
 			{
-				std::string key(data.first);
+				const std::string key(data.first);
 				if (key.empty())
 					throw std::invalid_argument("Key can't be empty");
 
