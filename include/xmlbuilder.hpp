@@ -253,7 +253,7 @@ namespace XMLBuilder
 			template<types::Strings N, types::Stringlike V>
 			ParentType& AddOrModifyAttribute(const N& name, const V& value)
 			{
-				std::string key(name);
+				const std::string key(name);
 				if (key.empty())
 					throw std::invalid_argument("Key can't be empty");
 
@@ -277,7 +277,7 @@ namespace XMLBuilder
 			template<types::Strings N, types::Floating V>
 			ParentType& AddOrModifyAttribute(const N& name, const V value, size_t precision)
 			{
-				std::string key(name);
+				const std::string key(name);
 				if (key.empty())
 					throw std::invalid_argument("Key can't be empty");
 
@@ -479,6 +479,22 @@ namespace XMLBuilder
 		 */
 		template<class ParentType>
 		friend class ChildrenStore;
+
+		public:
+			/**
+			* @brief Cast instance of the base node class as parent type
+			* @warning Raises std::invalid_argument exception when trying to cast to type that is not based on this class
+			*
+			* @tparam ParentType Type to which cast this object
+			* @return ParentType& Reference to this object casted to parent type
+			*/
+			template<class ParentType>
+			ParentType& as()
+			{
+				if (!std::is_base_of_v<NodeBase, ParentType>)
+					throw std::invalid_argument("Node type is not a child");
+				return *static_cast<ParentType*>(this);
+			}
 		};
 	}
 
