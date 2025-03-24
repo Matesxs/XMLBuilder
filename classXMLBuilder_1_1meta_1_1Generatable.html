@@ -105,6 +105,7 @@ $(function(){initNavTree('classXMLBuilder_1_1meta_1_1Generatable.html',''); init
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-static-methods">Static Protected Member Functions</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="classXMLBuilder_1_1meta_1_1Generatable-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">XMLBuilder::meta::Generatable Class Reference<span class="mlabels"><span class="mlabel abstract">abstract</span></span></div></div>
@@ -143,12 +144,15 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a0d9e2250318b94c7c78fca440ceef9c9" id="r_a0d9e2250318b94c7c78fca440ceef9c9"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d9e2250318b94c7c78fca440ceef9c9">_GenerateDepthPadding</a> (size_t depth) const</td></tr>
-<tr class="memdesc:a0d9e2250318b94c7c78fca440ceef9c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Padding string generator.  <br /></td></tr>
-<tr class="separator:a0d9e2250318b94c7c78fca440ceef9c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82aac4825ed31028c7b1c30a634f4002" id="r_a82aac4825ed31028c7b1c30a634f4002"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a82aac4825ed31028c7b1c30a634f4002">_Generate</a> (std::ostringstream &amp;outputStream, size_t depth) const =0</td></tr>
 <tr class="memdesc:a82aac4825ed31028c7b1c30a634f4002"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for generating output to stream of a node.  <br /></td></tr>
 <tr class="separator:a82aac4825ed31028c7b1c30a634f4002"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
+Static Protected Member Functions</h2></td></tr>
+<tr class="memitem:a0317dddb6bb723f65f938500cf605257" id="r_a0317dddb6bb723f65f938500cf605257"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0317dddb6bb723f65f938500cf605257">_GenerateDepthPadding</a> (const size_t depth)</td></tr>
+<tr class="memdesc:a0317dddb6bb723f65f938500cf605257"><td class="mdescLeft">&#160;</td><td class="mdescRight">Padding string generator.  <br /></td></tr>
+<tr class="separator:a0317dddb6bb723f65f938500cf605257"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
@@ -197,12 +201,12 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classXMLBuilder_1_1Node.html#a1eadad6f98047c18231540d372b4694f">XMLBuilder::Node</a>, <a class="el" href="classXMLBuilder_1_1ParentNode.html#abc17e11aa540e9aaf4022858fb66ec61">XMLBuilder::ParentNode</a>, <a class="el" href="classXMLBuilder_1_1RootNode.html#acc7df33161c32c4a502e6e1b53f98e32">XMLBuilder::RootNode</a>, and <a class="el" href="classXMLBuilder_1_1ValueNode.html#a2c255867f4e35160b7f3326072fb7c6c">XMLBuilder::ValueNode</a>.</p>
+<p>Implemented in <a class="el" href="classXMLBuilder_1_1Node.html#a007ad992cb09107c2036851f7b14bfc0">XMLBuilder::Node</a>, <a class="el" href="classXMLBuilder_1_1ParentNode.html#a5e5fef0148baa64c42befbddb8683ff2">XMLBuilder::ParentNode</a>, <a class="el" href="classXMLBuilder_1_1RootNode.html#a1e59799799dc6094388667418c56b42e">XMLBuilder::RootNode</a>, and <a class="el" href="classXMLBuilder_1_1ValueNode.html#a42c1840d46eb859f0c39f4e6a7470430">XMLBuilder::ValueNode</a>.</p>
 
 </div>
 </div>
-<a id="a0d9e2250318b94c7c78fca440ceef9c9" name="a0d9e2250318b94c7c78fca440ceef9c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0d9e2250318b94c7c78fca440ceef9c9">&#9670;&#160;</a></span>_GenerateDepthPadding()</h2>
+<a id="a0317dddb6bb723f65f938500cf605257" name="a0317dddb6bb723f65f938500cf605257"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0317dddb6bb723f65f938500cf605257">&#9670;&#160;</a></span>_GenerateDepthPadding()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -211,15 +215,15 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string XMLBuilder::meta::Generatable::_GenerateDepthPadding </td>
+          <td class="memname">static std::string XMLBuilder::meta::Generatable::_GenerateDepthPadding </td>
           <td>(</td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>depth</em></span></td><td>)</td>
-          <td> const</td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>depth</em></span></td><td>)</td>
+          <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel protected">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -258,7 +262,7 @@ Friends</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -294,7 +298,7 @@ Friends</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
