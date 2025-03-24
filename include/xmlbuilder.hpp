@@ -1,5 +1,6 @@
 #pragma once
 
+#include <format>
 #include <string>
 #include <sstream>
 #include <iomanip>
@@ -72,7 +73,7 @@ namespace XMLBuilder
 			 * @return decltype(auto) Value converted to string
 			 */
 			template<Stringlike T>
-			inline decltype(auto) toString(T& t)
+			decltype(auto) toString(T& t)
 			{
 				if constexpr (Stringable<T>)
 					return std::format("{}", t);
@@ -90,10 +91,10 @@ namespace XMLBuilder
 			 * @return std::string %Floating point number converted to string
 			 */
 			template<Floating T>
-			inline std::string floatingToString(const T value, size_t precision)
+			std::string floatingToString(const T value, const size_t precision)
 			{
 				std::ostringstream ss;
-				ss << std::fixed << std::setprecision(precision);
+				ss << std::fixed << std::setprecision(precision); // NOLINT(*-narrowing-conversions)
 				ss << value;
 				return ss.str();
 			}
@@ -123,12 +124,14 @@ namespace XMLBuilder
 			 * @param tag Value object of tag
 			 */
 			template<types::Strings T>
-			Tagged(const T& tag) :
+			Tagged(const T& tag) : // NOLINT(*-explicit-constructor)
 				m_tag(tag)
 			{
 				if (m_tag.empty())
 					throw std::invalid_argument("Tag can't be empty");
 			}
+
+			virtual ~Tagged() = default;
 
 		protected:
 			/**
@@ -145,6 +148,8 @@ namespace XMLBuilder
 		class Generatable
 		{
 		public:
+			virtual ~Generatable() = default;
+
 			/**
 			 * @brief Method to generate final string
 			 * @details Creates new stream, creates XML header and calls _Generate function
@@ -153,7 +158,7 @@ namespace XMLBuilder
 			 * @param encoding Encoding string for XML header
 			 * @return std::string Final output string
 			 */
-			std::string Generate(const std::string& version = "1.0", const std::string& encoding = "Windows-1250") const
+			[[nodiscard]] std::string Generate(const std::string& version = "1.0", const std::string& encoding = "Windows-1250") const
 			{
 				std::ostringstream outputStream;
 				outputStream << "<?xml version=\"" << version << "\" encoding=\"" << encoding << "\"?>" << std::endl;
@@ -191,7 +196,7 @@ namespace XMLBuilder
 			 * 
 			 * @return std::string Final output string
 			 */
-			operator std::string() const
+			explicit operator std::string() const
 			{
 				return Generate();
 			}
@@ -204,12 +209,10 @@ namespace XMLBuilder
 			 * @param depth Current depth in node tree
 			 * @return std::string Padding string
 			 */
-			std::string _GenerateDepthPadding(size_t depth) const
+			[[nodiscard]] static std::string _GenerateDepthPadding(const size_t depth)  // NOLINT(*-reserved-identifier)
 			{
-				std::string output;
-				for (size_t i = 0; i < depth; i++)
-					output.push_back('\t');
-				return output;
+			    // Easy way of returning string with *n* characters
+			    return std::string(depth, '\t'); // NOLINT(*-return-braced-init-list)
 			}
 
 			/**
@@ -219,7 +222,7 @@ namespace XMLBuilder
 			 * @param outputStream Output stream
 			 * @param depth Current depth of the node
 			 */
-			virtual void _Generate(std::ostringstream& outputStream, size_t depth) const = 0;
+			virtual void _Generate(std::ostringstream& outputStream, size_t depth) const = 0; // NOLINT(*-reserved-identifier)
 		};
 
 
@@ -233,6 +236,8 @@ namespace XMLBuilder
 		class Attributable
 		{
 		public:
+			virtual ~Attributable() = default;
+
 			/**
 			 * @brief Add or modify stringlike attribute
 			 * @details Add new stringlike attribute if the attribute name is not present in this node
@@ -291,7 +296,7 @@ namespace XMLBuilder
 			template<types::Strings N>
 			bool ContainsAttribute(const N& name) const
 			{
-				std::string key(name);
+				const std::string key(name);
 				if (key.empty()) return false;
 				return m_attributes.contains(key);
 			}
@@ -308,7 +313,7 @@ namespace XMLBuilder
 			template<types::Strings N>
 			bool RemoveAttribute(const N& name)
 			{
-				std::string key(name);
+				const std::string key(name);
 				if (key.empty()) return false;
 				if (!ContainsAttribute(key)) return false;
 
@@ -329,7 +334,7 @@ namespace XMLBuilder
 			template<types::Strings N>
 			std::string& attAt(const N& name)
 			{
-				std::string key(name);
+				const std::string key(name);
 				if (key.empty())
 					throw std::invalid_argument("Key can't be empty");
 
@@ -351,7 +356,7 @@ namespace XMLBuilder
 			template<types::Strings N>
 			std::string attAt(const N& name) const
 			{
-				std::string key(name);
+				const std::string key(name);
 				if (key.empty())
 					throw std::invalid_argument("Key can't be empty");
 
@@ -447,7 +452,7 @@ namespace XMLBuilder
 			 * 
 			 * @param outputStream Output stream
 			 */
-			void _WriteAttributes(std::ostringstream& outputStream) const
+			void _WriteAttributes(std::ostringstream& outputStream) const // NOLINT(*-reserved-identifier)
 			{
 				for (const auto& [attributeName, attributeValue] : m_attributes)
 					outputStream << ' ' << attributeName << "=\"" << attributeValue << '\"';
@@ -473,7 +478,7 @@ namespace XMLBuilder
 		 * @tparam ParentType Parent type of child store
 		 */
 		template<class ParentType>
-		friend class meta::ChildrenStore;
+		friend class ChildrenStore;
 		};
 	}
 
@@ -485,7 +490,7 @@ namespace XMLBuilder
 		 * @tparam T Type to check
 		 */
 		template <typename T>
-		concept XMLNodeBased = std::is_base_of<meta::NodeBase, T>::value;
+		concept XMLNodeBased = std::is_base_of_v<meta::NodeBase, T>;
 	}
 
 	namespace meta
@@ -521,7 +526,7 @@ namespace XMLBuilder
 			 * 
 			 * @return size_t Number of stored children
 			 */
-			size_t ChildrenCount() const
+			[[nodiscard]] size_t ChildrenCount() const
 			{
 				return m_children.size();
 			}
@@ -533,12 +538,10 @@ namespace XMLBuilder
 			 * @return true Child was removed
 			 * @return false Invalid index of a child
 			 */
-			bool RemoveChild(size_t idx)
+			bool RemoveChild(const size_t idx)
 			{
 				if (idx >= ChildrenCount()) return false;
-
-				m_children.erase(m_children.begin() + idx);
-
+				m_children.erase(m_children.begin() + idx); // NOLINT(*-narrowing-conversions)
 				return true;
 			}
 
@@ -553,7 +556,7 @@ namespace XMLBuilder
 			 * @return ChildType& Child object reference
 			 */
 			template<types::XMLNodeBased ChildType>
-			ChildType& childAt(size_t idx)
+			ChildType& childAt(const size_t idx)
 			{
 				if (idx >= ChildrenCount())
 					throw std::out_of_range("Index out of range");
@@ -572,7 +575,7 @@ namespace XMLBuilder
 			 * @return ChildType Copy Child object
 			 */
 			template<types::XMLNodeBased ChildType>
-			ChildType childAt(size_t idx) const
+			ChildType childAt(const size_t idx) const
 			{
 				if (idx >= ChildrenCount())
 					throw std::out_of_range("Index out of range");
@@ -587,7 +590,7 @@ namespace XMLBuilder
 			 * @return true Node have children
 			 * @return false Node don't have children
 			 */
-			bool _HaveChildren() const
+			[[nodiscard]] bool _HaveChildren() const // NOLINT(*-reserved-identifier)
 			{
 				return !m_children.empty();
 			}
@@ -598,7 +601,7 @@ namespace XMLBuilder
 			 * @param outputStream Output stream
 			 * @param depth Current depth of the node
 			 */
-			void _WriteChildren(std::ostringstream& outputStream, size_t depth) const
+			void _WriteChildren(std::ostringstream& outputStream, const size_t depth) const // NOLINT(*-reserved-identifier)
 			{
 				for (auto& child : m_children)
 					child->_Generate(outputStream, depth);
@@ -608,7 +611,7 @@ namespace XMLBuilder
 			/**
 			 * @brief Child storage as vector of shared pointer of meta::NodeBase
 			 */
-			std::vector<std::shared_ptr<meta::NodeBase>> m_children;
+			std::vector<std::shared_ptr<NodeBase>> m_children;
 		};
 	}
 
@@ -616,7 +619,7 @@ namespace XMLBuilder
 	 * @brief Most basic node
 	 * @details Node with basic node interface, tag and attributes
 	 */
-	class Node : public meta::NodeBase, public meta::Tagged, public meta::Attributable<Node>
+	class Node final : public meta::NodeBase, public meta::Tagged, public meta::Attributable<Node>
 	{
 	public:
 		/**
@@ -626,8 +629,8 @@ namespace XMLBuilder
 		 * @param tag Value of the tag
 		 */
 		template<types::Strings T>
-		Node(const T& tag) :
-			meta::Tagged(tag)
+		Node(const T& tag) : // NOLINT(*-explicit-constructor)
+			Tagged(tag)
 		{ }
 
 	protected:
@@ -639,9 +642,9 @@ namespace XMLBuilder
 		 * @param depth Current node depth
 		 */
 		// Inherited via NodeBase
-		virtual void _Generate(std::ostringstream& outputStream, size_t depth) const override
+		void _Generate(std::ostringstream& outputStream, const size_t depth) const override
 		{
-			std::string paddingString = _GenerateDepthPadding(depth);
+			const std::string paddingString = _GenerateDepthPadding(depth);
 			outputStream << paddingString;
 			outputStream << '<' << m_tag;
 
@@ -656,7 +659,7 @@ namespace XMLBuilder
 	 * @brief Node for storing value
 	 * @details Node with base node interface, tag, attributes and storage for value
 	 */
-	class ValueNode : public meta::NodeBase, public meta::Tagged, public meta::Attributable<ValueNode>
+	class ValueNode final : public meta::NodeBase, public meta::Tagged, public meta::Attributable<ValueNode>
 	{
 	public:
 		/**
@@ -671,7 +674,7 @@ namespace XMLBuilder
 		 */
 		template<types::Strings T, types::Stringlike V>
 		ValueNode(const T& tag, const V& value) :
-			meta::Tagged(tag),
+			Tagged(tag),
 			m_value(types::converters::toString(value))
 		{
 			if (m_value.empty())
@@ -691,12 +694,9 @@ namespace XMLBuilder
 		 */
 		template<types::Strings T, types::Floating V>
 		ValueNode(const T& tag, const V value, size_t precision) :
-			meta::Tagged(tag),
+			Tagged(tag),
 			m_value(types::converters::floatingToString(value, precision))
-		{
-			if (m_value.empty())
-				throw std::invalid_argument("Value can't be empty");
-		}
+		{ }
 
 		/**
 		 * @brief Modify value of node by stringlike value
@@ -709,11 +709,9 @@ namespace XMLBuilder
 		template<types::Stringlike V>
 		bool ModifyValue(const V& value)
 		{
-			std::string newValue(types::converters::toString(value));
+			const std::string newValue(types::converters::toString(value));
 			if (newValue.empty()) return false;
-
 			m_value = newValue;
-
 			return true;
 		}
 
@@ -729,22 +727,9 @@ namespace XMLBuilder
 		template<types::Floating V>
 		bool ModifyValue(const V value, size_t precision)
 		{
-			std::string newValue(types::converters::floatingToString(value, precision));
-			if (newValue.empty()) return false;
-
+			const std::string newValue(types::converters::floatingToString(value, precision));
 			m_value = newValue;
-
 			return true;
-		}
-
-		/**
-		 * @brief Get reference to string value of the node
-		 * 
-		 * @return std::string& Reference to the value of the node
-		 */
-		std::string& Get()
-		{
-			return m_value;
 		}
 
 		/**
@@ -752,7 +737,7 @@ namespace XMLBuilder
 		 * 
 		 * @return std::string Value of the node
 		 */
-		std::string Get() const
+		[[nodiscard]] std::string Get() const
 		{
 			return m_value;
 		}
@@ -768,12 +753,11 @@ namespace XMLBuilder
 		template<types::Stringlike V>
 		ValueNode& operator=(const V& value)
 		{
-			std::string newValue(types::converters::toString(value));
+			const std::string newValue(types::converters::toString(value));
 			if (newValue.empty())
 				throw std::invalid_argument("Value can't be empty");
 
 			m_value = newValue;
-
 			return *this;
 		}
 
@@ -793,12 +777,8 @@ namespace XMLBuilder
 			if (data.second < 0)
 				throw std::invalid_argument("Precision can't be lower than 0");
 
-			std::string newValue(types::converters::floatingToString(data.first, static_cast<size_t>(data.second)));
-			if (newValue.empty())
-				throw std::invalid_argument("Value can't be empty");
-
+			const std::string newValue(types::converters::floatingToString(data.first, static_cast<size_t>(data.second)));
 			m_value = newValue;
-
 			return *this;
 		}
 
@@ -811,9 +791,9 @@ namespace XMLBuilder
 		 * @param depth Current node depth
 		 */
 		// Inherited via NodeBase
-		virtual void _Generate(std::ostringstream& outputStream, size_t depth) const override
+		void _Generate(std::ostringstream& outputStream, const size_t depth) const override
 		{
-			std::string paddingString = _GenerateDepthPadding(depth);
+			const std::string paddingString = _GenerateDepthPadding(depth);
 			outputStream << paddingString;
 			outputStream << '<' << m_tag;
 
@@ -834,7 +814,7 @@ namespace XMLBuilder
 	 * @brief Node for storing other nodes
 	 * @details Node with base node interface, tag, attributes and storage of other nodes
 	 */
-	class ParentNode : public meta::NodeBase, public meta::Tagged, public meta::Attributable<ParentNode>, public meta::ChildrenStore<ParentNode>
+	class ParentNode final : public meta::NodeBase, public meta::Tagged, public meta::Attributable<ParentNode>, public meta::ChildrenStore<ParentNode>
 	{
 	public:
 		/**
@@ -844,8 +824,8 @@ namespace XMLBuilder
 		 * @param tag Value of the tag
 		 */
 		template<types::Strings T>
-		ParentNode(const T& tag) :
-			meta::Tagged(tag)
+		ParentNode(const T& tag) : // NOLINT(*-explicit-constructor)
+			Tagged(tag)
 		{ }
 
 	protected:
@@ -857,9 +837,9 @@ namespace XMLBuilder
 		 * @param depth Current node depth
 		 */
 		// Inherited via NodeBase
-		virtual void _Generate(std::ostringstream& outputStream, size_t depth) const override
+		void _Generate(std::ostringstream& outputStream, const size_t depth) const override
 		{
-			std::string paddingString = _GenerateDepthPadding(depth);
+			const std::string paddingString = _GenerateDepthPadding(depth);
 			outputStream << paddingString;
 			outputStream << '<' << m_tag;
 
@@ -886,7 +866,7 @@ namespace XMLBuilder
 	 * @brief Node for storing other nodes
 	 * @details Node without interface of other standard nodes, used only for storing nodes on the highest level
 	 */
-	class RootNode : public meta::Generatable, public meta::ChildrenStore<RootNode>
+	class RootNode final : public meta::Generatable, public meta::ChildrenStore<RootNode>
 	{
 	public:
 		/**
@@ -904,7 +884,7 @@ namespace XMLBuilder
 		 * @param depth Current node depth
 		 */
 		// Inherited via Generatable
-		virtual void _Generate(std::ostringstream& outputStream, size_t depth) const override
+		void _Generate(std::ostringstream& outputStream, const size_t depth) const override
 		{
 			_WriteChildren(outputStream, depth);
 		}

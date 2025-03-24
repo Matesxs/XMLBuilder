@@ -83,3 +83,10 @@ TEST(Nesting, RemoveChild)
 
   EXPECT_EQ(root.Generate(), std::format("{}<parent1 test1=\"123\" test2=\"parent\">\n\t<parent11 test=\"14.36\"/>\n</parent1>\n<test3 root=\"root\">14</test3>\n", DEFAULT_HEADER));
 }
+
+TEST(Nesting, GetInvalidChildIndex)
+{
+  XMLBuilder::RootNode root;
+  root.AddChild(XMLBuilder::Node("test"));
+  EXPECT_THROW(root.childAt<XMLBuilder::Node>(1), std::out_of_range);
+}

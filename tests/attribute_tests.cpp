@@ -574,6 +574,14 @@ TEST(Attributes, AddByOperatorLongDoubleValueExtendPrecision)
 TEST(Attributes, CatchEmptyKey)
 {
   EXPECT_THROW(XMLBuilder::Node("test").AddOrModifyAttribute("", "test"), std::invalid_argument);
+  EXPECT_THROW(XMLBuilder::Node("test").AddOrModifyAttribute("", 123.45, 10), std::invalid_argument);
+  EXPECT_THROW(XMLBuilder::Node("test") << std::pair("", "test"), std::invalid_argument);
+  EXPECT_THROW(XMLBuilder::Node("test") << std::pair("", std::pair(123.45, 10)), std::invalid_argument);
+}
+
+TEST(Attributes, CatchInvalidPrecisionInOperator)
+{
+  EXPECT_THROW(XMLBuilder::Node("test") << std::pair("test", std::pair(123.45, -2)), std::invalid_argument);
 }
 
 TEST(Attributes, MultipleStringValues)
@@ -814,6 +822,9 @@ TEST(Attributes, GetByIndexOperator)
 
   EXPECT_THROW(node["testAttr1"], std::out_of_range);
   EXPECT_THROW(node[""], std::invalid_argument);
+
+  EXPECT_THROW(node2["testAttr1"], std::out_of_range);
+  EXPECT_THROW(node2[""], std::invalid_argument);
 }
 
 TEST(Attributes, ModifyByIndexOperator)

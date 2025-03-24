@@ -458,14 +458,9 @@ TEST(ValueNode, ModifyValueFloatingByOperator)
   EXPECT_EQ(node.Generate(), std::format("{}<test>{:.6f}</test>\n", DEFAULT_HEADER, 123.123l));
 }
 
-TEST(ValueNode, ModifyValueByReference)
+TEST(ValueNode, ModifyValueInvalid)
 {
-  XMLBuilder::ValueNode node1("test", "test");
-  node1.Get() = "test1";
-
-  const XMLBuilder::ValueNode node2 ("test", "test");
-  node2.Get() = "test2"; // Not modified, returned by value
-
-  EXPECT_EQ(node1.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, "test1"));
-  EXPECT_EQ(node2.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, "test"));
+  XMLBuilder::ValueNode node("test", "test");
+  EXPECT_THROW(node = "", std::invalid_argument);
+  EXPECT_THROW(node = std::pair(123.4, -5), std::invalid_argument);
 }
