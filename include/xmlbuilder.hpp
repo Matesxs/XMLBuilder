@@ -59,6 +59,14 @@ namespace XMLBuilder
 		template<class T>
 		concept Integral = std::is_integral_v<T>;
 
+		enum NodeTypes
+		{
+		    NT_NODE,
+		    NT_VALUE,
+		    NT_PARENT,
+		    NT_UNKNOWN,
+		};
+
 		/**
 		 * @brief Type converters
 		 */
@@ -481,6 +489,17 @@ namespace XMLBuilder
 		friend class ChildrenStore;
 
 		public:
+		    /**
+		    * @brief Return type of the node
+		    * @details Virtual method that signals true type of the node when in it's node base form
+		    *
+		    * @return types::NodeTypes Type of the node
+            */
+		    [[nodiscard]] virtual types::NodeTypes Type() const
+		    {
+		        return types::NodeTypes::NT_UNKNOWN;
+		    }
+
 			/**
 			* @brief Cast instance of the base node class as parent type
 			* @warning Raises std::invalid_argument exception when trying to cast to type that is not based on this class
@@ -649,6 +668,17 @@ namespace XMLBuilder
 			Tagged(tag)
 		{ }
 
+		/**
+		* @brief Return type of the node
+		* @details Implementation of meta::NodeBase virtual method that signals true type of the node when in it's node base form
+		*
+		* @return types::NodeTypes Type of the node
+		*/
+		[[nodiscard]] types::NodeTypes Type() const override
+		{
+		    return types::NodeTypes::NT_NODE;
+		}
+
 	protected:
 		/**
 		 * @brief Implementation of meta::NodeBase::_Generate method
@@ -759,6 +789,17 @@ namespace XMLBuilder
 		}
 
 		/**
+		* @brief Return type of the node
+		* @details Implementation of meta::NodeBase virtual method that signals true type of the node when in it's node base form
+		*
+		* @return types::NodeTypes Type of the node
+		*/
+		[[nodiscard]] types::NodeTypes Type() const override
+		{
+			return types::NodeTypes::NT_VALUE;
+		}
+
+		/**
 		 * @brief Modify value of node by stringlike value
 		 * @warning Throws invalid_argument exception if value is empty
 		 * 
@@ -843,6 +884,17 @@ namespace XMLBuilder
 		ParentNode(const T& tag) : // NOLINT(*-explicit-constructor)
 			Tagged(tag)
 		{ }
+
+		/**
+		* @brief Return type of the node
+		* @details Implementation of meta::NodeBase virtual method that signals true type of the node when in it's node base form
+		*
+		* @return types::NodeTypes Type of the node
+		*/
+		[[nodiscard]] types::NodeTypes Type() const override
+		{
+			return types::NodeTypes::NT_PARENT;
+		}
 
 	protected:
 		/**
