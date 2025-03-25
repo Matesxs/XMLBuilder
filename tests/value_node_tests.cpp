@@ -261,7 +261,7 @@ TEST(ValueNode, GetValueString)
   XMLBuilder::ValueNode node("test", 123.45l, 8);
 
   EXPECT_EQ(node.Generate(), std::format("{}<test>{:.8f}</test>\n", DEFAULT_HEADER, 123.45l));
-  EXPECT_EQ(node.Get(), std::format("{:.8f}", 123.45l));
+  EXPECT_EQ(node.GetValue(), std::format("{:.8f}", 123.45l));
 }
 
 TEST(ValueNode, ModifyValueString)
