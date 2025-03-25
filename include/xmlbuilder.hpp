@@ -584,6 +584,8 @@ namespace XMLBuilder
 		class ChildrenStore
 		{
 		public:
+			virtual ~ChildrenStore() = default;
+
 			/**
 			 * @brief Add child node
 			 * @details Add child node to vector of children of node
@@ -807,7 +809,7 @@ namespace XMLBuilder
 					child->_Generate(outputStream, depth);
 			}
 
-		protected:
+		private:
 			/**
 			 * @brief Child storage as vector of shared pointer of meta::NodeBase
 			 */
