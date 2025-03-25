@@ -164,3 +164,76 @@ TEST(Utils, SetTag)
   EXPECT_EQ(node2.GetTag(), "test5");
   EXPECT_EQ(node3.GetTag(), "test6");
 }
+
+TEST(Utils, CastToBase)
+{
+  XMLBuilder::Node node1("test1");
+  XMLBuilder::ValueNode node2("test2", "test2");
+  XMLBuilder::ParentNode node3("test3");
+
+  XMLBuilder::meta::NodeBase* nodePtr = nullptr;
+
+  nodePtr = &node1;
+  EXPECT_NO_THROW(nodePtr->as());
+
+  nodePtr = &node2;
+  EXPECT_NO_THROW(nodePtr->as());
+
+  nodePtr = &node3;
+  EXPECT_NO_THROW(nodePtr->as());
+}
+
+TEST(Utils, CastAsParentType)
+{
+  XMLBuilder::Node node1("test1");
+  XMLBuilder::ValueNode node2("test2", "test2");
+  XMLBuilder::ParentNode node3("test3");
+
+  XMLBuilder::meta::NodeBase* nodePtr = nullptr;
+
+  nodePtr = &node1;
+  EXPECT_EQ(nodePtr->as<XMLBuilder::Node>().GetTag(), "test1");
+
+  nodePtr = &node2;
+  EXPECT_EQ(nodePtr->as<XMLBuilder::ValueNode>().GetTag(), "test2");
+  EXPECT_EQ(nodePtr->as<XMLBuilder::ValueNode>().GetValue(), "test2");
+
+  nodePtr = &node3;
+  EXPECT_EQ(nodePtr->as<XMLBuilder::ParentNode>().GetTag(), "test3");
+}
+
+TEST(Utils, CastAsInvalidParentType)
+{
+  XMLBuilder::Node node1("test1");
+  XMLBuilder::ValueNode node2("test2", "test2");
+  XMLBuilder::ParentNode node3("test3");
+
+  XMLBuilder::meta::NodeBase* nodePtr = nullptr;
+
+  nodePtr = &node1;
+  EXPECT_THROW(nodePtr->as<XMLBuilder::ParentNode>(), std::invalid_argument);
+
+  nodePtr = &node2;
+  EXPECT_THROW(nodePtr->as<XMLBuilder::Node>(), std::invalid_argument);
+
+  nodePtr = &node3;
+  EXPECT_THROW(nodePtr->as<XMLBuilder::ValueNode>(), std::invalid_argument);
+}
+
+TEST(Utils, CastAsInvalidType)
+{
+  XMLBuilder::Node node1("test1");
+  XMLBuilder::ValueNode node2("test2", "test2");
+  XMLBuilder::ParentNode node3("test3");
+
+  XMLBuilder::meta::NodeBase* nodePtr = nullptr;
+
+  nodePtr = &node1;
+  EXPECT_THROW(nodePtr->as<XMLBuilder::meta::Attributable<XMLBuilder::Node>>(), std::invalid_argument);
+
+  nodePtr = &node2;
+  EXPECT_THROW(nodePtr->as<XMLBuilder::RootNode>(), std::invalid_argument);
+
+  nodePtr = &node3;
+  EXPECT_THROW(nodePtr->as<std::string>(), std::invalid_argument);
+}
