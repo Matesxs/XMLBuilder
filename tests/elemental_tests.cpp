@@ -116,3 +116,25 @@ TEST(Creation, CatchValueNodeEmptyValue)
 {
   EXPECT_THROW(XMLBuilder::ValueNode node("test", ""), std::invalid_argument);
 }
+
+TEST(Utils, ReturnCheckTypes)
+{
+  XMLBuilder::Node node1("test1");
+  XMLBuilder::ValueNode node2("test2", "test2");
+  XMLBuilder::ParentNode node3("test3");
+
+  EXPECT_EQ(node1.Type(), XMLBuilder::types::NodeTypes::NT_NODE);
+  EXPECT_EQ(node2.Type(), XMLBuilder::types::NodeTypes::NT_VALUE);
+  EXPECT_EQ(node3.Type(), XMLBuilder::types::NodeTypes::NT_PARENT);
+
+  XMLBuilder::meta::NodeBase* nodePtr = nullptr;
+
+  nodePtr = &node1;
+  EXPECT_EQ(nodePtr->Type(), XMLBuilder::types::NodeTypes::NT_NODE);
+
+  nodePtr = &node2;
+  EXPECT_EQ(nodePtr->Type(), XMLBuilder::types::NodeTypes::NT_VALUE);
+
+  nodePtr = &node3;
+  EXPECT_EQ(nodePtr->Type(), XMLBuilder::types::NodeTypes::NT_PARENT);
+}
