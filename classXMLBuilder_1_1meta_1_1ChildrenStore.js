@@ -16,6 +16,5 @@ var classXMLBuilder_1_1meta_1_1ChildrenStore =
     [ "rbegin", "classXMLBuilder_1_1meta_1_1ChildrenStore.html#a94bf240fab1e2f0664946122b5a25f12", null ],
     [ "RemoveChild", "classXMLBuilder_1_1meta_1_1ChildrenStore.html#a94d44aec0410d3956d4ff0443ea0e78f", null ],
     [ "rend", "classXMLBuilder_1_1meta_1_1ChildrenStore.html#afaf7a92a74d5f3c625d44e3da1040f38", null ],
-    [ "rend", "classXMLBuilder_1_1meta_1_1ChildrenStore.html#a747c18bc6bce897892886c9506bb1d85", null ],
-    [ "m_children", "classXMLBuilder_1_1meta_1_1ChildrenStore.html#a85255b7d31d7019ecf8f434074d99d38", null ]
+    [ "rend", "classXMLBuilder_1_1meta_1_1ChildrenStore.html#a747c18bc6bce897892886c9506bb1d85", null ]
 ];
