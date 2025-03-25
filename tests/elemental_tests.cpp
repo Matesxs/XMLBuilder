@@ -138,3 +138,29 @@ TEST(Utils, ReturnCheckTypes)
   nodePtr = &node3;
   EXPECT_EQ(nodePtr->Type(), XMLBuilder::types::NodeTypes::NT_PARENT);
 }
+
+TEST(Utils, GetTag)
+{
+  XMLBuilder::Node node1("test1");
+  XMLBuilder::ValueNode node2("test2", "test2");
+  XMLBuilder::ParentNode node3("test3");
+
+  EXPECT_EQ(node1.GetTag(), "test1");
+  EXPECT_EQ(node2.GetTag(), "test2");
+  EXPECT_EQ(node3.GetTag(), "test3");
+}
+
+TEST(Utils, SetTag)
+{
+  XMLBuilder::Node node1("test1");
+  XMLBuilder::ValueNode node2("test2", "test2");
+  XMLBuilder::ParentNode node3("test3");
+
+  node1.SetTag("test4");
+  node2.SetTag("test5");
+  node3.SetTag("test6");
+
+  EXPECT_EQ(node1.GetTag(), "test4");
+  EXPECT_EQ(node2.GetTag(), "test5");
+  EXPECT_EQ(node3.GetTag(), "test6");
+}

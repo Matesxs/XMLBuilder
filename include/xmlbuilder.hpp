@@ -141,11 +141,37 @@ namespace XMLBuilder
 
 			virtual ~Tagged() = default;
 
+            /**
+            * @brief Modify tag of the node
+            *
+            * @tparam T types::Strings type of tag
+            * @param tag New tag of the node
+            */
+			template<types::Strings T>
+            bool SetTag(const T& tag)
+            {
+                const std::string newTag(tag);
+	            if (newTag.empty()) return false;
+	            m_tag = newTag;
+	            return true;
+            }
+
+            /**
+            * @brief Get node tag
+            * @details Returns constant reference to node tag
+            *
+            * @return const std::string& Constant reference to node tag
+            */
+			[[nodiscard]] const std::string& GetTag() const
+			{
+			    return m_tag;
+			}
+
 		protected:
 			/**
 			 * @brief Tag stored as a string
 			 */
-			const std::string m_tag;
+			std::string m_tag;
 		};
 
 
