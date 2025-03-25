@@ -56,8 +56,25 @@ namespace XMLBuilder
 		template<class T>
 		concept Floating = std::is_floating_point_v<T>;
 
+        /**
+        * @brief Whole number type
+        * @brief Defines all whole number types
+        *
+        * @tparam T Type to check
+        */
 		template<class T>
 		concept Integral = std::is_integral_v<T>;
+
+		/**
+		* @brief Types of nodes
+		*/
+		enum NodeTypes
+		{
+		    NT_NODE, ///< Points to Node
+		    NT_VALUE, ///< Points to ValueNode
+		    NT_PARENT, ///< Points to ParentNode
+		    NT_UNKNOWN, ///< Unknown node
+		};
 
 		/**
 		 * @brief Type converters
@@ -133,11 +150,37 @@ namespace XMLBuilder
 
 			virtual ~Tagged() = default;
 
+            /**
+            * @brief Modify tag of the node
+            *
+            * @tparam T types::Strings type of tag
+            * @param tag New tag of the node
+            */
+			template<types::Strings T>
+            bool SetTag(const T& tag)
+            {
+                const std::string newTag(tag);
+	            if (newTag.empty()) return false;
+	            m_tag = newTag;
+	            return true;
+            }
+
+            /**
+            * @brief Get node tag
+            * @details Returns constant reference to node tag
+            *
+            * @return const std::string& Constant reference to node tag
+            */
+			[[nodiscard]] const std::string& GetTag() const
+			{
+			    return m_tag;
+			}
+
 		protected:
 			/**
 			 * @brief Tag stored as a string
 			 */
-			const std::string m_tag;
+			std::string m_tag;
 		};
 
 
@@ -253,7 +296,7 @@ namespace XMLBuilder
 			template<types::Strings N, types::Stringlike V>
 			ParentType& AddOrModifyAttribute(const N& name, const V& value)
 			{
-				std::string key(name);
+				const std::string key(name);
 				if (key.empty())
 					throw std::invalid_argument("Key can't be empty");
 
@@ -277,7 +320,7 @@ namespace XMLBuilder
 			template<types::Strings N, types::Floating V>
 			ParentType& AddOrModifyAttribute(const N& name, const V value, size_t precision)
 			{
-				std::string key(name);
+				const std::string key(name);
 				if (key.empty())
 					throw std::invalid_argument("Key can't be empty");
 
@@ -410,7 +453,7 @@ namespace XMLBuilder
 			template<types::Strings N, types::Stringlike V>
 			ParentType& operator<<(const std::pair<N, V>& data)
 			{
-				std::string key(data.first);
+				const std::string key(data.first);
 				if (key.empty())
 					throw std::invalid_argument("Key can't be empty");
 
@@ -433,7 +476,7 @@ namespace XMLBuilder
 			template<types::Strings N, types::Floating V, types::Integral P>
 			ParentType& operator<<(const std::pair<N, std::pair<V, P>>& data)
 			{
-				std::string key(data.first);
+				const std::string key(data.first);
 				if (key.empty())
 					throw std::invalid_argument("Key can't be empty");
 
@@ -479,6 +522,41 @@ namespace XMLBuilder
 		 */
 		template<class ParentType>
 		friend class ChildrenStore;
+
+		public:
+		    /**
+		    * @brief Return type of the node
+		    * @details Virtual method that signals true type of the node when in it's node base form
+		    *
+		    * @return types::NodeTypes Type of the node
+            */
+		    [[nodiscard]] virtual types::NodeTypes Type() const = 0;
+
+			/**
+			* @brief Cast instance of the base node class as parent type
+			* @warning Raises std::invalid_argument exception when trying to cast to type that is not based on this class
+			* @warning Throws std::invalid_argument exception when cast to requested type failed
+			*
+			* @tparam ParentType Type to which cast this object
+			* @return ParentType& Reference to this object casted to parent type
+			*/
+			template<class ParentType = NodeBase>
+			ParentType& as()
+			{
+				if constexpr (!std::is_base_of_v<NodeBase, ParentType>)
+					throw std::invalid_argument("Node type is not a child");
+
+				if constexpr (std::is_same_v<ParentType, NodeBase>)
+					return *this;
+				else
+				{
+					auto childPtrCasted	= dynamic_cast<ParentType*>(this);
+					if (!childPtrCasted)
+						throw std::invalid_argument("This is not valid type of this child");
+
+					return *childPtrCasted;
+				}
+			}
 		};
 	}
 
@@ -548,39 +626,161 @@ namespace XMLBuilder
 			/**
 			 * @brief Return reference to child
 			 * @details Base pointer of the child gets converted back to the pointer to parent type and returned as a reference
-			 * @warning Throws out_of_range exception when index is invalid
-			 * @todo Rework to something more clever
+			 * @warning Throws std::out_of_range exception when index is invalid
+			 * @warning Throws std::invalid_argument exception when cast to requested type failed
 			 * 
 			 * @tparam ChildType types::XMLNodeBased type of child
-			 * @param idx Index of child
-			 * @return ChildType& Child object reference
+			 * @param idx Index of child node
+			 * @return ChildType& Reference to child object
 			 */
-			template<types::XMLNodeBased ChildType>
-			ChildType& childAt(const size_t idx)
+			template<types::XMLNodeBased ChildType = NodeBase>
+			ChildType& ChildAt(const size_t idx)
 			{
 				if (idx >= ChildrenCount())
 					throw std::out_of_range("Index out of range");
 
-				return *std::dynamic_pointer_cast<ChildType>(m_children.at(idx));
+				if constexpr (std::is_same_v<ChildType, NodeBase>)
+					return *m_children.at(idx);
+				else
+				{
+					auto childPtrCasted	= std::dynamic_pointer_cast<ChildType>(m_children.at(idx));
+					if (!childPtrCasted)
+						throw std::invalid_argument("This is not valid type of this child");
+
+					return *childPtrCasted;
+				}
 			}
 
 			/**
-			 * @brief Return child by value
-			 * @details Base pointer of the child gets converted back to the pointer to parent type and returned as value
-			 * @warning Throws out_of_range exception when index is invalid
-			 * @todo Rework to something more clever
+			 * @brief Return child by constant reference
+			 * @details Base pointer of the child gets converted back to the pointer to parent type and returned as constant reference
+			 * @warning Throws std::out_of_range exception when index is invalid
+			 * @warning Throws std::invalid_argument exception when cast to requested type failed
 			 * 
 			 * @tparam ChildType types::XMLNodeBased type of child
-			 * @param idx Index of child
-			 * @return ChildType Copy Child object
+			 * @param idx Index of child node
+			 * @return const ChildType& Constant reference to child object
 			 */
-			template<types::XMLNodeBased ChildType>
-			ChildType childAt(const size_t idx) const
+			template<types::XMLNodeBased ChildType = NodeBase>
+			const ChildType& ChildAt(const size_t idx) const
 			{
 				if (idx >= ChildrenCount())
 					throw std::out_of_range("Index out of range");
 
-				return *std::dynamic_pointer_cast<ChildType>(m_children.at(idx));
+				if constexpr (std::is_same_v<ChildType, NodeBase>)
+					return *m_children.at(idx);
+				else
+				{
+					auto childPtrCasted	= std::dynamic_pointer_cast<ChildType>(m_children.at(idx));
+					if (!childPtrCasted)
+						throw std::invalid_argument("This is not valid type of this child");
+
+					return *childPtrCasted;
+				}
+			}
+
+			/**
+			* @brief Returns iterator pointing to first child node
+			* @return std::vector<std::shared_ptr<NodeBase>>::iterator Iterator pointing to first child node
+			*/
+			std::vector<std::shared_ptr<NodeBase>>::iterator begin()
+			{
+				return m_children.begin();
+			}
+
+			/**
+			* @brief Returns iterator pointing to one past last child node
+			* @return std::vector<std::shared_ptr<NodeBase>>::iterator Iterator pointing to one past last child node
+			*/
+			std::vector<std::shared_ptr<NodeBase>>::iterator end()
+			{
+				return m_children.end();
+			}
+
+			/**
+			* @brief Returns read-only iterator pointing to first child node
+			* @return std::vector<std::shared_ptr<NodeBase>>::const_iterator Read-only iterator pointing to first child node
+			*/
+			[[nodiscard]] std::vector<std::shared_ptr<NodeBase>>::const_iterator begin() const
+			{
+				return m_children.begin();
+			}
+
+			/**
+			* @brief Returns read-only iterator pointing to one past last child node
+			* @return std::vector<std::shared_ptr<NodeBase>>::const_iterator Read-only iterator pointing to one past last child node
+			*/
+			[[nodiscard]] std::vector<std::shared_ptr<NodeBase>>::const_iterator end() const
+			{
+				return m_children.end();
+			}
+
+			/**
+			* @brief Returns reverse iterator pointing to last child node
+			* @return std::vector<std::shared_ptr<NodeBase>>::reverse_iterator Reverse iterator pointing to last child node
+			*/
+			std::vector<std::shared_ptr<NodeBase>>::reverse_iterator rbegin()
+			{
+				return m_children.rbegin();
+			}
+
+			/**
+			* @brief Returns reverse iterator pointing to one before first child node
+			* @return std::vector<std::shared_ptr<NodeBase>>::reverse_iterator Iterator pointing to one before first child node
+			*/
+			std::vector<std::shared_ptr<NodeBase>>::reverse_iterator rend()
+			{
+				return m_children.rend();
+			}
+
+			/**
+			* @brief Returns read-only reverse iterator pointing to last child node
+			* @return std::vector<std::shared_ptr<NodeBase>>::const_reverse_iterator Read-only reverse iterator pointing to last children node
+			*/
+			[[nodiscard]] std::vector<std::shared_ptr<NodeBase>>::const_reverse_iterator rbegin() const
+			{
+				return m_children.rbegin();
+			}
+
+			/**
+			* @brief Returns read-only reverse iterator pointing to one before first child node
+			* @return std::vector<std::shared_ptr<NodeBase>>::const_reverse_iterator Read-only reverse iterator pointing to one before first child node
+			*/
+			[[nodiscard]] std::vector<std::shared_ptr<NodeBase>>::const_reverse_iterator rend() const
+			{
+				return m_children.rend();
+			}
+
+            /**
+            * @brief Index operator
+            * @details Returning reference to child object
+            * @warning Throws std::out_of_range exception when index is invalid
+            *
+            * @param idx Index of child node
+            * @return NodeBase& Reference to child object
+            */
+			NodeBase& operator[](const size_t idx)
+			{
+				if (idx >= ChildrenCount())
+					throw std::out_of_range("Index out of range");
+
+				return *m_children.at(idx);
+			}
+
+			/**
+			* @brief Constant index operator
+			* @details Returning constant reference to child object
+			* @warning Throws std::out_of_range exception when index is invalid
+			*
+			* @param idx Index of child node
+			* @return const NodeBase& Constant reference to child object
+			*/
+			const NodeBase& operator[](const size_t idx) const
+			{
+				if (idx >= ChildrenCount())
+					throw std::out_of_range("Index out of range");
+
+				return *m_children.at(idx);
 			}
 
 		protected:
@@ -633,6 +833,17 @@ namespace XMLBuilder
 			Tagged(tag)
 		{ }
 
+		/**
+		* @brief Return type of the node
+		* @details Implementation of meta::NodeBase virtual method that signals true type of the node when in it's node base form
+		*
+		* @return types::NodeTypes Type of the node
+		*/
+		[[nodiscard]] types::NodeTypes Type() const override
+		{
+		    return types::NodeTypes::NT_NODE;
+		}
+
 	protected:
 		/**
 		 * @brief Implementation of meta::NodeBase::_Generate method
@@ -641,7 +852,6 @@ namespace XMLBuilder
 		 * @param outputStream Output stream
 		 * @param depth Current node depth
 		 */
-		// Inherited via NodeBase
 		void _Generate(std::ostringstream& outputStream, const size_t depth) const override
 		{
 			const std::string paddingString = _GenerateDepthPadding(depth);
@@ -737,9 +947,20 @@ namespace XMLBuilder
 		 * 
 		 * @return std::string Value of the node
 		 */
-		[[nodiscard]] std::string Get() const
+		[[nodiscard]] std::string GetValue() const
 		{
 			return m_value;
+		}
+
+		/**
+		* @brief Return type of the node
+		* @details Implementation of meta::NodeBase virtual method that signals true type of the node when in it's node base form
+		*
+		* @return types::NodeTypes Type of the node
+		*/
+		[[nodiscard]] types::NodeTypes Type() const override
+		{
+			return types::NodeTypes::NT_VALUE;
 		}
 
 		/**
@@ -790,7 +1011,6 @@ namespace XMLBuilder
 		 * @param outputStream Output stream
 		 * @param depth Current node depth
 		 */
-		// Inherited via NodeBase
 		void _Generate(std::ostringstream& outputStream, const size_t depth) const override
 		{
 			const std::string paddingString = _GenerateDepthPadding(depth);
@@ -828,6 +1048,17 @@ namespace XMLBuilder
 			Tagged(tag)
 		{ }
 
+		/**
+		* @brief Return type of the node
+		* @details Implementation of meta::NodeBase virtual method that signals true type of the node when in it's node base form
+		*
+		* @return types::NodeTypes Type of the node
+		*/
+		[[nodiscard]] types::NodeTypes Type() const override
+		{
+			return types::NodeTypes::NT_PARENT;
+		}
+
 	protected:
 		/**
 		 * @brief Implementation of meta::NodeBase::_Generate method
@@ -836,7 +1067,6 @@ namespace XMLBuilder
 		 * @param outputStream Output stream
 		 * @param depth Current node depth
 		 */
-		// Inherited via NodeBase
 		void _Generate(std::ostringstream& outputStream, const size_t depth) const override
 		{
 			const std::string paddingString = _GenerateDepthPadding(depth);
@@ -883,7 +1113,6 @@ namespace XMLBuilder
 		 * @param outputStream Output stream
 		 * @param depth Current node depth
 		 */
-		// Inherited via Generatable
 		void _Generate(std::ostringstream& outputStream, const size_t depth) const override
 		{
 			_WriteChildren(outputStream, depth);
