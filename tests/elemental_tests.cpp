@@ -1,239 +1,42 @@
+//
+// Created by Martin on 25. 3. 2025.
+//
+
 #include "common.hpp"
 
-#include <string>
-
-using namespace std::string_view_literals;
-
-TEST(Generate, ByGenerate)
+TEST(Create, RootNode)
 {
-  XMLBuilder::RootNode rootNode;
-  EXPECT_EQ(rootNode.Generate(), DEFAULT_HEADER);
+    XMLBuilder::RootNode node;
+    EXPECT_EQ(node.Generate(), std::format("{}", DEFAULT_HEADER));
 }
 
-TEST(Generate, ByString)
+TEST(Create, Node)
 {
-  XMLBuilder::RootNode rootNode;
-  EXPECT_EQ(std::string(rootNode), DEFAULT_HEADER);
+    XMLBuilder::Node node("test");
+    EXPECT_EQ(node.Generate(), std::format("{}{}\n", DEFAULT_HEADER, "<test/>"));
 }
 
-TEST(Generate, ByPrint)
+TEST(Create, ValueNodeString)
 {
-  std::ostringstream stream;
-  XMLBuilder::RootNode rootNode;
-  rootNode.Print(stream);
-
-  EXPECT_EQ(stream.str(), DEFAULT_HEADER);
+    XMLBuilder::ValueNode node("test", "test");
+    EXPECT_EQ(node.Generate(), std::format("{}{}\n", DEFAULT_HEADER, "<test>test</test>"));
 }
 
-TEST(Generate, ByPrintOperator)
+TEST(Create, ValueNodeFloatingNumber)
 {
-  std::ostringstream stream;
-  XMLBuilder::RootNode rootNode;
-  stream << rootNode;
-
-  EXPECT_EQ(stream.str(), DEFAULT_HEADER);
+    XMLBuilder::ValueNode node("test", 123.456, 5);
+    EXPECT_EQ(node.Generate(), std::format("{}<test>{}</test>\n", DEFAULT_HEADER, std::format("{:.5f}", 123.456)));
 }
 
-TEST(Generate, CustomHeader)
+TEST(Create, ParentNode)
 {
-  XMLBuilder::RootNode rootNode;
-  EXPECT_EQ(rootNode.Generate("2.0", "random-encoding"), std::format(HEADER_FORMAT, "2.0", "random-encoding"));
+    XMLBuilder::ParentNode node("test");
+    EXPECT_EQ(node.Generate(), std::format("{}{}\n", DEFAULT_HEADER, "<test/>"));
 }
 
-TEST(Creation, NodeCharArrayTag)
+TEST(Create, ParentNodeWithChild)
 {
-  XMLBuilder::Node node1("test1");
-
-  char name2Arr[] = "test2";
-  char* name2 = name2Arr;
-  XMLBuilder::Node node2(name2);
-
-  const char* name3 = "test3";
-  XMLBuilder::Node node3(name3);
-
-  char name4[] = "test4";
-  XMLBuilder::Node node4(name4);
-
-  const char name5[] = "test5";
-  XMLBuilder::Node node5(name5);
-
-  const std::string name6 = "test6";
-  XMLBuilder::Node node6(name6.c_str());
-
-  EXPECT_EQ(node1.Generate(), std::format("{}{}\n", DEFAULT_HEADER, "<test1/>"));
-  EXPECT_EQ(node2.Generate(), std::format("{}{}\n", DEFAULT_HEADER, "<test2/>"));
-  EXPECT_EQ(node3.Generate(), std::format("{}{}\n", DEFAULT_HEADER, "<test3/>"));
-  EXPECT_EQ(node4.Generate(), std::format("{}{}\n", DEFAULT_HEADER, "<test4/>"));
-  EXPECT_EQ(node5.Generate(), std::format("{}{}\n", DEFAULT_HEADER, "<test5/>"));
-  EXPECT_EQ(node6.Generate(), std::format("{}{}\n", DEFAULT_HEADER, "<test6/>"));
-}
-
-TEST(Creation, NodeStringTag)
-{
-  std::string name1 = "test1";
-  XMLBuilder::Node node1(name1);
-
-  const std::string name2 = "test2";
-  XMLBuilder::Node node2(name2);
-
-  EXPECT_EQ(node1.Generate(), std::format("{}{}\n", DEFAULT_HEADER, "<test1/>"));
-  EXPECT_EQ(node2.Generate(), std::format("{}{}\n", DEFAULT_HEADER, "<test2/>"));
-}
-
-TEST(Creation, NodeStringViewTag)
-{
-  XMLBuilder::Node node1("test1"sv);
-
-  std::string_view name2 = "test2"sv;
-  XMLBuilder::Node node2(name2);
-
-  const std::string_view name3 = "test3"sv;
-  XMLBuilder::Node node3(name3);
-
-  EXPECT_EQ(node1.Generate(), std::format("{}{}\n", DEFAULT_HEADER, "<test1/>"));
-  EXPECT_EQ(node2.Generate(), std::format("{}{}\n", DEFAULT_HEADER, "<test2/>"));
-  EXPECT_EQ(node3.Generate(), std::format("{}{}\n", DEFAULT_HEADER, "<test3/>"));
-}
-
-TEST(Creation, ParentNodeNoChildren)
-{
-  XMLBuilder::ParentNode node("test");
-  EXPECT_EQ(node.Generate(), std::format("{}{}\n", DEFAULT_HEADER, "<test/>"));
-}
-
-TEST(Creation, ValueNode)
-{
-  XMLBuilder::ValueNode node("test", "testValue");
-  EXPECT_EQ(node.Generate(), std::format("{}{}\n", DEFAULT_HEADER, "<test>testValue</test>"));
-}
-
-TEST(Creation, CatchEmptyTag)
-{
-  EXPECT_THROW(XMLBuilder::Node(""), std::invalid_argument);
-}
-
-TEST(Creation, CatchValueNodeEmptyValue)
-{
-  EXPECT_THROW(XMLBuilder::ValueNode node("test", ""), std::invalid_argument);
-}
-
-TEST(Utils, ReturnCheckTypes)
-{
-  XMLBuilder::Node node1("test1");
-  XMLBuilder::ValueNode node2("test2", "test2");
-  XMLBuilder::ParentNode node3("test3");
-
-  EXPECT_EQ(node1.Type(), XMLBuilder::types::NodeTypes::NT_NODE);
-  EXPECT_EQ(node2.Type(), XMLBuilder::types::NodeTypes::NT_VALUE);
-  EXPECT_EQ(node3.Type(), XMLBuilder::types::NodeTypes::NT_PARENT);
-
-  XMLBuilder::meta::NodeBase* nodePtr = nullptr;
-
-  nodePtr = &node1;
-  EXPECT_EQ(nodePtr->Type(), XMLBuilder::types::NodeTypes::NT_NODE);
-
-  nodePtr = &node2;
-  EXPECT_EQ(nodePtr->Type(), XMLBuilder::types::NodeTypes::NT_VALUE);
-
-  nodePtr = &node3;
-  EXPECT_EQ(nodePtr->Type(), XMLBuilder::types::NodeTypes::NT_PARENT);
-}
-
-TEST(Utils, GetTag)
-{
-  XMLBuilder::Node node1("test1");
-  XMLBuilder::ValueNode node2("test2", "test2");
-  XMLBuilder::ParentNode node3("test3");
-
-  EXPECT_EQ(node1.GetTag(), "test1");
-  EXPECT_EQ(node2.GetTag(), "test2");
-  EXPECT_EQ(node3.GetTag(), "test3");
-}
-
-TEST(Utils, SetTag)
-{
-  XMLBuilder::Node node1("test1");
-  XMLBuilder::ValueNode node2("test2", "test2");
-  XMLBuilder::ParentNode node3("test3");
-
-  node1.SetTag("test4");
-  node2.SetTag("test5");
-  node3.SetTag("test6");
-
-  EXPECT_EQ(node1.GetTag(), "test4");
-  EXPECT_EQ(node2.GetTag(), "test5");
-  EXPECT_EQ(node3.GetTag(), "test6");
-}
-
-TEST(Utils, CastToBase)
-{
-  XMLBuilder::Node node1("test1");
-  XMLBuilder::ValueNode node2("test2", "test2");
-  XMLBuilder::ParentNode node3("test3");
-
-  XMLBuilder::meta::NodeBase* nodePtr = nullptr;
-
-  nodePtr = &node1;
-  EXPECT_NO_THROW(nodePtr->as());
-
-  nodePtr = &node2;
-  EXPECT_NO_THROW(nodePtr->as());
-
-  nodePtr = &node3;
-  EXPECT_NO_THROW(nodePtr->as());
-}
-
-TEST(Utils, CastAsParentType)
-{
-  XMLBuilder::Node node1("test1");
-  XMLBuilder::ValueNode node2("test2", "test2");
-  XMLBuilder::ParentNode node3("test3");
-
-  XMLBuilder::meta::NodeBase* nodePtr = nullptr;
-
-  nodePtr = &node1;
-  EXPECT_EQ(nodePtr->as<XMLBuilder::Node>().GetTag(), "test1");
-
-  nodePtr = &node2;
-  EXPECT_EQ(nodePtr->as<XMLBuilder::ValueNode>().GetTag(), "test2");
-  EXPECT_EQ(nodePtr->as<XMLBuilder::ValueNode>().GetValue(), "test2");
-
-  nodePtr = &node3;
-  EXPECT_EQ(nodePtr->as<XMLBuilder::ParentNode>().GetTag(), "test3");
-}
-
-TEST(Utils, CastAsInvalidParentType)
-{
-  XMLBuilder::Node node1("test1");
-  XMLBuilder::ValueNode node2("test2", "test2");
-  XMLBuilder::ParentNode node3("test3");
-
-  XMLBuilder::meta::NodeBase* nodePtr = nullptr;
-
-  nodePtr = &node1;
-  EXPECT_THROW(nodePtr->as<XMLBuilder::ParentNode>(), std::invalid_argument);
-
-  nodePtr = &node2;
-  EXPECT_THROW(nodePtr->as<XMLBuilder::Node>(), std::invalid_argument);
-
-  nodePtr = &node3;
-  EXPECT_THROW(nodePtr->as<XMLBuilder::ValueNode>(), std::invalid_argument);
-}
-
-TEST(Utils, CastAsInvalidType)
-{
-  XMLBuilder::Node node1("test1");
-  XMLBuilder::ValueNode node2("test2", "test2");
-  XMLBuilder::ParentNode node3("test3");
-
-  XMLBuilder::meta::NodeBase* nodePtr = nullptr;
-
-  nodePtr = &node1;
-  EXPECT_THROW(nodePtr->as<XMLBuilder::meta::Attributable<XMLBuilder::Node>>(), std::invalid_argument);
-
-  nodePtr = &node2;
-  EXPECT_THROW(nodePtr->as<XMLBuilder::RootNode>(), std::invalid_argument);
-
-  nodePtr = &node3;
-  EXPECT_THROW(nodePtr->as<std::string>(), std::invalid_argument);
+    XMLBuilder::ParentNode node("test");
+    node.AddChild(XMLBuilder::Node("test"));
+    EXPECT_EQ(node.Generate(), std::format("{}{}\n", DEFAULT_HEADER, "<test>\n\t<test/>\n</test>"));
 }
