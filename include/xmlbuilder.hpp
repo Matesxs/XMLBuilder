@@ -521,10 +521,7 @@ namespace XMLBuilder
 		    *
 		    * @return types::NodeTypes Type of the node
             */
-		    [[nodiscard]] virtual types::NodeTypes Type() const
-		    {
-		        return types::NodeTypes::NT_UNKNOWN;
-		    }
+		    [[nodiscard]] virtual types::NodeTypes Type() const = 0;
 
 			/**
 			* @brief Cast instance of the base node class as parent type
