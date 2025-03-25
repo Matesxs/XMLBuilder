@@ -721,7 +721,6 @@ namespace XMLBuilder
 		 * @param outputStream Output stream
 		 * @param depth Current node depth
 		 */
-		// Inherited via NodeBase
 		void _Generate(std::ostringstream& outputStream, const size_t depth) const override
 		{
 			const std::string paddingString = _GenerateDepthPadding(depth);
@@ -881,7 +880,6 @@ namespace XMLBuilder
 		 * @param outputStream Output stream
 		 * @param depth Current node depth
 		 */
-		// Inherited via NodeBase
 		void _Generate(std::ostringstream& outputStream, const size_t depth) const override
 		{
 			const std::string paddingString = _GenerateDepthPadding(depth);
@@ -938,7 +936,6 @@ namespace XMLBuilder
 		 * @param outputStream Output stream
 		 * @param depth Current node depth
 		 */
-		// Inherited via NodeBase
 		void _Generate(std::ostringstream& outputStream, const size_t depth) const override
 		{
 			const std::string paddingString = _GenerateDepthPadding(depth);
@@ -985,7 +982,6 @@ namespace XMLBuilder
 		 * @param outputStream Output stream
 		 * @param depth Current node depth
 		 */
-		// Inherited via Generatable
 		void _Generate(std::ostringstream& outputStream, const size_t depth) const override
 		{
 			_WriteChildren(outputStream, depth);
