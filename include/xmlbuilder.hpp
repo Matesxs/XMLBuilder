@@ -817,7 +817,7 @@ namespace XMLBuilder
 		 * 
 		 * @return std::string Value of the node
 		 */
-		[[nodiscard]] std::string Get() const
+		[[nodiscard]] std::string GetValue() const
 		{
 			return m_value;
 		}
