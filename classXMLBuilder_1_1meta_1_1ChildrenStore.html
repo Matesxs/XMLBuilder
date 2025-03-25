@@ -128,14 +128,44 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a94d44aec0410d3956d4ff0443ea0e78f" id="r_a94d44aec0410d3956d4ff0443ea0e78f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94d44aec0410d3956d4ff0443ea0e78f">RemoveChild</a> (const size_t idx)</td></tr>
 <tr class="memdesc:a94d44aec0410d3956d4ff0443ea0e78f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove child node from this node.  <br /></td></tr>
 <tr class="separator:a94d44aec0410d3956d4ff0443ea0e78f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe40a1b662ec954f46269f612ccf769e" id="r_abe40a1b662ec954f46269f612ccf769e"><td class="memTemplParams" colspan="2">template&lt;types::XMLNodeBased ChildType&gt; </td></tr>
-<tr class="memitem:abe40a1b662ec954f46269f612ccf769e"><td class="memTemplItemLeft" align="right" valign="top">ChildType &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#abe40a1b662ec954f46269f612ccf769e">childAt</a> (const size_t idx)</td></tr>
-<tr class="memdesc:abe40a1b662ec954f46269f612ccf769e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return reference to child.  <br /></td></tr>
-<tr class="separator:abe40a1b662ec954f46269f612ccf769e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a3b57775fc9b8ee2081ba43546093d3" id="r_a2a3b57775fc9b8ee2081ba43546093d3"><td class="memTemplParams" colspan="2">template&lt;types::XMLNodeBased ChildType&gt; </td></tr>
-<tr class="memitem:a2a3b57775fc9b8ee2081ba43546093d3"><td class="memTemplItemLeft" align="right" valign="top">ChildType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a2a3b57775fc9b8ee2081ba43546093d3">childAt</a> (const size_t idx) const</td></tr>
-<tr class="memdesc:a2a3b57775fc9b8ee2081ba43546093d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return child by value.  <br /></td></tr>
-<tr class="separator:a2a3b57775fc9b8ee2081ba43546093d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91d5901adf0c9ab97495d94b29891982" id="r_a91d5901adf0c9ab97495d94b29891982"><td class="memTemplParams" colspan="2">template&lt;types::XMLNodeBased ChildType = NodeBase&gt; </td></tr>
+<tr class="memitem:a91d5901adf0c9ab97495d94b29891982"><td class="memTemplItemLeft" align="right" valign="top">ChildType &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a91d5901adf0c9ab97495d94b29891982">ChildAt</a> (const size_t idx)</td></tr>
+<tr class="memdesc:a91d5901adf0c9ab97495d94b29891982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return reference to child.  <br /></td></tr>
+<tr class="separator:a91d5901adf0c9ab97495d94b29891982"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ee151f20fb2ac4a1333dfafa1804576" id="r_a1ee151f20fb2ac4a1333dfafa1804576"><td class="memTemplParams" colspan="2">template&lt;types::XMLNodeBased ChildType = NodeBase&gt; </td></tr>
+<tr class="memitem:a1ee151f20fb2ac4a1333dfafa1804576"><td class="memTemplItemLeft" align="right" valign="top">const ChildType &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a1ee151f20fb2ac4a1333dfafa1804576">ChildAt</a> (const size_t idx) const</td></tr>
+<tr class="memdesc:a1ee151f20fb2ac4a1333dfafa1804576"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return child by constant reference.  <br /></td></tr>
+<tr class="separator:a1ee151f20fb2ac4a1333dfafa1804576"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad531d8a90118957325e77ce6224411ee" id="r_ad531d8a90118957325e77ce6224411ee"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html">NodeBase</a> &gt; &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad531d8a90118957325e77ce6224411ee">begin</a> ()</td></tr>
+<tr class="memdesc:ad531d8a90118957325e77ce6224411ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns iterator pointing to first child node.  <br /></td></tr>
+<tr class="separator:ad531d8a90118957325e77ce6224411ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a936404df3795a76da03a704cfad57fc2" id="r_a936404df3795a76da03a704cfad57fc2"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html">NodeBase</a> &gt; &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a936404df3795a76da03a704cfad57fc2">end</a> ()</td></tr>
+<tr class="memdesc:a936404df3795a76da03a704cfad57fc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns iterator pointing to one past last child node.  <br /></td></tr>
+<tr class="separator:a936404df3795a76da03a704cfad57fc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0765b870d873e62bc29c631f7bf83393" id="r_a0765b870d873e62bc29c631f7bf83393"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html">NodeBase</a> &gt; &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0765b870d873e62bc29c631f7bf83393">begin</a> () const</td></tr>
+<tr class="memdesc:a0765b870d873e62bc29c631f7bf83393"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns read-only iterator pointing to first child node.  <br /></td></tr>
+<tr class="separator:a0765b870d873e62bc29c631f7bf83393"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a399cb1ccbb9bfef2e4b6dead5e271aaa" id="r_a399cb1ccbb9bfef2e4b6dead5e271aaa"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html">NodeBase</a> &gt; &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a399cb1ccbb9bfef2e4b6dead5e271aaa">end</a> () const</td></tr>
+<tr class="memdesc:a399cb1ccbb9bfef2e4b6dead5e271aaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns read-only iterator pointing to one past last child node.  <br /></td></tr>
+<tr class="separator:a399cb1ccbb9bfef2e4b6dead5e271aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62d8b96ff4a90f8c7d94da5585d03c0b" id="r_a62d8b96ff4a90f8c7d94da5585d03c0b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html">NodeBase</a> &gt; &gt;::reverse_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62d8b96ff4a90f8c7d94da5585d03c0b">rbegin</a> ()</td></tr>
+<tr class="memdesc:a62d8b96ff4a90f8c7d94da5585d03c0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns reverse iterator pointing to last child node.  <br /></td></tr>
+<tr class="separator:a62d8b96ff4a90f8c7d94da5585d03c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afaf7a92a74d5f3c625d44e3da1040f38" id="r_afaf7a92a74d5f3c625d44e3da1040f38"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html">NodeBase</a> &gt; &gt;::reverse_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afaf7a92a74d5f3c625d44e3da1040f38">rend</a> ()</td></tr>
+<tr class="memdesc:afaf7a92a74d5f3c625d44e3da1040f38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns reverse iterator pointing to one before first child node.  <br /></td></tr>
+<tr class="separator:afaf7a92a74d5f3c625d44e3da1040f38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94bf240fab1e2f0664946122b5a25f12" id="r_a94bf240fab1e2f0664946122b5a25f12"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html">NodeBase</a> &gt; &gt;::const_reverse_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94bf240fab1e2f0664946122b5a25f12">rbegin</a> () const</td></tr>
+<tr class="memdesc:a94bf240fab1e2f0664946122b5a25f12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns read-only reverse iterator pointing to last child node.  <br /></td></tr>
+<tr class="separator:a94bf240fab1e2f0664946122b5a25f12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a747c18bc6bce897892886c9506bb1d85" id="r_a747c18bc6bce897892886c9506bb1d85"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html">NodeBase</a> &gt; &gt;::const_reverse_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a747c18bc6bce897892886c9506bb1d85">rend</a> () const</td></tr>
+<tr class="memdesc:a747c18bc6bce897892886c9506bb1d85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns read-only reverse iterator pointing to one before first child node.  <br /></td></tr>
+<tr class="separator:a747c18bc6bce897892886c9506bb1d85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9ed3d1f2e754db079da0d066c7ad7c5" id="r_ad9ed3d1f2e754db079da0d066c7ad7c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html">NodeBase</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9ed3d1f2e754db079da0d066c7ad7c5">operator[]</a> (const size_t idx)</td></tr>
+<tr class="memdesc:ad9ed3d1f2e754db079da0d066c7ad7c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index operator.  <br /></td></tr>
+<tr class="separator:ad9ed3d1f2e754db079da0d066c7ad7c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6c2c4dc0e5c906737905331f859f910" id="r_ab6c2c4dc0e5c906737905331f859f910"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html">NodeBase</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6c2c4dc0e5c906737905331f859f910">operator[]</a> (const size_t idx) const</td></tr>
+<tr class="memdesc:ab6c2c4dc0e5c906737905331f859f910"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant index operator.  <br /></td></tr>
+<tr class="separator:ab6c2c4dc0e5c906737905331f859f910"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -282,21 +312,81 @@ template&lt;types::XMLNodeBased ChildType&gt; </div>
 
 </div>
 </div>
-<a id="abe40a1b662ec954f46269f612ccf769e" name="abe40a1b662ec954f46269f612ccf769e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abe40a1b662ec954f46269f612ccf769e">&#9670;&#160;</a></span>childAt() <span class="overload">[1/2]</span></h2>
+<a id="ad531d8a90118957325e77ce6224411ee" name="ad531d8a90118957325e77ce6224411ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad531d8a90118957325e77ce6224411ee">&#9670;&#160;</a></span>begin() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class ParentType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html">NodeBase</a> &gt; &gt;::iterator <a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html">XMLBuilder::meta::ChildrenStore</a>&lt; ParentType &gt;::begin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns iterator pointing to first child node. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::shared_ptr&lt;NodeBase&gt;&gt;::iterator Iterator pointing to first child node </dd></dl>
+
+</div>
+</div>
+<a id="a0765b870d873e62bc29c631f7bf83393" name="a0765b870d873e62bc29c631f7bf83393"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0765b870d873e62bc29c631f7bf83393">&#9670;&#160;</a></span>begin() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class ParentType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html">NodeBase</a> &gt; &gt;::const_iterator <a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html">XMLBuilder::meta::ChildrenStore</a>&lt; ParentType &gt;::begin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns read-only iterator pointing to first child node. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::shared_ptr&lt;NodeBase&gt;&gt;::const_iterator Read-only iterator pointing to first child node </dd></dl>
+
+</div>
+</div>
+<a id="a91d5901adf0c9ab97495d94b29891982" name="a91d5901adf0c9ab97495d94b29891982"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91d5901adf0c9ab97495d94b29891982">&#9670;&#160;</a></span>ChildAt() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class ParentType&gt; </div>
 <div class="memtemplate">
-template&lt;types::XMLNodeBased ChildType&gt; </div>
+template&lt;types::XMLNodeBased ChildType = NodeBase&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">ChildType &amp; <a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html">XMLBuilder::meta::ChildrenStore</a>&lt; ParentType &gt;::childAt </td>
+          <td class="memname">ChildType &amp; <a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html">XMLBuilder::meta::ChildrenStore</a>&lt; ParentType &gt;::ChildAt </td>
           <td>(</td>
           <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>idx</em></span></td><td>)</td>
           <td></td>
@@ -310,8 +400,9 @@ template&lt;types::XMLNodeBased ChildType&gt; </div>
 </div><div class="memdoc">
 
 <p>Return reference to child. </p>
-<p>Base pointer of the child gets converted back to the pointer to parent type and returned as a reference </p><dl class="section warning"><dt>Warning</dt><dd>Throws out_of_range exception when index is invalid </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo</a></b></dt><dd>Rework to something more clever</dd></dl>
+<p>Base pointer of the child gets converted back to the pointer to parent type and returned as a reference </p><dl class="section warning"><dt>Warning</dt><dd>Throws std::out_of_range exception when index is invalid </dd>
+<dd>
+Throws std::invalid_argument exception when cast to requested type failed</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">ChildType</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1XMLNodeBased.html" title="Check for base node type.">types::XMLNodeBased</a> type of child </td></tr>
@@ -320,29 +411,29 @@ template&lt;types::XMLNodeBased ChildType&gt; </div>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">idx</td><td>Index of child </td></tr>
+    <tr><td class="paramname">idx</td><td>Index of child node </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>ChildType&amp; Child object reference </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>ChildType&amp; Reference to child object </dd></dl>
 
 </div>
 </div>
-<a id="a2a3b57775fc9b8ee2081ba43546093d3" name="a2a3b57775fc9b8ee2081ba43546093d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a3b57775fc9b8ee2081ba43546093d3">&#9670;&#160;</a></span>childAt() <span class="overload">[2/2]</span></h2>
+<a id="a1ee151f20fb2ac4a1333dfafa1804576" name="a1ee151f20fb2ac4a1333dfafa1804576"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ee151f20fb2ac4a1333dfafa1804576">&#9670;&#160;</a></span>ChildAt() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class ParentType&gt; </div>
 <div class="memtemplate">
-template&lt;types::XMLNodeBased ChildType&gt; </div>
+template&lt;types::XMLNodeBased ChildType = NodeBase&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">ChildType <a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html">XMLBuilder::meta::ChildrenStore</a>&lt; ParentType &gt;::childAt </td>
+          <td class="memname">const ChildType &amp; <a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html">XMLBuilder::meta::ChildrenStore</a>&lt; ParentType &gt;::ChildAt </td>
           <td>(</td>
           <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>idx</em></span></td><td>)</td>
           <td> const</td>
@@ -355,9 +446,10 @@ template&lt;types::XMLNodeBased ChildType&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Return child by value. </p>
-<p>Base pointer of the child gets converted back to the pointer to parent type and returned as value </p><dl class="section warning"><dt>Warning</dt><dd>Throws out_of_range exception when index is invalid </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo</a></b></dt><dd>Rework to something more clever</dd></dl>
+<p>Return child by constant reference. </p>
+<p>Base pointer of the child gets converted back to the pointer to parent type and returned as constant reference </p><dl class="section warning"><dt>Warning</dt><dd>Throws std::out_of_range exception when index is invalid </dd>
+<dd>
+Throws std::invalid_argument exception when cast to requested type failed</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">ChildType</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1XMLNodeBased.html" title="Check for base node type.">types::XMLNodeBased</a> type of child </td></tr>
@@ -366,11 +458,11 @@ template&lt;types::XMLNodeBased ChildType&gt; </div>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">idx</td><td>Index of child </td></tr>
+    <tr><td class="paramname">idx</td><td>Index of child node </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>ChildType Copy Child object </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>const ChildType&amp; Constant reference to child object </dd></dl>
 
 </div>
 </div>
@@ -401,6 +493,200 @@ template&lt;class ParentType&gt; </div>
 
 <p>Return number of children nodes stored. </p>
 <dl class="section return"><dt>Returns</dt><dd>size_t Number of stored children </dd></dl>
+
+</div>
+</div>
+<a id="a936404df3795a76da03a704cfad57fc2" name="a936404df3795a76da03a704cfad57fc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a936404df3795a76da03a704cfad57fc2">&#9670;&#160;</a></span>end() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class ParentType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html">NodeBase</a> &gt; &gt;::iterator <a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html">XMLBuilder::meta::ChildrenStore</a>&lt; ParentType &gt;::end </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns iterator pointing to one past last child node. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::shared_ptr&lt;NodeBase&gt;&gt;::iterator Iterator pointing to one past last child node </dd></dl>
+
+</div>
+</div>
+<a id="a399cb1ccbb9bfef2e4b6dead5e271aaa" name="a399cb1ccbb9bfef2e4b6dead5e271aaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a399cb1ccbb9bfef2e4b6dead5e271aaa">&#9670;&#160;</a></span>end() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class ParentType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html">NodeBase</a> &gt; &gt;::const_iterator <a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html">XMLBuilder::meta::ChildrenStore</a>&lt; ParentType &gt;::end </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns read-only iterator pointing to one past last child node. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::shared_ptr&lt;NodeBase&gt;&gt;::const_iterator Read-only iterator pointing to one past last child node </dd></dl>
+
+</div>
+</div>
+<a id="ad9ed3d1f2e754db079da0d066c7ad7c5" name="ad9ed3d1f2e754db079da0d066c7ad7c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9ed3d1f2e754db079da0d066c7ad7c5">&#9670;&#160;</a></span>operator[]() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class ParentType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html">NodeBase</a> &amp; <a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html">XMLBuilder::meta::ChildrenStore</a>&lt; ParentType &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>idx</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Index operator. </p>
+<p>Returning reference to child object </p><dl class="section warning"><dt>Warning</dt><dd>Throws std::out_of_range exception when index is invalid</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">idx</td><td>Index of child node </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html" title="Base meta class of node.">NodeBase</a>&amp; Reference to child object </dd></dl>
+
+</div>
+</div>
+<a id="ab6c2c4dc0e5c906737905331f859f910" name="ab6c2c4dc0e5c906737905331f859f910"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6c2c4dc0e5c906737905331f859f910">&#9670;&#160;</a></span>operator[]() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class ParentType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html">NodeBase</a> &amp; <a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html">XMLBuilder::meta::ChildrenStore</a>&lt; ParentType &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>idx</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constant index operator. </p>
+<p>Returning constant reference to child object </p><dl class="section warning"><dt>Warning</dt><dd>Throws std::out_of_range exception when index is invalid</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">idx</td><td>Index of child node </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>const <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html" title="Base meta class of node.">NodeBase</a>&amp; Constant reference to child object </dd></dl>
+
+</div>
+</div>
+<a id="a62d8b96ff4a90f8c7d94da5585d03c0b" name="a62d8b96ff4a90f8c7d94da5585d03c0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62d8b96ff4a90f8c7d94da5585d03c0b">&#9670;&#160;</a></span>rbegin() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class ParentType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html">NodeBase</a> &gt; &gt;::reverse_iterator <a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html">XMLBuilder::meta::ChildrenStore</a>&lt; ParentType &gt;::rbegin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns reverse iterator pointing to last child node. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::shared_ptr&lt;NodeBase&gt;&gt;::reverse_iterator Reverse iterator pointing to last child node </dd></dl>
+
+</div>
+</div>
+<a id="a94bf240fab1e2f0664946122b5a25f12" name="a94bf240fab1e2f0664946122b5a25f12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94bf240fab1e2f0664946122b5a25f12">&#9670;&#160;</a></span>rbegin() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class ParentType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html">NodeBase</a> &gt; &gt;::const_reverse_iterator <a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html">XMLBuilder::meta::ChildrenStore</a>&lt; ParentType &gt;::rbegin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns read-only reverse iterator pointing to last child node. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::shared_ptr&lt;NodeBase&gt;&gt;::const_reverse_iterator Read-only reverse iterator pointing to last children node </dd></dl>
 
 </div>
 </div>
@@ -439,6 +725,66 @@ template&lt;class ParentType&gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>true Child was removed </dd>
 <dd>
 false Invalid index of a child </dd></dl>
+
+</div>
+</div>
+<a id="afaf7a92a74d5f3c625d44e3da1040f38" name="afaf7a92a74d5f3c625d44e3da1040f38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afaf7a92a74d5f3c625d44e3da1040f38">&#9670;&#160;</a></span>rend() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class ParentType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html">NodeBase</a> &gt; &gt;::reverse_iterator <a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html">XMLBuilder::meta::ChildrenStore</a>&lt; ParentType &gt;::rend </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns reverse iterator pointing to one before first child node. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::shared_ptr&lt;NodeBase&gt;&gt;::reverse_iterator Iterator pointing to one before first child node </dd></dl>
+
+</div>
+</div>
+<a id="a747c18bc6bce897892886c9506bb1d85" name="a747c18bc6bce897892886c9506bb1d85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a747c18bc6bce897892886c9506bb1d85">&#9670;&#160;</a></span>rend() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class ParentType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classXMLBuilder_1_1meta_1_1NodeBase.html">NodeBase</a> &gt; &gt;::const_reverse_iterator <a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html">XMLBuilder::meta::ChildrenStore</a>&lt; ParentType &gt;::rend </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns read-only reverse iterator pointing to one before first child node. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::shared_ptr&lt;NodeBase&gt;&gt;::const_reverse_iterator Read-only reverse iterator pointing to one before first child node </dd></dl>
 
 </div>
 </div>

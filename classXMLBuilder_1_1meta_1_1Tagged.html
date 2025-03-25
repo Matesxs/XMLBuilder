@@ -132,13 +132,20 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a89434e361c0396deb71fc5c09204b28e"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a89434e361c0396deb71fc5c09204b28e">Tagged</a> (const T &amp;tag)</td></tr>
 <tr class="memdesc:a89434e361c0396deb71fc5c09204b28e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classXMLBuilder_1_1meta_1_1Tagged.html" title="Tag storage.">Tagged</a> object.  <br /></td></tr>
 <tr class="separator:a89434e361c0396deb71fc5c09204b28e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16436823ec1c7f9462f4dab8d47e4992" id="r_a16436823ec1c7f9462f4dab8d47e4992"><td class="memTemplParams" colspan="2">template&lt;types::Strings T&gt; </td></tr>
+<tr class="memitem:a16436823ec1c7f9462f4dab8d47e4992"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a16436823ec1c7f9462f4dab8d47e4992">SetTag</a> (const T &amp;tag)</td></tr>
+<tr class="memdesc:a16436823ec1c7f9462f4dab8d47e4992"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modify tag of the node.  <br /></td></tr>
+<tr class="separator:a16436823ec1c7f9462f4dab8d47e4992"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7358da1e1778c8f1ad0a47d2faf60fe1" id="r_a7358da1e1778c8f1ad0a47d2faf60fe1"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7358da1e1778c8f1ad0a47d2faf60fe1">GetTag</a> () const</td></tr>
+<tr class="memdesc:a7358da1e1778c8f1ad0a47d2faf60fe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get node tag.  <br /></td></tr>
+<tr class="separator:a7358da1e1778c8f1ad0a47d2faf60fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a54cb00bf6eb9f2936064dc6c68b0c3c0" id="r_a54cb00bf6eb9f2936064dc6c68b0c3c0"><td class="memItemLeft" align="right" valign="top"><a id="a54cb00bf6eb9f2936064dc6c68b0c3c0" name="a54cb00bf6eb9f2936064dc6c68b0c3c0"></a>
-const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>m_tag</b></td></tr>
-<tr class="memdesc:a54cb00bf6eb9f2936064dc6c68b0c3c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tag stored as a string. <br /></td></tr>
-<tr class="separator:a54cb00bf6eb9f2936064dc6c68b0c3c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a883193f4068da80c7cda820a86aba28b" id="r_a883193f4068da80c7cda820a86aba28b"><td class="memItemLeft" align="right" valign="top"><a id="a883193f4068da80c7cda820a86aba28b" name="a883193f4068da80c7cda820a86aba28b"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>m_tag</b></td></tr>
+<tr class="memdesc:a883193f4068da80c7cda820a86aba28b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tag stored as a string. <br /></td></tr>
+<tr class="separator:a883193f4068da80c7cda820a86aba28b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Tag storage. </p>
@@ -180,6 +187,77 @@ template&lt;types::Strings T&gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tag</td><td>Value object of tag </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a7358da1e1778c8f1ad0a47d2faf60fe1" name="a7358da1e1778c8f1ad0a47d2faf60fe1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7358da1e1778c8f1ad0a47d2faf60fe1">&#9670;&#160;</a></span>GetTag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; XMLBuilder::meta::Tagged::GetTag </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get node tag. </p>
+<p>Returns constant reference to node tag</p>
+<dl class="section return"><dt>Returns</dt><dd>const std::string&amp; Constant reference to node tag </dd></dl>
+
+</div>
+</div>
+<a id="a16436823ec1c7f9462f4dab8d47e4992" name="a16436823ec1c7f9462f4dab8d47e4992"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16436823ec1c7f9462f4dab8d47e4992">&#9670;&#160;</a></span>SetTag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;types::Strings T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool XMLBuilder::meta::Tagged::SetTag </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Modify tag of the node. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to string.">types::Strings</a> type of tag </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tag</td><td>New tag of the node </td></tr>
   </table>
   </dd>
 </dl>

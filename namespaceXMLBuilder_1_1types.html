@@ -104,7 +104,8 @@ $(function(){initNavTree('namespaceXMLBuilder_1_1types.html',''); initResizable(
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#concepts">Concepts</a>  </div>
+<a href="#concepts">Concepts</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle"><div class="title">XMLBuilder::types Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -133,14 +134,52 @@ Concepts</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating point numbers. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptXMLBuilder_1_1types_1_1Integral.html">Integral</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whole number type. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptXMLBuilder_1_1types_1_1XMLNodeBased.html">XMLNodeBased</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for base node type. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:aabfa7d37fd3b6bef004c42d1e3201cc3" id="r_aabfa7d37fd3b6bef004c42d1e3201cc3"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aabfa7d37fd3b6bef004c42d1e3201cc3">NodeTypes</a> { <a class="el" href="#aabfa7d37fd3b6bef004c42d1e3201cc3aca55f14fccd3a388f5363ca695711b7a">NT_NODE</a>
+, <a class="el" href="#aabfa7d37fd3b6bef004c42d1e3201cc3ae690f44254b647f89118b82c6407ae87">NT_VALUE</a>
+, <a class="el" href="#aabfa7d37fd3b6bef004c42d1e3201cc3a6dd480bb598d4e9bee10e09c52930fd3">NT_PARENT</a>
+, <a class="el" href="#aabfa7d37fd3b6bef004c42d1e3201cc3a0440138dcdab11cfb43545273b72b216">NT_UNKNOWN</a>
+ }</td></tr>
+<tr class="memdesc:aabfa7d37fd3b6bef004c42d1e3201cc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Types of nodes.  <a href="#aabfa7d37fd3b6bef004c42d1e3201cc3">More...</a><br /></td></tr>
+<tr class="separator:aabfa7d37fd3b6bef004c42d1e3201cc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Type definitions. </p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="aabfa7d37fd3b6bef004c42d1e3201cc3" name="aabfa7d37fd3b6bef004c42d1e3201cc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabfa7d37fd3b6bef004c42d1e3201cc3">&#9670;&#160;</a></span>NodeTypes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#aabfa7d37fd3b6bef004c42d1e3201cc3">XMLBuilder::types::NodeTypes</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Types of nodes. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aabfa7d37fd3b6bef004c42d1e3201cc3aca55f14fccd3a388f5363ca695711b7a" name="aabfa7d37fd3b6bef004c42d1e3201cc3aca55f14fccd3a388f5363ca695711b7a"></a>NT_NODE&#160;</td><td class="fielddoc"><p>Points to <a class="el" href="classXMLBuilder_1_1Node.html" title="Most basic node.">Node</a>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfa7d37fd3b6bef004c42d1e3201cc3ae690f44254b647f89118b82c6407ae87" name="aabfa7d37fd3b6bef004c42d1e3201cc3ae690f44254b647f89118b82c6407ae87"></a>NT_VALUE&#160;</td><td class="fielddoc"><p>Points to <a class="el" href="classXMLBuilder_1_1ValueNode.html" title="Node for storing value.">ValueNode</a>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfa7d37fd3b6bef004c42d1e3201cc3a6dd480bb598d4e9bee10e09c52930fd3" name="aabfa7d37fd3b6bef004c42d1e3201cc3a6dd480bb598d4e9bee10e09c52930fd3"></a>NT_PARENT&#160;</td><td class="fielddoc"><p>Points to <a class="el" href="classXMLBuilder_1_1ParentNode.html" title="Node for storing other nodes.">ParentNode</a>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfa7d37fd3b6bef004c42d1e3201cc3a0440138dcdab11cfb43545273b72b216" name="aabfa7d37fd3b6bef004c42d1e3201cc3a0440138dcdab11cfb43545273b72b216"></a>NT_UNKNOWN&#160;</td><td class="fielddoc"><p>Unknown node. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['generate_0',['Generate',['../classXMLBuilder_1_1meta_1_1Generatable.html#a67f4053fb506323c43a9f4d751501e0f',1,'XMLBuilder::meta::Generatable']]],
-  ['get_1',['Get',['../classXMLBuilder_1_1ValueNode.html#a79a9d932a8b28d2f432b7db700a9879c',1,'XMLBuilder::ValueNode']]]
+  ['end_0',['end',['../classXMLBuilder_1_1meta_1_1ChildrenStore.html#a936404df3795a76da03a704cfad57fc2',1,'XMLBuilder::meta::ChildrenStore::end()'],['../classXMLBuilder_1_1meta_1_1ChildrenStore.html#a399cb1ccbb9bfef2e4b6dead5e271aaa',1,'XMLBuilder::meta::ChildrenStore::end() const']]]
 ];

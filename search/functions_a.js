@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['tagged_0',['Tagged',['../classXMLBuilder_1_1meta_1_1Tagged.html#a89434e361c0396deb71fc5c09204b28e',1,'XMLBuilder::meta::Tagged']]],
-  ['tostring_1',['toString',['../namespaceXMLBuilder_1_1types_1_1converters.html#a0e55e1ee8fab5bd9d7b377df856a1dd0',1,'XMLBuilder::types::converters']]]
+  ['parentnode_0',['ParentNode',['../classXMLBuilder_1_1ParentNode.html#a2590be8426d5021c41c10119b3f3bd7e',1,'XMLBuilder::ParentNode']]],
+  ['print_1',['Print',['../classXMLBuilder_1_1meta_1_1Generatable.html#a4fccabecb67c36521fb38ccc42b740ee',1,'XMLBuilder::meta::Generatable']]]
 ];
