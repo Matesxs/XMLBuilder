@@ -113,10 +113,10 @@ $(function(){initNavTree('namespaceXMLBuilder_1_1types_1_1converters.html',''); 
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a0e55e1ee8fab5bd9d7b377df856a1dd0" id="r_a0e55e1ee8fab5bd9d7b377df856a1dd0"><td class="memTemplParams" colspan="2">template&lt;Stringlike T&gt; </td></tr>
-<tr class="memitem:a0e55e1ee8fab5bd9d7b377df856a1dd0"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a0e55e1ee8fab5bd9d7b377df856a1dd0">toString</a> (T &amp;t)</td></tr>
-<tr class="memdesc:a0e55e1ee8fab5bd9d7b377df856a1dd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stringlike type to string conversion  <br /></td></tr>
-<tr class="separator:a0e55e1ee8fab5bd9d7b377df856a1dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44b1cc57c628401d5cd519a2c467501d" id="r_a44b1cc57c628401d5cd519a2c467501d"><td class="memTemplParams" colspan="2">template&lt;Stringlike T&gt; </td></tr>
+<tr class="memitem:a44b1cc57c628401d5cd519a2c467501d"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a44b1cc57c628401d5cd519a2c467501d">toString</a> (const T &amp;t)</td></tr>
+<tr class="memdesc:a44b1cc57c628401d5cd519a2c467501d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stringlike type to string conversion  <br /></td></tr>
+<tr class="separator:a44b1cc57c628401d5cd519a2c467501d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67c0dc3f8a088b0eecb2eaf687108612" id="r_a67c0dc3f8a088b0eecb2eaf687108612"><td class="memTemplParams" colspan="2">template&lt;Floating T&gt; </td></tr>
 <tr class="memitem:a67c0dc3f8a088b0eecb2eaf687108612"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a67c0dc3f8a088b0eecb2eaf687108612">floatingToString</a> (const T value, const size_t precision)</td></tr>
 <tr class="memdesc:a67c0dc3f8a088b0eecb2eaf687108612"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating point number string conversion  <br /></td></tr>
@@ -165,8 +165,8 @@ template&lt;Floating T&gt; </div>
 
 </div>
 </div>
-<a id="a0e55e1ee8fab5bd9d7b377df856a1dd0" name="a0e55e1ee8fab5bd9d7b377df856a1dd0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e55e1ee8fab5bd9d7b377df856a1dd0">&#9670;&#160;</a></span>toString()</h2>
+<a id="a44b1cc57c628401d5cd519a2c467501d" name="a44b1cc57c628401d5cd519a2c467501d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44b1cc57c628401d5cd519a2c467501d">&#9670;&#160;</a></span>toString()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -174,9 +174,9 @@ template&lt;Floating T&gt; </div>
 template&lt;Stringlike T&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">decltype(auto) XMLBuilder::types::converters::toString </td>
+          <td class="memname">std::string XMLBuilder::types::converters::toString </td>
           <td>(</td>
-          <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em>t</em></span></td><td>)</td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>t</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -196,7 +196,7 @@ template&lt;Stringlike T&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>decltype(auto) Value converted to string </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>std::string Value converted to string </dd></dl>
 
 </div>
 </div>

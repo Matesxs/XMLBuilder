@@ -5,6 +5,5 @@ var searchData=
   ['xmlbuilder_2',['XMLBuilder',['../namespaceXMLBuilder.html',1,'']]],
   ['xmlbuilder_3a_3ameta_3',['meta',['../namespaceXMLBuilder_1_1meta.html',1,'XMLBuilder']]],
   ['xmlbuilder_3a_3atypes_4',['types',['../namespaceXMLBuilder_1_1types.html',1,'XMLBuilder']]],
-  ['xmlbuilder_3a_3atypes_3a_3aconverters_5',['converters',['../namespaceXMLBuilder_1_1types_1_1converters.html',1,'XMLBuilder::types']]],
-  ['xmlnodebased_6',['XMLNodeBased',['../conceptXMLBuilder_1_1types_1_1XMLNodeBased.html',1,'XMLBuilder::types']]]
+  ['xmlbuilder_3a_3atypes_3a_3aconverters_5',['converters',['../namespaceXMLBuilder_1_1types_1_1converters.html',1,'XMLBuilder::types']]]
 ];
