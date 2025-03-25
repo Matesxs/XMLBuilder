@@ -87,10 +87,10 @@ namespace XMLBuilder
 			 * 
 			 * @tparam T Stringlike object type
 			 * @param t %Stringlike object to conver to string
-			 * @return decltype(auto) Value converted to string
+			 * @return std::string Value converted to string
 			 */
 			template<Stringlike T>
-			decltype(auto) toString(T& t)
+			std::string toString(const T& t)
 			{
 				if constexpr (Stringable<T>)
 					return std::format("{}", t);
@@ -294,7 +294,7 @@ namespace XMLBuilder
 			 * @return ParentType& Return self reference based on parent type for chaining
 			 */
 			template<types::Strings N, types::Stringlike V>
-			ParentType& AddOrModifyAttribute(const N& name, const V& value)
+			ParentType& SetAttribute(const N& name, const V& value)
 			{
 				const std::string key(name);
 				if (key.empty())
@@ -318,7 +318,7 @@ namespace XMLBuilder
 			 * @return ParentType& Return self reference based on parent type for chaining
 			 */
 			template<types::Strings N, types::Floating V>
-			ParentType& AddOrModifyAttribute(const N& name, const V value, size_t precision)
+			ParentType& SetAttribute(const N& name, const V value, size_t precision)
 			{
 				const std::string key(name);
 				if (key.empty())
@@ -375,7 +375,7 @@ namespace XMLBuilder
 			 * @return std::string& Reference to the string value of attribute
 			 */
 			template<types::Strings N>
-			std::string& attAt(const N& name)
+			std::string& GetAttribute(const N& name)
 			{
 				const std::string key(name);
 				if (key.empty())
@@ -388,16 +388,16 @@ namespace XMLBuilder
 			}
 
 			/**
-			 * @brief Returns string value of attribute
+			 * @brief Returns constant reference to the string value of attribute
 			 * @warning Throws out_of_range exception if called with name of attribute that is not present in node
 			 * @warning Throws invalid_argument exception if called with empty attribute name
 			 * 
 			 * @tparam N types::Strings type for name of the attribute
 			 * @param name Name of attribute
-			 * @return std::string String value of attribute
+			 * @return const std::string& Constant reference to the string value of attribute
 			 */
 			template<types::Strings N>
-			std::string attAt(const N& name) const
+			const std::string& GetAttribute(const N& name) const
 			{
 				const std::string key(name);
 				if (key.empty())
@@ -411,7 +411,7 @@ namespace XMLBuilder
 
 			/**
 			 * @brief Returns reference to the string value of attribute
-			 * @details Operator calling Attributable::attAt for getting reference of the string value of attribute
+			 * @details Operator calling Attributable::GetAttribute for getting reference of the string value of attribute
 			 * @warning Throws out_of_range exception if called with name of attribute that is not present in node
 			 * @warning Throws invalid_argument exception if called with empty attribute name
 			 * 
@@ -422,23 +422,23 @@ namespace XMLBuilder
 			template<types::Strings N>
 			std::string& operator[](const N& name)
 			{
-				return attAt(name);
+				return GetAttribute(name);
 			}
 
 			/**
-			 * @brief Returns string value of attribute
-			 * @details Operator calling Attributable::attAt for getting string value of attribute
+			 * @brief Returns constant reference to the string value of attribute
+			 * @details Operator calling Attributable::GetAttribute for getting string value of attribute
 			 * @warning Throws out_of_range exception if called with name of attribute that is not present in node
 			 * @warning Throws invalid_argument exception if called with empty attribute name
 			 * 
 			 * @tparam N types::Strings type for name of the attribute
 			 * @param name Name of attribute
-			 * @return std::string String value of attribute
+			 * @return const std::string& Constant reference to the string value of attribute
 			 */
 			template<types::Strings N>
-			std::string operator[](const N& name) const
+			const std::string& operator[](const N& name) const
 			{
-				return attAt(name);
+				return GetAttribute(name);
 			}
 
 			/**
@@ -541,7 +541,7 @@ namespace XMLBuilder
 			* @return ParentType& Reference to this object casted to parent type
 			*/
 			template<class ParentType = NodeBase>
-			ParentType& as()
+			ParentType& As()
 			{
 				if constexpr (!std::is_base_of_v<NodeBase, ParentType>)
 					throw std::invalid_argument("Node type is not a child");
@@ -560,15 +560,27 @@ namespace XMLBuilder
 		};
 	}
 
+	/**
+	* @brief Common type for nodes that can be added as child node
+	* @details Exposed meta::NodeBase for users to use for referencing common type for all nodes that can be assigned as child nodes
+	*/
+	typedef meta::NodeBase ChildableNode;
+
+	/**
+	* @brief Types of nodes
+	* @details User exposed types::NodeTypes
+	*/
+	typedef types::NodeTypes NodeType;
+
 	namespace types
 	{
 		/**
 		 * @brief Check for base node type
-		 * @details Used to limit child node type only to types based on XMLBuilder::meta::NodeBase
+		 * @details Used to limit child node type only to types based on ChildableNode
 		 * @tparam T Type to check
 		 */
 		template <typename T>
-		concept XMLNodeBased = std::is_base_of_v<meta::NodeBase, T>;
+		concept ChildableNodeBased = std::is_base_of_v<ChildableNode, T>;
 	}
 
 	namespace meta
@@ -576,7 +588,7 @@ namespace XMLBuilder
 		/**
 		 * @brief Store of children nodes
 		 * @details Class for storage of children and implement interface for managing them
-		 * @details Childs are stored as vector of shared pointers of types::XMLNodeBased for keeping reference to the data of original type
+		 * @details Childs are stored as vector of shared pointers of ChildableNode for keeping reference to the data of original type
 		 * 
 		 * @tparam ParentType Parent type of the actual node
 		 */
@@ -590,11 +602,11 @@ namespace XMLBuilder
 			 * @brief Add child node
 			 * @details Add child node to vector of children of node
 			 * 
-			 * @tparam ChildType types::XMLNodeBased type of child
+			 * @tparam ChildType ChildableNode type of child
 			 * @param child Child reference object
 			 * @return ParentType& Return self reference based on parent type for chaining
 			 */
-			template<types::XMLNodeBased ChildType>
+			template<types::ChildableNodeBased ChildType>
 			ParentType& AddChild(const ChildType& child)
 			{
 				m_children.push_back(std::make_shared<ChildType>(child));
@@ -631,11 +643,11 @@ namespace XMLBuilder
 			 * @warning Throws std::out_of_range exception when index is invalid
 			 * @warning Throws std::invalid_argument exception when cast to requested type failed
 			 * 
-			 * @tparam ChildType types::XMLNodeBased type of child
+			 * @tparam ChildType types::ChildableNodeBased type of child
 			 * @param idx Index of child node
 			 * @return ChildType& Reference to child object
 			 */
-			template<types::XMLNodeBased ChildType = NodeBase>
+			template<types::ChildableNodeBased ChildType = ChildableNode>
 			ChildType& ChildAt(const size_t idx)
 			{
 				if (idx >= ChildrenCount())
@@ -659,11 +671,11 @@ namespace XMLBuilder
 			 * @warning Throws std::out_of_range exception when index is invalid
 			 * @warning Throws std::invalid_argument exception when cast to requested type failed
 			 * 
-			 * @tparam ChildType types::XMLNodeBased type of child
+			 * @tparam ChildType types::ChildableNodeBased type of child
 			 * @param idx Index of child node
 			 * @return const ChildType& Constant reference to child object
 			 */
-			template<types::XMLNodeBased ChildType = NodeBase>
+			template<types::ChildableNodeBased ChildType = ChildableNode>
 			const ChildType& ChildAt(const size_t idx) const
 			{
 				if (idx >= ChildrenCount())
@@ -683,72 +695,72 @@ namespace XMLBuilder
 
 			/**
 			* @brief Returns iterator pointing to first child node
-			* @return std::vector<std::shared_ptr<NodeBase>>::iterator Iterator pointing to first child node
+			* @return std::vector<std::shared_ptr<ChildableNode>>::iterator Iterator pointing to first child node
 			*/
-			std::vector<std::shared_ptr<NodeBase>>::iterator begin()
+			std::vector<std::shared_ptr<ChildableNode>>::iterator begin()
 			{
 				return m_children.begin();
 			}
 
 			/**
 			* @brief Returns iterator pointing to one past last child node
-			* @return std::vector<std::shared_ptr<NodeBase>>::iterator Iterator pointing to one past last child node
+			* @return std::vector<std::shared_ptr<ChildableNode>>::iterator Iterator pointing to one past last child node
 			*/
-			std::vector<std::shared_ptr<NodeBase>>::iterator end()
+			std::vector<std::shared_ptr<ChildableNode>>::iterator end()
 			{
 				return m_children.end();
 			}
 
 			/**
 			* @brief Returns read-only iterator pointing to first child node
-			* @return std::vector<std::shared_ptr<NodeBase>>::const_iterator Read-only iterator pointing to first child node
+			* @return std::vector<std::shared_ptr<ChildableNode>>::const_iterator Read-only iterator pointing to first child node
 			*/
-			[[nodiscard]] std::vector<std::shared_ptr<NodeBase>>::const_iterator begin() const
+			[[nodiscard]] std::vector<std::shared_ptr<ChildableNode>>::const_iterator begin() const
 			{
 				return m_children.begin();
 			}
 
 			/**
 			* @brief Returns read-only iterator pointing to one past last child node
-			* @return std::vector<std::shared_ptr<NodeBase>>::const_iterator Read-only iterator pointing to one past last child node
+			* @return std::vector<std::shared_ptr<ChildableNode>>::const_iterator Read-only iterator pointing to one past last child node
 			*/
-			[[nodiscard]] std::vector<std::shared_ptr<NodeBase>>::const_iterator end() const
+			[[nodiscard]] std::vector<std::shared_ptr<ChildableNode>>::const_iterator end() const
 			{
 				return m_children.end();
 			}
 
 			/**
 			* @brief Returns reverse iterator pointing to last child node
-			* @return std::vector<std::shared_ptr<NodeBase>>::reverse_iterator Reverse iterator pointing to last child node
+			* @return std::vector<std::shared_ptr<ChildableNode>>::reverse_iterator Reverse iterator pointing to last child node
 			*/
-			std::vector<std::shared_ptr<NodeBase>>::reverse_iterator rbegin()
+			std::vector<std::shared_ptr<ChildableNode>>::reverse_iterator rbegin()
 			{
 				return m_children.rbegin();
 			}
 
 			/**
 			* @brief Returns reverse iterator pointing to one before first child node
-			* @return std::vector<std::shared_ptr<NodeBase>>::reverse_iterator Iterator pointing to one before first child node
+			* @return std::vector<std::shared_ptr<ChildableNode>>::reverse_iterator Iterator pointing to one before first child node
 			*/
-			std::vector<std::shared_ptr<NodeBase>>::reverse_iterator rend()
+			std::vector<std::shared_ptr<ChildableNode>>::reverse_iterator rend()
 			{
 				return m_children.rend();
 			}
 
 			/**
 			* @brief Returns read-only reverse iterator pointing to last child node
-			* @return std::vector<std::shared_ptr<NodeBase>>::const_reverse_iterator Read-only reverse iterator pointing to last children node
+			* @return std::vector<std::shared_ptr<ChildableNode>>::const_reverse_iterator Read-only reverse iterator pointing to last children node
 			*/
-			[[nodiscard]] std::vector<std::shared_ptr<NodeBase>>::const_reverse_iterator rbegin() const
+			[[nodiscard]] std::vector<std::shared_ptr<ChildableNode>>::const_reverse_iterator rbegin() const
 			{
 				return m_children.rbegin();
 			}
 
 			/**
 			* @brief Returns read-only reverse iterator pointing to one before first child node
-			* @return std::vector<std::shared_ptr<NodeBase>>::const_reverse_iterator Read-only reverse iterator pointing to one before first child node
+			* @return std::vector<std::shared_ptr<ChildableNode>>::const_reverse_iterator Read-only reverse iterator pointing to one before first child node
 			*/
-			[[nodiscard]] std::vector<std::shared_ptr<NodeBase>>::const_reverse_iterator rend() const
+			[[nodiscard]] std::vector<std::shared_ptr<ChildableNode>>::const_reverse_iterator rend() const
 			{
 				return m_children.rend();
 			}
@@ -759,9 +771,9 @@ namespace XMLBuilder
             * @warning Throws std::out_of_range exception when index is invalid
             *
             * @param idx Index of child node
-            * @return NodeBase& Reference to child object
+            * @return ChildableNode& Reference to child object
             */
-			NodeBase& operator[](const size_t idx)
+			ChildableNode& operator[](const size_t idx)
 			{
 				if (idx >= ChildrenCount())
 					throw std::out_of_range("Index out of range");
@@ -811,9 +823,9 @@ namespace XMLBuilder
 
 		private:
 			/**
-			 * @brief Child storage as vector of shared pointer of meta::NodeBase
+			 * @brief Child storage as vector of shared pointer of ChildableNode
 			 */
-			std::vector<std::shared_ptr<NodeBase>> m_children;
+			std::vector<std::shared_ptr<ChildableNode>> m_children;
 		};
 	}
 
