@@ -529,16 +529,27 @@ namespace XMLBuilder
 			/**
 			* @brief Cast instance of the base node class as parent type
 			* @warning Raises std::invalid_argument exception when trying to cast to type that is not based on this class
+			* @warning Throws std::invalid_argument exception when cast to requested type failed
 			*
 			* @tparam ParentType Type to which cast this object
 			* @return ParentType& Reference to this object casted to parent type
 			*/
-			template<class ParentType>
+			template<class ParentType = NodeBase>
 			ParentType& as()
 			{
-				if (!std::is_base_of_v<NodeBase, ParentType>)
+				if constexpr (!std::is_base_of_v<NodeBase, ParentType>)
 					throw std::invalid_argument("Node type is not a child");
-				return *static_cast<ParentType*>(this);
+
+				if constexpr (std::is_same_v<ParentType, NodeBase>)
+					return *this;
+				else
+				{
+					auto childPtrCasted	= dynamic_cast<ParentType*>(this);
+					if (!childPtrCasted)
+						throw std::invalid_argument("This is not valid type of this child");
+
+					return *childPtrCasted;
+				}
 			}
 		};
 	}
