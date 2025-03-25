@@ -122,8 +122,8 @@ Inheritance diagram for XMLBuilder::meta::NodeBase:</div>
   <map id="XMLBuilder::meta::NodeBase_map" name="XMLBuilder::meta::NodeBase_map">
 <area href="classXMLBuilder_1_1meta_1_1Generatable.html" title="Definition of class that can be generated." alt="XMLBuilder::meta::Generatable" shape="rect" coords="196,0,382,24"/>
 <area href="classXMLBuilder_1_1Node.html" title="Most basic node." alt="XMLBuilder::Node" shape="rect" coords="0,112,186,136"/>
-<area href="classXMLBuilder_1_1ParentNode.html" title="Node for storing other nodes." alt="XMLBuilder::ParentNode" shape="rect" coords="196,112,382,136"/>
-<area href="classXMLBuilder_1_1ValueNode.html" title="Node for storing value." alt="XMLBuilder::ValueNode" shape="rect" coords="392,112,578,136"/>
+<area href="classXMLBuilder_1_1ParentNode.html" title="Node for storing other nodes" alt="XMLBuilder::ParentNode" shape="rect" coords="196,112,382,136"/>
+<area href="classXMLBuilder_1_1ValueNode.html" title="Node for storing value" alt="XMLBuilder::ValueNode" shape="rect" coords="392,112,578,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -151,7 +151,7 @@ Public Member Functions</h2></td></tr>
 Friends</h2></td></tr>
 <tr class="memitem:aee27e29e65f9447559eb5f106d9850be" id="r_aee27e29e65f9447559eb5f106d9850be"><td class="memTemplParams" colspan="2">template&lt;class ParentType&gt; </td></tr>
 <tr class="memitem:aee27e29e65f9447559eb5f106d9850be"><td class="memTemplItemLeft" align="right" valign="top">class&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aee27e29e65f9447559eb5f106d9850be">ChildrenStore</a></td></tr>
-<tr class="memdesc:aee27e29e65f9447559eb5f106d9850be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Friend of <a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html" title="Store of children nodes.">meta::ChildrenStore</a> class because child store access <a class="el" href="classXMLBuilder_1_1meta_1_1Generatable.html#a82aac4825ed31028c7b1c30a634f4002" title="Interface for generating output to stream of a node.">NodeBase::_Generate</a> method of its child nodes.  <br /></td></tr>
+<tr class="memdesc:aee27e29e65f9447559eb5f106d9850be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Friend of <a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html" title="Store of children nodes.">XMLBuilder::meta::ChildrenStore</a> class.  <br /></td></tr>
 <tr class="separator:aee27e29e65f9447559eb5f106d9850be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
@@ -233,7 +233,7 @@ Throws std::invalid_argument exception when cast to requested type failed</dd></
 
 <p>Return type of the node. </p>
 <p>Virtual method that signals true type of the node when in it's node base form</p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="namespaceXMLBuilder_1_1types.html#aabfa7d37fd3b6bef004c42d1e3201cc3" title="Types of nodes.">types::NodeTypes</a> Type of the node </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="namespaceXMLBuilder_1_1types.html#aabfa7d37fd3b6bef004c42d1e3201cc3" title="Types of nodes.">XMLBuilder::types::NodeTypes</a> Type of the node </dd></dl>
 
 <p>Implemented in <a class="el" href="classXMLBuilder_1_1Node.html#a27f63c915ff33e4d70167687885dd7a7">XMLBuilder::Node</a>, <a class="el" href="classXMLBuilder_1_1ParentNode.html#a6207e893e992da679a298c6a0133b411">XMLBuilder::ParentNode</a>, and <a class="el" href="classXMLBuilder_1_1ValueNode.html#a65cd5e5420c29ecc5352314b26be1314">XMLBuilder::ValueNode</a>.</p>
 
@@ -262,7 +262,8 @@ template&lt;class ParentType&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Friend of <a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html" title="Store of children nodes.">meta::ChildrenStore</a> class because child store access <a class="el" href="classXMLBuilder_1_1meta_1_1Generatable.html#a82aac4825ed31028c7b1c30a634f4002" title="Interface for generating output to stream of a node.">NodeBase::_Generate</a> method of its child nodes. </p>
+<p>Friend of <a class="el" href="classXMLBuilder_1_1meta_1_1ChildrenStore.html" title="Store of children nodes.">XMLBuilder::meta::ChildrenStore</a> class. </p>
+<p>Because child store access <a class="el" href="classXMLBuilder_1_1meta_1_1Generatable.html#a82aac4825ed31028c7b1c30a634f4002" title="Interface for generating output to stream of a node.">XMLBuilder::meta::NodeBase::_Generate</a> method of the generatable nodes</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">ParentType</td><td>Parent type of child store </td></tr>

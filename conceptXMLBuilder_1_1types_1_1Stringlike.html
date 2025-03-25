@@ -106,19 +106,19 @@ $(function(){initNavTree('conceptXMLBuilder_1_1types_1_1Stringlike.html',''); in
 </div><!--header-->
 <div class="contents">
 
-<p>String and non-string types convertible to string.  
+<p>String and non-string types convertible to std::string.  
 <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="xmlbuilder_8hpp_source.html">xmlbuilder.hpp</a>&gt;</code></p>
 <h2 class="groupheader">Concept definition</h2>
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="conceptXMLBuilder_1_1types_1_1Stringlike.html">XMLBuilder::types::Stringlike</a> =  <a class="code hl_concept" href="conceptXMLBuilder_1_1types_1_1Strings.html">Strings&lt;T&gt;</a> || <a class="code hl_concept" href="conceptXMLBuilder_1_1types_1_1Stringable.html">Stringable&lt;T&gt;</a></div>
-<div class="ttc" id="aconceptXMLBuilder_1_1types_1_1Stringable_html"><div class="ttname"><a href="conceptXMLBuilder_1_1types_1_1Stringable.html">XMLBuilder::types::Stringable</a></div><div class="ttdoc">Non-string types convertible to string.</div><div class="ttdef"><b>Definition</b> xmlbuilder.hpp:39</div></div>
-<div class="ttc" id="aconceptXMLBuilder_1_1types_1_1Stringlike_html"><div class="ttname"><a href="conceptXMLBuilder_1_1types_1_1Stringlike.html">XMLBuilder::types::Stringlike</a></div><div class="ttdoc">String and non-string types convertible to string.</div><div class="ttdef"><b>Definition</b> xmlbuilder.hpp:48</div></div>
-<div class="ttc" id="aconceptXMLBuilder_1_1types_1_1Strings_html"><div class="ttname"><a href="conceptXMLBuilder_1_1types_1_1Strings.html">XMLBuilder::types::Strings</a></div><div class="ttdoc">String types convertible to string.</div><div class="ttdef"><b>Definition</b> xmlbuilder.hpp:30</div></div>
+<div class="ttc" id="aconceptXMLBuilder_1_1types_1_1Stringable_html"><div class="ttname"><a href="conceptXMLBuilder_1_1types_1_1Stringable.html">XMLBuilder::types::Stringable</a></div><div class="ttdoc">Non-string types convertible to std::string.</div><div class="ttdef"><b>Definition</b> xmlbuilder.hpp:39</div></div>
+<div class="ttc" id="aconceptXMLBuilder_1_1types_1_1Stringlike_html"><div class="ttname"><a href="conceptXMLBuilder_1_1types_1_1Stringlike.html">XMLBuilder::types::Stringlike</a></div><div class="ttdoc">String and non-string types convertible to std::string.</div><div class="ttdef"><b>Definition</b> xmlbuilder.hpp:48</div></div>
+<div class="ttc" id="aconceptXMLBuilder_1_1types_1_1Strings_html"><div class="ttname"><a href="conceptXMLBuilder_1_1types_1_1Strings.html">XMLBuilder::types::Strings</a></div><div class="ttdoc">String types convertible to std::string_view.</div><div class="ttdef"><b>Definition</b> xmlbuilder.hpp:30</div></div>
 </div><!-- fragment --><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>String and non-string types convertible to string. </p>
-<p>Defines types that are directly string type or is convertible to string</p>
+<div class="textblock"><p>String and non-string types convertible to std::string. </p>
+<p>Defines types that are directly string type or is convertible to std::string</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>Type to check </td></tr>

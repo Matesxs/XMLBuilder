@@ -115,11 +115,11 @@ $(function(){initNavTree('namespaceXMLBuilder_1_1types_1_1converters.html',''); 
 Functions</h2></td></tr>
 <tr class="memitem:a44b1cc57c628401d5cd519a2c467501d" id="r_a44b1cc57c628401d5cd519a2c467501d"><td class="memTemplParams" colspan="2">template&lt;Stringlike T&gt; </td></tr>
 <tr class="memitem:a44b1cc57c628401d5cd519a2c467501d"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a44b1cc57c628401d5cd519a2c467501d">toString</a> (const T &amp;t)</td></tr>
-<tr class="memdesc:a44b1cc57c628401d5cd519a2c467501d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stringlike type to string conversion  <br /></td></tr>
+<tr class="memdesc:a44b1cc57c628401d5cd519a2c467501d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stringlike type to std::string conversion  <br /></td></tr>
 <tr class="separator:a44b1cc57c628401d5cd519a2c467501d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67c0dc3f8a088b0eecb2eaf687108612" id="r_a67c0dc3f8a088b0eecb2eaf687108612"><td class="memTemplParams" colspan="2">template&lt;Floating T&gt; </td></tr>
 <tr class="memitem:a67c0dc3f8a088b0eecb2eaf687108612"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a67c0dc3f8a088b0eecb2eaf687108612">floatingToString</a> (const T value, const size_t precision)</td></tr>
-<tr class="memdesc:a67c0dc3f8a088b0eecb2eaf687108612"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating point number string conversion  <br /></td></tr>
+<tr class="memdesc:a67c0dc3f8a088b0eecb2eaf687108612"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating point number to std::string conversion  <br /></td></tr>
 <tr class="separator:a67c0dc3f8a088b0eecb2eaf687108612"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -146,17 +146,17 @@ template&lt;Floating T&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Floating point number string conversion </p>
+<p>Floating point number to std::string conversion </p>
 <p>Convert any Floating type to string with fixed precision</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Floating.html" title="Floating point numbers.">Floating</a> type of value </td></tr>
+    <tr><td class="paramname">T</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Floating.html" title="Floating point numbers.">XMLBuilder::types::Floating</a> type of value </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>Floating point value </td></tr>
+    <tr><td class="paramname">value</td><td>Floating point value to convert to std::string </td></tr>
     <tr><td class="paramname">precision</td><td>Number of fixed decimal places the floating point number will have as a string </td></tr>
   </table>
   </dd>
@@ -182,17 +182,17 @@ template&lt;Stringlike T&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Stringlike type to string conversion </p>
+<p>Stringlike type to std::string conversion </p>
 <p>Convert any Stringlike type to string</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Stringlike.html" title="String and non-string types convertible to string.">Stringlike</a> object type </td></tr>
+    <tr><td class="paramname">T</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Stringlike.html" title="String and non-string types convertible to std::string.">XMLBuilder::types::Stringlike</a> object type </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">t</td><td>Stringlike object to conver to string </td></tr>
+    <tr><td class="paramname">t</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Stringlike.html" title="String and non-string types convertible to std::string.">XMLBuilder::types::Stringlike</a> object to conver to std::string </td></tr>
   </table>
   </dd>
 </dl>

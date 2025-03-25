@@ -11,7 +11,7 @@ var classXMLBuilder_1_1meta_1_1ChildrenStore =
     [ "end", "classXMLBuilder_1_1meta_1_1ChildrenStore.html#a11a42ea7bf338e7940419e14f11588e3", null ],
     [ "end", "classXMLBuilder_1_1meta_1_1ChildrenStore.html#ab6ef116194e85af85feeb981264ac233", null ],
     [ "operator[]", "classXMLBuilder_1_1meta_1_1ChildrenStore.html#a7be4eebfad9bc87d76feea9673a28541", null ],
-    [ "operator[]", "classXMLBuilder_1_1meta_1_1ChildrenStore.html#ab6c2c4dc0e5c906737905331f859f910", null ],
+    [ "operator[]", "classXMLBuilder_1_1meta_1_1ChildrenStore.html#a0d6bd8b7b9c4d1cc17ba8bd5dde9f916", null ],
     [ "rbegin", "classXMLBuilder_1_1meta_1_1ChildrenStore.html#a6c895e25f5ccd6d2d88176bfcd9ac825", null ],
     [ "rbegin", "classXMLBuilder_1_1meta_1_1ChildrenStore.html#a2154f4511a8da81e9c50fc05c3742c51", null ],
     [ "RemoveChild", "classXMLBuilder_1_1meta_1_1ChildrenStore.html#a94d44aec0410d3956d4ff0443ea0e78f", null ],

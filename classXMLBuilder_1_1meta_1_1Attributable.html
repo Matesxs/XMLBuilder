@@ -241,7 +241,7 @@ template&lt;types::Strings N&gt; </div>
 <p>Check if node contains attribute. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to string.">types::Strings</a> type for name of the attribute </td></tr>
+    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to std::string_view.">XMLBuilder::types::Strings</a> type for name of the attribute </td></tr>
   </table>
   </dd>
 </dl>
@@ -285,12 +285,12 @@ template&lt;types::Strings N&gt; </div>
 </div><div class="memdoc">
 
 <p>Returns reference to the string value of attribute. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Throws out_of_range exception if called with name of attribute that is not present in node </dd>
+<dl class="section warning"><dt>Warning</dt><dd>Throws std::out_of_range exception if called with name of attribute that is not present in node </dd>
 <dd>
-Throws invalid_argument exception if called with empty attribute name</dd></dl>
+Throws std::invalid_argument exception if called with empty attribute name</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to string.">types::Strings</a> type for name of the attribute </td></tr>
+    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to std::string_view.">XMLBuilder::types::Strings</a> type for name of the attribute </td></tr>
   </table>
   </dd>
 </dl>
@@ -332,12 +332,12 @@ template&lt;types::Strings N&gt; </div>
 </div><div class="memdoc">
 
 <p>Returns constant reference to the string value of attribute. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Throws out_of_range exception if called with name of attribute that is not present in node </dd>
+<dl class="section warning"><dt>Warning</dt><dd>Throws std::out_of_range exception if called with name of attribute that is not present in node </dd>
 <dd>
-Throws invalid_argument exception if called with empty attribute name</dd></dl>
+Throws std::invalid_argument exception if called with empty attribute name</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to string.">types::Strings</a> type for name of the attribute </td></tr>
+    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to std::string_view.">XMLBuilder::types::Strings</a> type for name of the attribute </td></tr>
   </table>
   </dd>
 </dl>
@@ -379,14 +379,14 @@ template&lt;types::Strings N, types::Floating V, types::Integral P&gt; </div>
 </div><div class="memdoc">
 
 <p>Operator for adding or modifying floating point attribute. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Throws invalid_argument exception if called with empty attribute name </dd>
+<dl class="section warning"><dt>Warning</dt><dd>Throws std::invalid_argument exception if called with empty attribute name </dd>
 <dd>
-Throws invalid_argument exception if called with precision value lower than 0</dd></dl>
+Throws std::invalid_argument exception if called with precision value lower than 0</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to string.">types::Strings</a> type for name of the attribute </td></tr>
-    <tr><td class="paramname">V</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Floating.html" title="Floating point numbers.">types::Floating</a> type of the attribute value </td></tr>
-    <tr><td class="paramname">P</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Integral.html" title="Whole number type.">types::Integral</a> type of attribute value precision </td></tr>
+    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to std::string_view.">XMLBuilder::types::Strings</a> type for name of the attribute </td></tr>
+    <tr><td class="paramname">V</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Floating.html" title="Floating point numbers.">XMLBuilder::types::Floating</a> type of the attribute value </td></tr>
+    <tr><td class="paramname">P</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Integral.html" title="Whole number type.">XMLBuilder::types::Integral</a> type of attribute value precision </td></tr>
   </table>
   </dd>
 </dl>
@@ -428,11 +428,11 @@ template&lt;types::Strings N, types::Stringlike V&gt; </div>
 </div><div class="memdoc">
 
 <p>Operator for adding or modifying stringlike attribute. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Throws invalid_argument exception if called with empty attribute name</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Throws std::invalid_argument exception if called with empty attribute name</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to string.">types::Strings</a> type for name of the attribute </td></tr>
-    <tr><td class="paramname">V</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Stringlike.html" title="String and non-string types convertible to string.">types::Stringlike</a> type of the attribute value </td></tr>
+    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to std::string_view.">XMLBuilder::types::Strings</a> type for name of the attribute </td></tr>
+    <tr><td class="paramname">V</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Stringlike.html" title="String and non-string types convertible to std::string.">XMLBuilder::types::Stringlike</a> type of the attribute value </td></tr>
   </table>
   </dd>
 </dl>
@@ -474,12 +474,12 @@ template&lt;types::Strings N&gt; </div>
 </div><div class="memdoc">
 
 <p>Returns reference to the string value of attribute. </p>
-<p>Operator calling <a class="el" href="#ad81f97a1c12ef635d213d27fe1f12be7" title="Returns reference to the string value of attribute.">Attributable::GetAttribute</a> for getting reference of the string value of attribute </p><dl class="section warning"><dt>Warning</dt><dd>Throws out_of_range exception if called with name of attribute that is not present in node </dd>
+<p>Operator calling <a class="el" href="#ad81f97a1c12ef635d213d27fe1f12be7" title="Returns reference to the string value of attribute.">Attributable::GetAttribute</a> for getting reference of the string value of attribute </p><dl class="section warning"><dt>Warning</dt><dd>Throws std::out_of_range exception if called with name of attribute that is not present in node </dd>
 <dd>
-Throws invalid_argument exception if called with empty attribute name</dd></dl>
+Throws std::invalid_argument exception if called with empty attribute name</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to string.">types::Strings</a> type for name of the attribute </td></tr>
+    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to std::string_view.">XMLBuilder::types::Strings</a> type for name of the attribute </td></tr>
   </table>
   </dd>
 </dl>
@@ -521,12 +521,12 @@ template&lt;types::Strings N&gt; </div>
 </div><div class="memdoc">
 
 <p>Returns constant reference to the string value of attribute. </p>
-<p>Operator calling <a class="el" href="#ad81f97a1c12ef635d213d27fe1f12be7" title="Returns reference to the string value of attribute.">Attributable::GetAttribute</a> for getting string value of attribute </p><dl class="section warning"><dt>Warning</dt><dd>Throws out_of_range exception if called with name of attribute that is not present in node </dd>
+<p>Operator calling <a class="el" href="#ad81f97a1c12ef635d213d27fe1f12be7" title="Returns reference to the string value of attribute.">XMLBuilder::meta::Attributable::GetAttribute</a> for getting string value of attribute </p><dl class="section warning"><dt>Warning</dt><dd>Throws std::out_of_range exception if called with name of attribute that is not present in node </dd>
 <dd>
-Throws invalid_argument exception if called with empty attribute name</dd></dl>
+Throws std::invalid_argument exception if called with empty attribute name</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to string.">types::Strings</a> type for name of the attribute </td></tr>
+    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to std::string_view.">XMLBuilder::types::Strings</a> type for name of the attribute </td></tr>
   </table>
   </dd>
 </dl>
@@ -568,10 +568,9 @@ template&lt;types::Strings N&gt; </div>
 </div><div class="memdoc">
 
 <p>Remove existing attribute. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Attribute name need to be present in the node</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to string.">types::Strings</a> type for name of the attribute </td></tr>
+    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to std::string_view.">XMLBuilder::types::Strings</a> type for name of the attribute </td></tr>
   </table>
   </dd>
 </dl>
@@ -621,11 +620,11 @@ template&lt;types::Strings N, types::Stringlike V&gt; </div>
 <p>Add or modify stringlike attribute. </p>
 <p>Add new stringlike attribute if the attribute name is not present in this node </p><dl class="section warning"><dt>Warning</dt><dd>Attribute names are unique </dd>
 <dd>
-Throws invalid_argument exception if called with empty attribute name</dd></dl>
+Throws std::invalid_argument exception if called with empty attribute name</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to string.">types::Strings</a> type for name of the attribute </td></tr>
-    <tr><td class="paramname">V</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Stringlike.html" title="String and non-string types convertible to string.">types::Stringlike</a> type of the attribute value </td></tr>
+    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to std::string_view.">XMLBuilder::types::Strings</a> type for name of the attribute </td></tr>
+    <tr><td class="paramname">V</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Stringlike.html" title="String and non-string types convertible to std::string.">XMLBuilder::types::Stringlike</a> type of the attribute value </td></tr>
   </table>
   </dd>
 </dl>
@@ -679,11 +678,11 @@ template&lt;types::Strings N, types::Floating V&gt; </div>
 <p>Add or modify floating point attribute. </p>
 <p>Add new floating point attribute if the attribute name is not present in this node </p><dl class="section warning"><dt>Warning</dt><dd>Attribute names are unique </dd>
 <dd>
-Throws invalid_argument exception if called with empty attribute name</dd></dl>
+Throws std::invalid_argument exception if called with empty attribute name</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to string.">types::Strings</a> type for name of the attribute </td></tr>
-    <tr><td class="paramname">V</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Floating.html" title="Floating point numbers.">types::Floating</a> type of attribute value </td></tr>
+    <tr><td class="paramname">N</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Strings.html" title="String types convertible to std::string_view.">XMLBuilder::types::Strings</a> type for name of the attribute </td></tr>
+    <tr><td class="paramname">V</td><td><a class="el" href="conceptXMLBuilder_1_1types_1_1Floating.html" title="Floating point numbers.">XMLBuilder::types::Floating</a> type of attribute value </td></tr>
   </table>
   </dd>
 </dl>
