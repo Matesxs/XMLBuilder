@@ -917,7 +917,7 @@ namespace XMLBuilder
 		 * @return false Value was invalid
 		 */
 		template<types::Stringlike V>
-		bool ModifyValue(const V& value)
+		bool SetValue(const V& value)
 		{
 			const std::string newValue(types::converters::toString(value));
 			if (newValue.empty()) return false;
@@ -935,7 +935,7 @@ namespace XMLBuilder
 		 * @return false Value was invalid
 		 */
 		template<types::Floating V>
-		bool ModifyValue(const V value, size_t precision)
+		bool SetValue(const V value, size_t precision)
 		{
 			const std::string newValue(types::converters::floatingToString(value, precision));
 			m_value = newValue;
@@ -945,9 +945,9 @@ namespace XMLBuilder
 		/**
 		 * @brief Get value of the node
 		 * 
-		 * @return std::string Value of the node
+		 * @return const std::string& Constant reference to node value string
 		 */
-		[[nodiscard]] std::string GetValue() const
+		[[nodiscard]] const std::string& GetValue() const
 		{
 			return m_value;
 		}
