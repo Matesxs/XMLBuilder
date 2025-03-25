@@ -56,15 +56,24 @@ namespace XMLBuilder
 		template<class T>
 		concept Floating = std::is_floating_point_v<T>;
 
+        /**
+        * @brief Whole number type
+        * @brief Defines all whole number types
+        *
+        * @tparam T Type to check
+        */
 		template<class T>
 		concept Integral = std::is_integral_v<T>;
 
+		/**
+		* @brief Types of nodes
+		*/
 		enum NodeTypes
 		{
-		    NT_NODE,
-		    NT_VALUE,
-		    NT_PARENT,
-		    NT_UNKNOWN,
+		    NT_NODE, ///< Points to Node
+		    NT_VALUE, ///< Points to ValueNode
+		    NT_PARENT, ///< Points to ParentNode
+		    NT_UNKNOWN, ///< Unknown node
 		};
 
 		/**
