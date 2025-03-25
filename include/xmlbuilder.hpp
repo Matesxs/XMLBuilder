@@ -617,39 +617,161 @@ namespace XMLBuilder
 			/**
 			 * @brief Return reference to child
 			 * @details Base pointer of the child gets converted back to the pointer to parent type and returned as a reference
-			 * @warning Throws out_of_range exception when index is invalid
-			 * @todo Rework to something more clever
+			 * @warning Throws std::out_of_range exception when index is invalid
+			 * @warning Throws std::invalid_argument exception when cast to requested type failed
 			 * 
 			 * @tparam ChildType types::XMLNodeBased type of child
-			 * @param idx Index of child
-			 * @return ChildType& Child object reference
+			 * @param idx Index of child node
+			 * @return ChildType& Reference to child object
 			 */
-			template<types::XMLNodeBased ChildType>
-			ChildType& childAt(const size_t idx)
+			template<types::XMLNodeBased ChildType = NodeBase>
+			ChildType& ChildAt(const size_t idx)
 			{
 				if (idx >= ChildrenCount())
 					throw std::out_of_range("Index out of range");
 
-				return *std::dynamic_pointer_cast<ChildType>(m_children.at(idx));
+				if constexpr (std::is_same_v<ChildType, NodeBase>)
+					return *m_children.at(idx);
+				else
+				{
+					auto childPtrCasted	= std::dynamic_pointer_cast<ChildType>(m_children.at(idx));
+					if (!childPtrCasted)
+						throw std::invalid_argument("This is not valid type of this child");
+
+					return *childPtrCasted;
+				}
 			}
 
 			/**
-			 * @brief Return child by value
-			 * @details Base pointer of the child gets converted back to the pointer to parent type and returned as value
-			 * @warning Throws out_of_range exception when index is invalid
-			 * @todo Rework to something more clever
+			 * @brief Return child by constant reference
+			 * @details Base pointer of the child gets converted back to the pointer to parent type and returned as constant reference
+			 * @warning Throws std::out_of_range exception when index is invalid
+			 * @warning Throws std::invalid_argument exception when cast to requested type failed
 			 * 
 			 * @tparam ChildType types::XMLNodeBased type of child
-			 * @param idx Index of child
-			 * @return ChildType Copy Child object
+			 * @param idx Index of child node
+			 * @return const ChildType& Constant reference to child object
 			 */
-			template<types::XMLNodeBased ChildType>
-			ChildType childAt(const size_t idx) const
+			template<types::XMLNodeBased ChildType = NodeBase>
+			const ChildType& ChildAt(const size_t idx) const
 			{
 				if (idx >= ChildrenCount())
 					throw std::out_of_range("Index out of range");
 
-				return *std::dynamic_pointer_cast<ChildType>(m_children.at(idx));
+				if constexpr (std::is_same_v<ChildType, NodeBase>)
+					return *m_children.at(idx);
+				else
+				{
+					auto childPtrCasted	= std::dynamic_pointer_cast<ChildType>(m_children.at(idx));
+					if (!childPtrCasted)
+						throw std::invalid_argument("This is not valid type of this child");
+
+					return *childPtrCasted;
+				}
+			}
+
+			/**
+			* @brief Returns iterator pointing to first child node
+			* @return std::vector<std::shared_ptr<NodeBase>>::iterator Iterator pointing to first child node
+			*/
+			std::vector<std::shared_ptr<NodeBase>>::iterator begin()
+			{
+				return m_children.begin();
+			}
+
+			/**
+			* @brief Returns iterator pointing to one past last child node
+			* @return std::vector<std::shared_ptr<NodeBase>>::iterator Iterator pointing to one past last child node
+			*/
+			std::vector<std::shared_ptr<NodeBase>>::iterator end()
+			{
+				return m_children.end();
+			}
+
+			/**
+			* @brief Returns read-only iterator pointing to first child node
+			* @return std::vector<std::shared_ptr<NodeBase>>::const_iterator Read-only iterator pointing to first child node
+			*/
+			[[nodiscard]] std::vector<std::shared_ptr<NodeBase>>::const_iterator begin() const
+			{
+				return m_children.begin();
+			}
+
+			/**
+			* @brief Returns read-only iterator pointing to one past last child node
+			* @return std::vector<std::shared_ptr<NodeBase>>::const_iterator Read-only iterator pointing to one past last child node
+			*/
+			[[nodiscard]] std::vector<std::shared_ptr<NodeBase>>::const_iterator end() const
+			{
+				return m_children.end();
+			}
+
+			/**
+			* @brief Returns reverse iterator pointing to last child node
+			* @return std::vector<std::shared_ptr<NodeBase>>::reverse_iterator Reverse iterator pointing to last child node
+			*/
+			std::vector<std::shared_ptr<NodeBase>>::reverse_iterator rbegin()
+			{
+				return m_children.rbegin();
+			}
+
+			/**
+			* @brief Returns reverse iterator pointing to one before first child node
+			* @return std::vector<std::shared_ptr<NodeBase>>::reverse_iterator Iterator pointing to one before first child node
+			*/
+			std::vector<std::shared_ptr<NodeBase>>::reverse_iterator rend()
+			{
+				return m_children.rend();
+			}
+
+			/**
+			* @brief Returns read-only reverse iterator pointing to last child node
+			* @return std::vector<std::shared_ptr<NodeBase>>::const_reverse_iterator Read-only reverse iterator pointing to last children node
+			*/
+			[[nodiscard]] std::vector<std::shared_ptr<NodeBase>>::const_reverse_iterator rbegin() const
+			{
+				return m_children.rbegin();
+			}
+
+			/**
+			* @brief Returns read-only reverse iterator pointing to one before first child node
+			* @return std::vector<std::shared_ptr<NodeBase>>::const_reverse_iterator Read-only reverse iterator pointing to one before first child node
+			*/
+			[[nodiscard]] std::vector<std::shared_ptr<NodeBase>>::const_reverse_iterator rend() const
+			{
+				return m_children.rend();
+			}
+
+            /**
+            * @brief Index operator
+            * @details Returning reference to child object
+            * @warning Throws std::out_of_range exception when index is invalid
+            *
+            * @param idx Index of child node
+            * @return NodeBase& Reference to child object
+            */
+			NodeBase& operator[](const size_t idx)
+			{
+				if (idx >= ChildrenCount())
+					throw std::out_of_range("Index out of range");
+
+				return *m_children.at(idx);
+			}
+
+			/**
+			* @brief Constant index operator
+			* @details Returning constant reference to child object
+			* @warning Throws std::out_of_range exception when index is invalid
+			*
+			* @param idx Index of child node
+			* @return const NodeBase& Constant reference to child object
+			*/
+			const NodeBase& operator[](const size_t idx) const
+			{
+				if (idx >= ChildrenCount())
+					throw std::out_of_range("Index out of range");
+
+				return *m_children.at(idx);
 			}
 
 		protected:

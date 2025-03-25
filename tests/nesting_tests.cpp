@@ -59,6 +59,58 @@ TEST(Nesting, ChildCount)
   EXPECT_EQ(parent11.ChildrenCount(), 2);
 }
 
+TEST(Nesting, GetChildByMethod)
+{
+  XMLBuilder::RootNode root1;
+  root1.AddChild(XMLBuilder::ValueNode("test", "test"));
+  const XMLBuilder::RootNode root2 = XMLBuilder::RootNode().AddChild(XMLBuilder::ValueNode("test", "test"));
+
+  EXPECT_NO_THROW(root1.ChildAt(0));
+  EXPECT_NO_THROW(root2.ChildAt(0));
+  EXPECT_NO_THROW(root1.ChildAt<XMLBuilder::ValueNode>(0));
+  EXPECT_NO_THROW(root2.ChildAt<XMLBuilder::ValueNode>(0));
+}
+
+TEST(Nesting, GetInvalidChildIndexByMethod)
+{
+  XMLBuilder::RootNode root1;
+  root1.AddChild(XMLBuilder::ValueNode("test", "test"));
+  const XMLBuilder::RootNode root2 = XMLBuilder::RootNode().AddChild(XMLBuilder::ValueNode("test", "test"));
+
+  EXPECT_THROW(root1.ChildAt<XMLBuilder::ValueNode>(1), std::out_of_range);
+  EXPECT_THROW(root2.ChildAt<XMLBuilder::ValueNode>(1), std::out_of_range);
+}
+
+TEST(Nesting, GetInvalidChildTypeByMethod)
+{
+  XMLBuilder::RootNode root1;
+  root1.AddChild(XMLBuilder::ValueNode("test", "test"));
+  const XMLBuilder::RootNode root2 = XMLBuilder::RootNode().AddChild(XMLBuilder::ValueNode("test", "test"));
+
+  EXPECT_THROW(root1.ChildAt<XMLBuilder::Node>(0), std::invalid_argument);
+  EXPECT_THROW(root2.ChildAt<XMLBuilder::Node>(0), std::invalid_argument);
+}
+
+TEST(Nesting, GetChildByOperator)
+{
+  XMLBuilder::RootNode root1;
+  root1.AddChild(XMLBuilder::ValueNode("test", "test"));
+  const XMLBuilder::RootNode root2 = XMLBuilder::RootNode().AddChild(XMLBuilder::ValueNode("test", "test"));
+
+  EXPECT_NO_THROW(root1[0]);
+  EXPECT_NO_THROW(root2[0]);
+}
+
+TEST(Nesting, GetInvalidChildIndexByOperator)
+{
+  XMLBuilder::RootNode root1;
+  root1.AddChild(XMLBuilder::ValueNode("test", "test"));
+  const XMLBuilder::RootNode root2 = XMLBuilder::RootNode().AddChild(XMLBuilder::ValueNode("test", "test"));
+
+  EXPECT_THROW(root1[1], std::out_of_range);
+  EXPECT_THROW(root2[1], std::out_of_range);
+}
+
 TEST(Nesting, RemoveChild)
 {
   XMLBuilder::RootNode root;
@@ -79,14 +131,46 @@ TEST(Nesting, RemoveChild)
   root.AddChild(parent1).AddChild(parent2).AddChild(XMLBuilder::ValueNode("test3", 14).AddOrModifyAttribute("root", "root"));
   root.RemoveChild(1);
 
-  root.childAt<XMLBuilder::ParentNode>(0).childAt<XMLBuilder::ParentNode>(0).RemoveChild(0);
+  root.ChildAt<XMLBuilder::ParentNode>(0).ChildAt<XMLBuilder::ParentNode>(0).RemoveChild(0);
 
   EXPECT_EQ(root.Generate(), std::format("{}<parent1 test1=\"123\" test2=\"parent\">\n\t<parent11 test=\"14.36\"/>\n</parent1>\n<test3 root=\"root\">14</test3>\n", DEFAULT_HEADER));
 }
 
-TEST(Nesting, GetInvalidChildIndex)
+TEST(Nesting, NodeIteration)
 {
-  XMLBuilder::RootNode root;
-  root.AddChild(XMLBuilder::Node("test"));
-  EXPECT_THROW(root.childAt<XMLBuilder::Node>(1), std::out_of_range);
+  const std::vector testTypes = { XMLBuilder::types::NodeTypes::NT_NODE, XMLBuilder::types::NodeTypes::NT_VALUE, XMLBuilder::types::NodeTypes::NT_PARENT };
+
+  XMLBuilder::RootNode root1;
+  root1.AddChild(XMLBuilder::Node("test1")).AddChild(XMLBuilder::ValueNode("test2", 123.4)).AddChild(XMLBuilder::ParentNode("test3"));
+  const XMLBuilder::RootNode root2 = XMLBuilder::RootNode().AddChild(XMLBuilder::Node("test1")).AddChild(XMLBuilder::ValueNode("test2", 123.4)).AddChild(XMLBuilder::ParentNode("test3"));
+
+  size_t count = 0;
+  for (auto& child : root1)
+  {
+    EXPECT_EQ(child->Type(), testTypes.at(count));
+    count++;
+  }
+  EXPECT_EQ(count, 3);
+
+  for (auto& child : std::vector(root1.rbegin(), root1.rend()))
+  {
+    count--;
+    EXPECT_EQ(child->Type(), testTypes.at(count));
+  }
+  EXPECT_EQ(count, 0);
+
+  count = 0;
+  for (auto& child : root2)
+  {
+    EXPECT_EQ(child->Type(), testTypes.at(count));
+    count++;
+  }
+  EXPECT_EQ(count, 3);
+
+  for (auto& child : std::vector(root2.rbegin(), root2.rend()))
+  {
+    count--;
+    EXPECT_EQ(child->Type(), testTypes.at(count));
+  }
+  EXPECT_EQ(count, 0);
 }
