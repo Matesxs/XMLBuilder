@@ -21,8 +21,8 @@ namespace XMLBuilder
 	namespace types
 	{
 		/**
-		 * @brief String types convertible to string
-		 * @details Defines all types that are convertible to string_view, in other words all string types
+		 * @brief String types convertible to std::string_view
+		 * @details Defines all types that are convertible to std::string_view, in other words all string types
 		 * 
 		 * @tparam T Type to check
 		 */
@@ -30,8 +30,8 @@ namespace XMLBuilder
 		concept Strings = std::is_convertible_v<T, std::string_view>;
 
 		/**
-		 * @brief Non-string types convertible to string
-		 * @details Defines all non-string (arithmetical) types that can be converted to string
+		 * @brief Non-string types convertible to std::string
+		 * @details Defines all non-string (arithmetical) types that can be converted to std::string
 		 * 
 		 * @tparam T Type to check
 		 */
@@ -39,8 +39,8 @@ namespace XMLBuilder
 		concept Stringable = requires(T t) { { std::to_string(t) } -> std::same_as<std::string>; };
 
 		/**
-		 * @brief String and non-string types convertible to string
-		 * @details Defines types that are directly string type or is convertible to string
+		 * @brief String and non-string types convertible to std::string
+		 * @details Defines types that are directly string type or is convertible to std::string
 		 * 
 		 * @tparam T Type to check
 		 */
@@ -82,11 +82,11 @@ namespace XMLBuilder
 		namespace converters
 		{
 			/**
-			 * @brief %Stringlike type to string conversion
+			 * @brief %Stringlike type to std::string conversion
 			 * @details Convert any %Stringlike type to string
 			 * 
-			 * @tparam T Stringlike object type
-			 * @param t %Stringlike object to conver to string
+			 * @tparam T XMLBuilder::types::Stringlike object type
+			 * @param t XMLBuilder::types::Stringlike object to conver to std::string
 			 * @return std::string Value converted to string
 			 */
 			template<Stringlike T>
@@ -99,11 +99,11 @@ namespace XMLBuilder
 			}
 
 			/**
-			 * @brief %Floating point number string conversion
+			 * @brief %Floating point number to std::string conversion
 			 * @details Convert any %Floating type to string with fixed precision
 			 * 
-			 * @tparam T Floating type of value
-			 * @param value %Floating point value
+			 * @tparam T XMLBuilder::types::Floating type of value
+			 * @param value %Floating point value to convert to std::string
 			 * @param precision Number of fixed decimal places the floating point number will have as a string
 			 * @return std::string %Floating point number converted to string
 			 */
@@ -134,10 +134,10 @@ namespace XMLBuilder
 		{
 		public:
 			/**
-			 * @brief Construct a new Tagged object
-			 * @warning Throws invalid_argument exception when tag is empty
+			 * @brief Construct a new %Tagged object
+			 * @warning Throws std::invalid_argument exception when tag is empty
 			 * 
-			 * @tparam T types::Strings type of tag
+			 * @tparam T XMLBuilder::types::Strings type of tag
 			 * @param tag Value object of tag
 			 */
 			template<types::Strings T>
@@ -153,7 +153,7 @@ namespace XMLBuilder
             /**
             * @brief Modify tag of the node
             *
-            * @tparam T types::Strings type of tag
+            * @tparam T XMLBuilder::types::Strings type of tag
             * @param tag New tag of the node
             */
 			template<types::Strings T>
@@ -285,10 +285,10 @@ namespace XMLBuilder
 			 * @brief Add or modify stringlike attribute
 			 * @details Add new stringlike attribute if the attribute name is not present in this node
 			 * @warning Attribute names are unique
-			 * @warning Throws invalid_argument exception if called with empty attribute name
+			 * @warning Throws std::invalid_argument exception if called with empty attribute name
 			 * 
-			 * @tparam N types::Strings type for name of the attribute
-			 * @tparam V types::Stringlike type of the attribute value
+			 * @tparam N XMLBuilder::types::Strings type for name of the attribute
+			 * @tparam V XMLBuilder::types::Stringlike type of the attribute value
 			 * @param name Name of the attribute
 			 * @param value Value of the attribute
 			 * @return ParentType& Return self reference based on parent type for chaining
@@ -308,10 +308,10 @@ namespace XMLBuilder
 			 * @brief Add or modify floating point attribute
 			 * @details Add new floating point attribute if the attribute name is not present in this node
 			 * @warning Attribute names are unique
-			 * @warning Throws invalid_argument exception if called with empty attribute name
+			 * @warning Throws std::invalid_argument exception if called with empty attribute name
 			 * 
-			 * @tparam N types::Strings type for name of the attribute
-			 * @tparam V types::Floating type of attribute value
+			 * @tparam N XMLBuilder::types::Strings type for name of the attribute
+			 * @tparam V XMLBuilder::types::Floating type of attribute value
 			 * @param name Name of the attribute
 			 * @param value Value of the attribute
 			 * @param precision Fixed precision of the floating point value to be saved in attribute value
@@ -331,7 +331,7 @@ namespace XMLBuilder
 			/**
 			 * @brief Check if node contains attribute
 			 * 
-			 * @tparam N types::Strings type for name of the attribute
+			 * @tparam N XMLBuilder::types::Strings type for name of the attribute
 			 * @param name Name of attribute
 			 * @return true Attribute name is present in the node
 			 * @return false Attribute name is not present in the node
@@ -346,9 +346,8 @@ namespace XMLBuilder
 
 			/**
 			 * @brief Remove existing attribute
-			 * @warning Attribute name need to be present in the node
 			 * 
-			 * @tparam N types::Strings type for name of the attribute
+			 * @tparam N XMLBuilder::types::Strings type for name of the attribute
 			 * @param name Name of attribute
 			 * @return true Attribute removed
 			 * @return false Invalid name or attribute not present in node
@@ -367,10 +366,10 @@ namespace XMLBuilder
 
 			/**
 			 * @brief Returns reference to the string value of attribute
-			 * @warning Throws out_of_range exception if called with name of attribute that is not present in node
-			 * @warning Throws invalid_argument exception if called with empty attribute name
+			 * @warning Throws std::out_of_range exception if called with name of attribute that is not present in node
+			 * @warning Throws std::invalid_argument exception if called with empty attribute name
 			 * 
-			 * @tparam N types::Strings type for name of the attribute
+			 * @tparam N XMLBuilder::types::Strings type for name of the attribute
 			 * @param name Name of attribute
 			 * @return std::string& Reference to the string value of attribute
 			 */
@@ -389,10 +388,10 @@ namespace XMLBuilder
 
 			/**
 			 * @brief Returns constant reference to the string value of attribute
-			 * @warning Throws out_of_range exception if called with name of attribute that is not present in node
-			 * @warning Throws invalid_argument exception if called with empty attribute name
+			 * @warning Throws std::out_of_range exception if called with name of attribute that is not present in node
+			 * @warning Throws std::invalid_argument exception if called with empty attribute name
 			 * 
-			 * @tparam N types::Strings type for name of the attribute
+			 * @tparam N XMLBuilder::types::Strings type for name of the attribute
 			 * @param name Name of attribute
 			 * @return const std::string& Constant reference to the string value of attribute
 			 */
@@ -412,10 +411,10 @@ namespace XMLBuilder
 			/**
 			 * @brief Returns reference to the string value of attribute
 			 * @details Operator calling Attributable::GetAttribute for getting reference of the string value of attribute
-			 * @warning Throws out_of_range exception if called with name of attribute that is not present in node
-			 * @warning Throws invalid_argument exception if called with empty attribute name
+			 * @warning Throws std::out_of_range exception if called with name of attribute that is not present in node
+			 * @warning Throws std::invalid_argument exception if called with empty attribute name
 			 * 
-			 * @tparam N types::Strings type for name of the attribute
+			 * @tparam N XMLBuilder::types::Strings type for name of the attribute
 			 * @param name Name of attribute
 			 * @return std::string& Reference to the string value of attribute
 			 */
@@ -427,11 +426,11 @@ namespace XMLBuilder
 
 			/**
 			 * @brief Returns constant reference to the string value of attribute
-			 * @details Operator calling Attributable::GetAttribute for getting string value of attribute
-			 * @warning Throws out_of_range exception if called with name of attribute that is not present in node
-			 * @warning Throws invalid_argument exception if called with empty attribute name
+			 * @details Operator calling XMLBuilder::meta::Attributable::GetAttribute for getting string value of attribute
+			 * @warning Throws std::out_of_range exception if called with name of attribute that is not present in node
+			 * @warning Throws std::invalid_argument exception if called with empty attribute name
 			 * 
-			 * @tparam N types::Strings type for name of the attribute
+			 * @tparam N XMLBuilder::types::Strings type for name of the attribute
 			 * @param name Name of attribute
 			 * @return const std::string& Constant reference to the string value of attribute
 			 */
@@ -443,10 +442,10 @@ namespace XMLBuilder
 
 			/**
 			 * @brief Operator for adding or modifying stringlike attribute
-			 * @warning Throws invalid_argument exception if called with empty attribute name
+			 * @warning Throws std::invalid_argument exception if called with empty attribute name
 			 * 
-			 * @tparam N types::Strings type for name of the attribute
-			 * @tparam V types::Stringlike type of the attribute value
+			 * @tparam N XMLBuilder::types::Strings type for name of the attribute
+			 * @tparam V XMLBuilder::types::Stringlike type of the attribute value
 			 * @param data Data pair of attribute name and new attribute value
 			 * @return ParentType& Return self reference based on parent type for chaining
 			 */
@@ -464,12 +463,12 @@ namespace XMLBuilder
 
 			/**
 			 * @brief Operator for adding or modifying floating point attribute
-			 * @warning Throws invalid_argument exception if called with empty attribute name
-			 * @warning Throws invalid_argument exception if called with precision value lower than 0
+			 * @warning Throws std::invalid_argument exception if called with empty attribute name
+			 * @warning Throws std::invalid_argument exception if called with precision value lower than 0
 			 * 
-			 * @tparam N types::Strings type for name of the attribute
-			 * @tparam V types::Floating type of the attribute value
-			 * @tparam P types::Integral type of attribute value precision
+			 * @tparam N XMLBuilder::types::Strings type for name of the attribute
+			 * @tparam V XMLBuilder::types::Floating type of the attribute value
+			 * @tparam P XMLBuilder::types::Integral type of attribute value precision
 			 * @param data Data pair of attribute name and pair of attribute value and fixed value precision
 			 * @return ParentType& Return self reference based on parent type for chaining
 			 */
@@ -517,7 +516,9 @@ namespace XMLBuilder
 		class NodeBase : public Generatable
 		{
 		/**
-		 * @brief Friend of meta::ChildrenStore class because child store access NodeBase::_Generate method of its child nodes
+		 * @brief Friend of XMLBuilder::meta::ChildrenStore class
+		 * @details Because child store access XMLBuilder::meta::NodeBase::_Generate method of the generatable nodes
+		 *
 		 * @tparam ParentType Parent type of child store
 		 */
 		template<class ParentType>
@@ -528,7 +529,7 @@ namespace XMLBuilder
 		    * @brief Return type of the node
 		    * @details Virtual method that signals true type of the node when in it's node base form
 		    *
-		    * @return types::NodeTypes Type of the node
+		    * @return XMLBuilder::types::NodeTypes Type of the node
             */
 		    [[nodiscard]] virtual types::NodeTypes Type() const = 0;
 
@@ -562,13 +563,13 @@ namespace XMLBuilder
 
 	/**
 	* @brief Common type for nodes that can be added as child node
-	* @details Exposed meta::NodeBase for users to use for referencing common type for all nodes that can be assigned as child nodes
+	* @details Exposed XMLBuilder::meta::NodeBase for users to use for referencing common type for all nodes that can be assigned as child nodes
 	*/
 	typedef meta::NodeBase ChildableNode;
 
 	/**
 	* @brief Types of nodes
-	* @details User exposed types::NodeTypes
+	* @details User exposed XMLBuilder::types::NodeTypes
 	*/
 	typedef types::NodeTypes NodeType;
 
@@ -576,7 +577,7 @@ namespace XMLBuilder
 	{
 		/**
 		 * @brief Check for base node type
-		 * @details Used to limit child node type only to types based on ChildableNode
+		 * @details Used to limit child node type only to types based on XMLBuilder::ChildableNode
 		 * @tparam T Type to check
 		 */
 		template <typename T>
@@ -643,7 +644,7 @@ namespace XMLBuilder
 			 * @warning Throws std::out_of_range exception when index is invalid
 			 * @warning Throws std::invalid_argument exception when cast to requested type failed
 			 * 
-			 * @tparam ChildType types::ChildableNodeBased type of child
+			 * @tparam ChildType XMLBuilder::types::ChildableNodeBased type of child
 			 * @param idx Index of child node
 			 * @return ChildType& Reference to child object
 			 */
@@ -671,7 +672,7 @@ namespace XMLBuilder
 			 * @warning Throws std::out_of_range exception when index is invalid
 			 * @warning Throws std::invalid_argument exception when cast to requested type failed
 			 * 
-			 * @tparam ChildType types::ChildableNodeBased type of child
+			 * @tparam ChildType XMLBuilder::types::ChildableNodeBased type of child
 			 * @param idx Index of child node
 			 * @return const ChildType& Constant reference to child object
 			 */
@@ -695,7 +696,7 @@ namespace XMLBuilder
 
 			/**
 			* @brief Returns iterator pointing to first child node
-			* @return std::vector<std::shared_ptr<ChildableNode>>::iterator Iterator pointing to first child node
+			* @return std::vector<std::shared_ptr<XMLBuilder::ChildableNode>>::iterator Iterator pointing to first child node
 			*/
 			std::vector<std::shared_ptr<ChildableNode>>::iterator begin()
 			{
@@ -704,7 +705,7 @@ namespace XMLBuilder
 
 			/**
 			* @brief Returns iterator pointing to one past last child node
-			* @return std::vector<std::shared_ptr<ChildableNode>>::iterator Iterator pointing to one past last child node
+			* @return std::vector<std::shared_ptr<XMLBuilder::ChildableNode>>::iterator Iterator pointing to one past last child node
 			*/
 			std::vector<std::shared_ptr<ChildableNode>>::iterator end()
 			{
@@ -713,7 +714,7 @@ namespace XMLBuilder
 
 			/**
 			* @brief Returns read-only iterator pointing to first child node
-			* @return std::vector<std::shared_ptr<ChildableNode>>::const_iterator Read-only iterator pointing to first child node
+			* @return std::vector<std::shared_ptr<XMLBuilder::ChildableNode>>::const_iterator Read-only iterator pointing to first child node
 			*/
 			[[nodiscard]] std::vector<std::shared_ptr<ChildableNode>>::const_iterator begin() const
 			{
@@ -722,7 +723,7 @@ namespace XMLBuilder
 
 			/**
 			* @brief Returns read-only iterator pointing to one past last child node
-			* @return std::vector<std::shared_ptr<ChildableNode>>::const_iterator Read-only iterator pointing to one past last child node
+			* @return std::vector<std::shared_ptr<XMLBuilder::ChildableNode>>::const_iterator Read-only iterator pointing to one past last child node
 			*/
 			[[nodiscard]] std::vector<std::shared_ptr<ChildableNode>>::const_iterator end() const
 			{
@@ -731,7 +732,7 @@ namespace XMLBuilder
 
 			/**
 			* @brief Returns reverse iterator pointing to last child node
-			* @return std::vector<std::shared_ptr<ChildableNode>>::reverse_iterator Reverse iterator pointing to last child node
+			* @return std::vector<std::shared_ptr<XMLBuilder::ChildableNode>>::reverse_iterator Reverse iterator pointing to last child node
 			*/
 			std::vector<std::shared_ptr<ChildableNode>>::reverse_iterator rbegin()
 			{
@@ -740,7 +741,7 @@ namespace XMLBuilder
 
 			/**
 			* @brief Returns reverse iterator pointing to one before first child node
-			* @return std::vector<std::shared_ptr<ChildableNode>>::reverse_iterator Iterator pointing to one before first child node
+			* @return std::vector<std::shared_ptr<XMLBuilder::ChildableNode>>::reverse_iterator Iterator pointing to one before first child node
 			*/
 			std::vector<std::shared_ptr<ChildableNode>>::reverse_iterator rend()
 			{
@@ -749,7 +750,7 @@ namespace XMLBuilder
 
 			/**
 			* @brief Returns read-only reverse iterator pointing to last child node
-			* @return std::vector<std::shared_ptr<ChildableNode>>::const_reverse_iterator Read-only reverse iterator pointing to last children node
+			* @return std::vector<std::shared_ptr<XMLBuilder::ChildableNode>>::const_reverse_iterator Read-only reverse iterator pointing to last children node
 			*/
 			[[nodiscard]] std::vector<std::shared_ptr<ChildableNode>>::const_reverse_iterator rbegin() const
 			{
@@ -758,7 +759,7 @@ namespace XMLBuilder
 
 			/**
 			* @brief Returns read-only reverse iterator pointing to one before first child node
-			* @return std::vector<std::shared_ptr<ChildableNode>>::const_reverse_iterator Read-only reverse iterator pointing to one before first child node
+			* @return std::vector<std::shared_ptr<XMLBuilder::ChildableNode>>::const_reverse_iterator Read-only reverse iterator pointing to one before first child node
 			*/
 			[[nodiscard]] std::vector<std::shared_ptr<ChildableNode>>::const_reverse_iterator rend() const
 			{
@@ -771,7 +772,7 @@ namespace XMLBuilder
             * @warning Throws std::out_of_range exception when index is invalid
             *
             * @param idx Index of child node
-            * @return ChildableNode& Reference to child object
+            * @return XMLBuilder::ChildableNode& Reference to child object
             */
 			ChildableNode& operator[](const size_t idx)
 			{
@@ -787,9 +788,9 @@ namespace XMLBuilder
 			* @warning Throws std::out_of_range exception when index is invalid
 			*
 			* @param idx Index of child node
-			* @return const NodeBase& Constant reference to child object
+			* @return const XMLBuilder::ChildableNode& Constant reference to child object
 			*/
-			const NodeBase& operator[](const size_t idx) const
+			const ChildableNode& operator[](const size_t idx) const
 			{
 				if (idx >= ChildrenCount())
 					throw std::out_of_range("Index out of range");
@@ -801,8 +802,8 @@ namespace XMLBuilder
 			/**
 			 * @brief Check if node have children
 			 * 
-			 * @return true Node have children
-			 * @return false Node don't have children
+			 * @return true %Node have children
+			 * @return false %Node don't have children
 			 */
 			[[nodiscard]] bool _HaveChildren() const // NOLINT(*-reserved-identifier)
 			{
@@ -823,7 +824,7 @@ namespace XMLBuilder
 
 		private:
 			/**
-			 * @brief Child storage as vector of shared pointer of ChildableNode
+			 * @brief Child storage as vector of shared pointer of XMLBuilder::ChildableNode
 			 */
 			std::vector<std::shared_ptr<ChildableNode>> m_children;
 		};
@@ -831,15 +832,15 @@ namespace XMLBuilder
 
 	/**
 	 * @brief Most basic node
-	 * @details Node with basic node interface, tag and attributes
+	 * @details %Node with basic node interface, tag and attributes
 	 */
 	class Node final : public meta::NodeBase, public meta::Tagged, public meta::Attributable<Node>
 	{
 	public:
 		/**
-		 * @brief Construct a new Node object
+		 * @brief Construct a new %Node object
 		 * 
-		 * @tparam T types::Strings type of tag
+		 * @tparam T XMLBuilder::types::Strings type of tag
 		 * @param tag Value of the tag
 		 */
 		template<types::Strings T>
@@ -849,9 +850,9 @@ namespace XMLBuilder
 
 		/**
 		* @brief Return type of the node
-		* @details Implementation of meta::NodeBase virtual method that signals true type of the node when in it's node base form
+		* @details Implementation of XMLBuilder::meta::NodeBase virtual method that signals true type of the node when in it's node base form
 		*
-		* @return types::NodeTypes Type of the node
+		* @return XMLBuilder::types::NodeTypes::NT_NODE
 		*/
 		[[nodiscard]] types::NodeTypes Type() const override
 		{
@@ -860,7 +861,7 @@ namespace XMLBuilder
 
 	protected:
 		/**
-		 * @brief Implementation of meta::NodeBase::_Generate method
+		 * @brief Implementation of XMLBuilder::meta::NodeBase::_Generate method
 		 * @details Method for outputing it's XML representation to output stream
 		 * 
 		 * @param outputStream Output stream
@@ -880,8 +881,8 @@ namespace XMLBuilder
 
 
 	/**
-	 * @brief Node for storing value
-	 * @details Node with base node interface, tag, attributes and storage for value
+	 * @brief %Node for storing value
+	 * @details %Node with base node interface, tag, attributes and storage for value
 	 */
 	class ValueNode final : public meta::NodeBase, public meta::Tagged, public meta::Attributable<ValueNode>
 	{
@@ -889,10 +890,9 @@ namespace XMLBuilder
 		/**
 		 * @brief Construct a new Value %Node object
 		 * @details Create node from tag and stringlike value
-		 * @warning Throws invalid_argument exception if called with precision value lower than 0
 		 * 
-		 * @tparam T types::Strings type of tag
-		 * @tparam V types::Stringlike type of value
+		 * @tparam T XMLBuilder::types::Strings type of tag
+		 * @tparam V XMLBuilder::types::Stringlike type of value
 		 * @param tag Value of the tag
 		 * @param value Value to store in node
 		 */
@@ -908,10 +908,9 @@ namespace XMLBuilder
 		/**
 		 * @brief Construct a new Value Node object
 		 * @details Create node from tag and floating point value
-		 * @warning Throws invalid_argument exception if value is empty
 		 * 
-		 * @tparam T types::Strings type of tag
-		 * @tparam V types::Floating type of value
+		 * @tparam T XMLBuilder::types::Strings type of tag
+		 * @tparam V XMLBuilder::types::Floating type of value
 		 * @param tag Value of the tag
 		 * @param value Value to store in node
 		 * @param precision Fixed precision of floating point value to store
@@ -923,9 +922,20 @@ namespace XMLBuilder
 		{ }
 
 		/**
+		* @brief Return type of the node
+		* @details Implementation of XMLBuilder::meta::NodeBase virtual method that signals true type of the node when in it's node base form
+		*
+		* @return XMLBuilder::types::NodeTypes::NT_VALUE
+		*/
+		[[nodiscard]] types::NodeTypes Type() const override
+		{
+			return types::NodeTypes::NT_VALUE;
+		}
+
+		/**
 		 * @brief Modify value of node by stringlike value
 		 * 
-		 * @tparam V types::Stringlike type of value
+		 * @tparam V XMLBuilder::types::Stringlike type of value
 		 * @param value New value for the node
 		 * @return true Value was modified
 		 * @return false Value was invalid
@@ -942,7 +952,7 @@ namespace XMLBuilder
 		/**
 		 * @brief Modify value of node by floating point value
 		 * 
-		 * @tparam V types::Floating type of value
+		 * @tparam V XMLBuilder::types::Floating type of value
 		 * @param value New value for the node
 		 * @param precision Fixed precision of floating point value
 		 * @return true Value was modified
@@ -967,21 +977,10 @@ namespace XMLBuilder
 		}
 
 		/**
-		* @brief Return type of the node
-		* @details Implementation of meta::NodeBase virtual method that signals true type of the node when in it's node base form
-		*
-		* @return types::NodeTypes Type of the node
-		*/
-		[[nodiscard]] types::NodeTypes Type() const override
-		{
-			return types::NodeTypes::NT_VALUE;
-		}
-
-		/**
 		 * @brief Modify value of node by stringlike value
-		 * @warning Throws invalid_argument exception if value is empty
+		 * @warning Throws std::invalid_argument exception if value is empty
 		 * 
-		 * @tparam V types::Stringlike type of value
+		 * @tparam V XMLBuilder::types::Stringlike type of value
 		 * @param value New value for the node
 		 * @return ValueNode& Return self reference for chaining
 		 */
@@ -998,11 +997,10 @@ namespace XMLBuilder
 
 		/**
 		 * @brief Modify value of node by floating point value
-		 * @warning Throws invalid_argument exception if value is empty
-		 * @warning Throws invalid_argument exception if called with precision value lower than 0
+		 * @warning Throws std::invalid_argument exception if called with precision value lower than 0
 		 * 
-		 * @tparam V types::Floating type of value
-		 * @tparam P types::Integral type of value precision
+		 * @tparam V XMLBuilder::types::Floating type of value
+		 * @tparam P XMLBuilder::types::Integral type of value precision
 		 * @param data Pair of value and fixed value precision
 		 * @return ValueNode& Return self reference for chaining
 		 */
@@ -1019,7 +1017,7 @@ namespace XMLBuilder
 
 	protected:
 		/**
-		 * @brief Implementation of meta::NodeBase::_Generate method
+		 * @brief Implementation of XMLBuilder::meta::NodeBase::_Generate method
 		 * @details Method for outputing it's XML representation to output stream
 		 * 
 		 * @param outputStream Output stream
@@ -1045,8 +1043,8 @@ namespace XMLBuilder
 
 
 	/**
-	 * @brief Node for storing other nodes
-	 * @details Node with base node interface, tag, attributes and storage of other nodes
+	 * @brief %Node for storing other nodes
+	 * @details %Node with base node interface, tag, attributes and storage of other nodes
 	 */
 	class ParentNode final : public meta::NodeBase, public meta::Tagged, public meta::Attributable<ParentNode>, public meta::ChildrenStore<ParentNode>
 	{
@@ -1054,7 +1052,7 @@ namespace XMLBuilder
 		/**
 		 * @brief Construct a new Parent %Node object
 		 * 
-		 * @tparam T types::Strings type of tag
+		 * @tparam T XMLBuilder::types::Strings type of tag
 		 * @param tag Value of the tag
 		 */
 		template<types::Strings T>
@@ -1064,9 +1062,9 @@ namespace XMLBuilder
 
 		/**
 		* @brief Return type of the node
-		* @details Implementation of meta::NodeBase virtual method that signals true type of the node when in it's node base form
+		* @details Implementation of XMLBuilder::meta::NodeBase virtual method that signals true type of the node when in it's node base form
 		*
-		* @return types::NodeTypes Type of the node
+		* @return XMLBuilder::types::NodeTypes::NT_PARENT
 		*/
 		[[nodiscard]] types::NodeTypes Type() const override
 		{
@@ -1075,7 +1073,7 @@ namespace XMLBuilder
 
 	protected:
 		/**
-		 * @brief Implementation of meta::NodeBase::_Generate method
+		 * @brief Implementation of XMLBuilder::meta::NodeBase::_Generate method
 		 * @details Method for outputing it's XML representation and of children nodes stored in it to output stream
 		 * 
 		 * @param outputStream Output stream
@@ -1107,8 +1105,8 @@ namespace XMLBuilder
 
 
 	/**
-	 * @brief Node for storing other nodes
-	 * @details Node without interface of other standard nodes, used only for storing nodes on the highest level
+	 * @brief %Node for storing other nodes
+	 * @details %Node without interface of other standard nodes, used only for storing nodes on the highest level
 	 */
 	class RootNode final : public meta::Generatable, public meta::ChildrenStore<RootNode>
 	{
@@ -1120,7 +1118,7 @@ namespace XMLBuilder
 
 	protected:
 		/**
-		 * @brief Implementation of meta::NodeBase::_Generate method
+		 * @brief Implementation of XMLBuilder::meta::NodeBase::_Generate method
 		 * @details Method for outputing XML representation of children nodes stored in it to output stream
 		 * @details This node don't have any other function than storing children and can't be used only as most top level node
 		 * 
