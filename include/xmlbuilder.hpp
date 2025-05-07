@@ -90,7 +90,7 @@ namespace XMLBuilder
 			 * @return std::string Value converted to string
 			 */
 			template<Stringlike T>
-			std::string toString(const T& t)
+			auto toString(const T& t) -> std::string
 			{
 				if constexpr (Stringable<T>)
 					return std::format("{}", t);
@@ -108,7 +108,7 @@ namespace XMLBuilder
 			 * @return std::string %Floating point number converted to string
 			 */
 			template<Floating T>
-			std::string floatingToString(const T value, const size_t precision)
+			auto floatingToString(const T value, const size_t precision) -> std::string
 			{
 				std::ostringstream ss;
 				ss << std::fixed << std::setprecision(precision); // NOLINT(*-narrowing-conversions)
@@ -157,7 +157,7 @@ namespace XMLBuilder
             * @param tag New tag of the node
             */
 			template<types::Strings T>
-            bool SetTag(const T& tag)
+            auto SetTag(const T& tag) -> bool
             {
                 const std::string newTag(tag);
 	            if (newTag.empty()) return false;
@@ -171,7 +171,7 @@ namespace XMLBuilder
             *
             * @return const std::string& Constant reference to node tag
             */
-			[[nodiscard]] const std::string& GetTag() const
+			[[nodiscard]] auto GetTag() const -> const std::string&
 			{
 			    return m_tag;
 			}
@@ -201,7 +201,7 @@ namespace XMLBuilder
 			 * @param encoding Encoding string for XML header
 			 * @return std::string Final output string
 			 */
-			[[nodiscard]] std::string Generate(const std::string& version = "1.0", const std::string& encoding = "Windows-1250") const
+			[[nodiscard]] auto Generate(const std::string& version = "1.0", const std::string& encoding = "Windows-1250") const -> std::string
 			{
 				std::ostringstream outputStream;
 				outputStream << "<?xml version=\"" << version << "\" encoding=\"" << encoding << "\"?>" << std::endl;
@@ -215,7 +215,7 @@ namespace XMLBuilder
 			 * @param stream Reference to output stream
 			 * @return std::ostream& Reference to output stream
 			 */
-			std::ostream& Print(std::ostream& stream) const
+			auto Print(std::ostream& stream) const -> std::ostream&
 			{
 				stream << Generate();
 				return stream;
@@ -228,7 +228,7 @@ namespace XMLBuilder
 			 * @param object Reference to object being printed
 			 * @return std::ostream& Reference to output stream
 			 */
-			friend std::ostream& operator<<(std::ostream& stream, const Generatable& object)
+			friend auto operator<<(std::ostream& stream, const Generatable& object) -> std::ostream&
 			{
 				return object.Print(stream);
 			}
@@ -252,7 +252,7 @@ namespace XMLBuilder
 			 * @param depth Current depth in node tree
 			 * @return std::string Padding string
 			 */
-			[[nodiscard]] static std::string _GenerateDepthPadding(const size_t depth)  // NOLINT(*-reserved-identifier)
+			[[nodiscard]] static auto _GenerateDepthPadding(const size_t depth) -> std::string  // NOLINT(*-reserved-identifier)
 			{
 			    // Easy way of returning string with *n* characters
 			    return std::string(depth, '\t'); // NOLINT(*-return-braced-init-list)
@@ -278,6 +278,8 @@ namespace XMLBuilder
 		template<class ParentType>
 		class Attributable
 		{
+			Attributable() = default;
+
 		public:
 			virtual ~Attributable() = default;
 
@@ -294,7 +296,7 @@ namespace XMLBuilder
 			 * @return ParentType& Return self reference based on parent type for chaining
 			 */
 			template<types::Strings N, types::Stringlike V>
-			ParentType& SetAttribute(const N& name, const V& value)
+			auto SetAttribute(const N& name, const V& value) -> ParentType&
 			{
 				const std::string key(name);
 				if (key.empty())
@@ -318,7 +320,7 @@ namespace XMLBuilder
 			 * @return ParentType& Return self reference based on parent type for chaining
 			 */
 			template<types::Strings N, types::Floating V>
-			ParentType& SetAttribute(const N& name, const V value, size_t precision)
+			auto SetAttribute(const N& name, const V value, size_t precision) -> ParentType&
 			{
 				const std::string key(name);
 				if (key.empty())
@@ -337,7 +339,7 @@ namespace XMLBuilder
 			 * @return false Attribute name is not present in the node
 			 */
 			template<types::Strings N>
-			bool ContainsAttribute(const N& name) const
+			auto ContainsAttribute(const N& name) const -> bool
 			{
 				const std::string key(name);
 				if (key.empty()) return false;
@@ -353,7 +355,7 @@ namespace XMLBuilder
 			 * @return false Invalid name or attribute not present in node
 			 */
 			template<types::Strings N>
-			bool RemoveAttribute(const N& name)
+			auto RemoveAttribute(const N& name) -> bool
 			{
 				const std::string key(name);
 				if (key.empty()) return false;
@@ -374,7 +376,7 @@ namespace XMLBuilder
 			 * @return std::string& Reference to the string value of attribute
 			 */
 			template<types::Strings N>
-			std::string& GetAttribute(const N& name)
+			auto GetAttribute(const N& name) -> std::string&
 			{
 				const std::string key(name);
 				if (key.empty())
@@ -396,7 +398,7 @@ namespace XMLBuilder
 			 * @return const std::string& Constant reference to the string value of attribute
 			 */
 			template<types::Strings N>
-			const std::string& GetAttribute(const N& name) const
+			auto GetAttribute(const N& name) const -> const std::string&
 			{
 				const std::string key(name);
 				if (key.empty())
@@ -419,7 +421,7 @@ namespace XMLBuilder
 			 * @return std::string& Reference to the string value of attribute
 			 */
 			template<types::Strings N>
-			std::string& operator[](const N& name)
+			auto operator[](const N& name) -> std::string&
 			{
 				return GetAttribute(name);
 			}
@@ -435,7 +437,7 @@ namespace XMLBuilder
 			 * @return const std::string& Constant reference to the string value of attribute
 			 */
 			template<types::Strings N>
-			const std::string& operator[](const N& name) const
+			auto operator[](const N& name) const -> const std::string&
 			{
 				return GetAttribute(name);
 			}
@@ -450,7 +452,7 @@ namespace XMLBuilder
 			 * @return ParentType& Return self reference based on parent type for chaining
 			 */
 			template<types::Strings N, types::Stringlike V>
-			ParentType& operator<<(const std::pair<N, V>& data)
+			auto operator<<(const std::pair<N, V>& data) -> ParentType&
 			{
 				const std::string key(data.first);
 				if (key.empty())
@@ -473,7 +475,7 @@ namespace XMLBuilder
 			 * @return ParentType& Return self reference based on parent type for chaining
 			 */
 			template<types::Strings N, types::Floating V, types::Integral P>
-			ParentType& operator<<(const std::pair<N, std::pair<V, P>>& data)
+			auto operator<<(const std::pair<N, std::pair<V, P>>& data) -> ParentType&
 			{
 				const std::string key(data.first);
 				if (key.empty())
@@ -506,7 +508,8 @@ namespace XMLBuilder
 			 * @details Attributes are stored like name, value pairs because names of the attributes need to be unique
 			 */
 			std::map<std::string, std::string> m_attributes;
-		};
+		friend ParentType;
+};
 
 
 		/**
@@ -531,7 +534,7 @@ namespace XMLBuilder
 		    *
 		    * @return XMLBuilder::types::NodeTypes Type of the node
             */
-		    [[nodiscard]] virtual types::NodeTypes Type() const = 0;
+		    [[nodiscard]] virtual auto Type() const -> types::NodeTypes = 0;
 
 			/**
 			* @brief Cast instance of the base node class as parent type
@@ -542,7 +545,7 @@ namespace XMLBuilder
 			* @return ParentType& Reference to this object casted to parent type
 			*/
 			template<class ParentType = NodeBase>
-			ParentType& As()
+			auto As() -> ParentType&
 			{
 				if constexpr (!std::is_base_of_v<NodeBase, ParentType>)
 					throw std::invalid_argument("Node type is not a child");
@@ -565,13 +568,13 @@ namespace XMLBuilder
 	* @brief Common type for nodes that can be added as child node
 	* @details Exposed XMLBuilder::meta::NodeBase for users to use for referencing common type for all nodes that can be assigned as child nodes
 	*/
-	typedef meta::NodeBase ChildableNode;
+	using ChildableNode = meta::NodeBase;
 
 	/**
 	* @brief Types of nodes
 	* @details User exposed XMLBuilder::types::NodeTypes
 	*/
-	typedef types::NodeTypes NodeType;
+	using NodeType = types::NodeTypes;
 
 	namespace types
 	{
@@ -596,6 +599,8 @@ namespace XMLBuilder
 		template<class ParentType>
 		class ChildrenStore
 		{
+			ChildrenStore() = default;
+
 		public:
 			virtual ~ChildrenStore() = default;
 
@@ -608,7 +613,7 @@ namespace XMLBuilder
 			 * @return ParentType& Return self reference based on parent type for chaining
 			 */
 			template<types::ChildableNodeBased ChildType>
-			ParentType& AddChild(const ChildType& child)
+			auto AddChild(const ChildType& child) -> ParentType&
 			{
 				m_children.push_back(std::make_shared<ChildType>(child));
 				return static_cast<ParentType&>(*this);
@@ -619,7 +624,7 @@ namespace XMLBuilder
 			 * 
 			 * @return size_t Number of stored children
 			 */
-			[[nodiscard]] size_t ChildrenCount() const
+			[[nodiscard]] auto ChildrenCount() const -> size_t
 			{
 				return m_children.size();
 			}
@@ -631,7 +636,7 @@ namespace XMLBuilder
 			 * @return true Child was removed
 			 * @return false Invalid index of a child
 			 */
-			bool RemoveChild(const size_t idx)
+			auto RemoveChild(const size_t idx) -> bool
 			{
 				if (idx >= ChildrenCount()) return false;
 				m_children.erase(m_children.begin() + idx); // NOLINT(*-narrowing-conversions)
@@ -649,7 +654,7 @@ namespace XMLBuilder
 			 * @return ChildType& Reference to child object
 			 */
 			template<types::ChildableNodeBased ChildType = ChildableNode>
-			ChildType& ChildAt(const size_t idx)
+			auto ChildAt(const size_t idx) -> ChildType&
 			{
 				if (idx >= ChildrenCount())
 					throw std::out_of_range("Index out of range");
@@ -677,7 +682,7 @@ namespace XMLBuilder
 			 * @return const ChildType& Constant reference to child object
 			 */
 			template<types::ChildableNodeBased ChildType = ChildableNode>
-			const ChildType& ChildAt(const size_t idx) const
+			auto ChildAt(const size_t idx) const -> const ChildType&
 			{
 				if (idx >= ChildrenCount())
 					throw std::out_of_range("Index out of range");
@@ -698,7 +703,7 @@ namespace XMLBuilder
 			* @brief Returns iterator pointing to first child node
 			* @return std::vector<std::shared_ptr<XMLBuilder::ChildableNode>>::iterator Iterator pointing to first child node
 			*/
-			std::vector<std::shared_ptr<ChildableNode>>::iterator begin()
+			auto begin() -> std::vector<std::shared_ptr<ChildableNode>>::iterator
 			{
 				return m_children.begin();
 			}
@@ -707,7 +712,7 @@ namespace XMLBuilder
 			* @brief Returns iterator pointing to one past last child node
 			* @return std::vector<std::shared_ptr<XMLBuilder::ChildableNode>>::iterator Iterator pointing to one past last child node
 			*/
-			std::vector<std::shared_ptr<ChildableNode>>::iterator end()
+			auto end() -> std::vector<std::shared_ptr<ChildableNode>>::iterator
 			{
 				return m_children.end();
 			}
@@ -716,7 +721,7 @@ namespace XMLBuilder
 			* @brief Returns read-only iterator pointing to first child node
 			* @return std::vector<std::shared_ptr<XMLBuilder::ChildableNode>>::const_iterator Read-only iterator pointing to first child node
 			*/
-			[[nodiscard]] std::vector<std::shared_ptr<ChildableNode>>::const_iterator begin() const
+			[[nodiscard]] auto begin() const -> std::vector<std::shared_ptr<ChildableNode>>::const_iterator
 			{
 				return m_children.begin();
 			}
@@ -725,7 +730,7 @@ namespace XMLBuilder
 			* @brief Returns read-only iterator pointing to one past last child node
 			* @return std::vector<std::shared_ptr<XMLBuilder::ChildableNode>>::const_iterator Read-only iterator pointing to one past last child node
 			*/
-			[[nodiscard]] std::vector<std::shared_ptr<ChildableNode>>::const_iterator end() const
+			[[nodiscard]] auto end() const -> std::vector<std::shared_ptr<ChildableNode>>::const_iterator
 			{
 				return m_children.end();
 			}
@@ -734,7 +739,7 @@ namespace XMLBuilder
 			* @brief Returns reverse iterator pointing to last child node
 			* @return std::vector<std::shared_ptr<XMLBuilder::ChildableNode>>::reverse_iterator Reverse iterator pointing to last child node
 			*/
-			std::vector<std::shared_ptr<ChildableNode>>::reverse_iterator rbegin()
+			auto rbegin() -> std::vector<std::shared_ptr<ChildableNode>>::reverse_iterator
 			{
 				return m_children.rbegin();
 			}
@@ -743,7 +748,7 @@ namespace XMLBuilder
 			* @brief Returns reverse iterator pointing to one before first child node
 			* @return std::vector<std::shared_ptr<XMLBuilder::ChildableNode>>::reverse_iterator Iterator pointing to one before first child node
 			*/
-			std::vector<std::shared_ptr<ChildableNode>>::reverse_iterator rend()
+			auto rend() -> std::vector<std::shared_ptr<ChildableNode>>::reverse_iterator
 			{
 				return m_children.rend();
 			}
@@ -752,7 +757,7 @@ namespace XMLBuilder
 			* @brief Returns read-only reverse iterator pointing to last child node
 			* @return std::vector<std::shared_ptr<XMLBuilder::ChildableNode>>::const_reverse_iterator Read-only reverse iterator pointing to last children node
 			*/
-			[[nodiscard]] std::vector<std::shared_ptr<ChildableNode>>::const_reverse_iterator rbegin() const
+			[[nodiscard]] auto rbegin() const -> std::vector<std::shared_ptr<ChildableNode>>::const_reverse_iterator
 			{
 				return m_children.rbegin();
 			}
@@ -761,7 +766,7 @@ namespace XMLBuilder
 			* @brief Returns read-only reverse iterator pointing to one before first child node
 			* @return std::vector<std::shared_ptr<XMLBuilder::ChildableNode>>::const_reverse_iterator Read-only reverse iterator pointing to one before first child node
 			*/
-			[[nodiscard]] std::vector<std::shared_ptr<ChildableNode>>::const_reverse_iterator rend() const
+			[[nodiscard]] auto rend() const -> std::vector<std::shared_ptr<ChildableNode>>::const_reverse_iterator
 			{
 				return m_children.rend();
 			}
@@ -774,7 +779,7 @@ namespace XMLBuilder
             * @param idx Index of child node
             * @return XMLBuilder::ChildableNode& Reference to child object
             */
-			ChildableNode& operator[](const size_t idx)
+			auto operator[](const size_t idx) -> ChildableNode&
 			{
 				if (idx >= ChildrenCount())
 					throw std::out_of_range("Index out of range");
@@ -790,7 +795,7 @@ namespace XMLBuilder
 			* @param idx Index of child node
 			* @return const XMLBuilder::ChildableNode& Constant reference to child object
 			*/
-			const ChildableNode& operator[](const size_t idx) const
+			auto operator[](const size_t idx) const -> const ChildableNode&
 			{
 				if (idx >= ChildrenCount())
 					throw std::out_of_range("Index out of range");
@@ -805,7 +810,7 @@ namespace XMLBuilder
 			 * @return true %Node have children
 			 * @return false %Node don't have children
 			 */
-			[[nodiscard]] bool _HaveChildren() const // NOLINT(*-reserved-identifier)
+			[[nodiscard]] auto _HaveChildren() const -> bool // NOLINT(*-reserved-identifier)
 			{
 				return !m_children.empty();
 			}
@@ -827,7 +832,8 @@ namespace XMLBuilder
 			 * @brief Child storage as vector of shared pointer of XMLBuilder::ChildableNode
 			 */
 			std::vector<std::shared_ptr<ChildableNode>> m_children;
-		};
+		friend ParentType;
+};
 	}
 
 	/**
@@ -854,7 +860,7 @@ namespace XMLBuilder
 		*
 		* @return XMLBuilder::types::NodeTypes::NT_NODE
 		*/
-		[[nodiscard]] types::NodeTypes Type() const override
+		[[nodiscard]] auto Type() const -> types::NodeTypes override
 		{
 		    return types::NodeTypes::NT_NODE;
 		}
@@ -927,7 +933,7 @@ namespace XMLBuilder
 		*
 		* @return XMLBuilder::types::NodeTypes::NT_VALUE
 		*/
-		[[nodiscard]] types::NodeTypes Type() const override
+		[[nodiscard]] auto Type() const -> types::NodeTypes override
 		{
 			return types::NodeTypes::NT_VALUE;
 		}
@@ -941,7 +947,7 @@ namespace XMLBuilder
 		 * @return false Value was invalid
 		 */
 		template<types::Stringlike V>
-		bool SetValue(const V& value)
+		auto SetValue(const V& value) -> bool
 		{
 			const std::string newValue(types::converters::toString(value));
 			if (newValue.empty()) return false;
@@ -959,7 +965,7 @@ namespace XMLBuilder
 		 * @return false Value was invalid
 		 */
 		template<types::Floating V>
-		bool SetValue(const V value, size_t precision)
+		auto SetValue(const V value, size_t precision) -> bool
 		{
 			const std::string newValue(types::converters::floatingToString(value, precision));
 			m_value = newValue;
@@ -971,7 +977,7 @@ namespace XMLBuilder
 		 * 
 		 * @return const std::string& Constant reference to node value string
 		 */
-		[[nodiscard]] const std::string& GetValue() const
+		[[nodiscard]] auto GetValue() const -> const std::string&
 		{
 			return m_value;
 		}
@@ -985,7 +991,7 @@ namespace XMLBuilder
 		 * @return ValueNode& Return self reference for chaining
 		 */
 		template<types::Stringlike V>
-		ValueNode& operator=(const V& value)
+		auto operator=(const V& value) -> ValueNode&
 		{
 			const std::string newValue(types::converters::toString(value));
 			if (newValue.empty())
@@ -1005,7 +1011,7 @@ namespace XMLBuilder
 		 * @return ValueNode& Return self reference for chaining
 		 */
 		template<types::Floating V, types::Integral P>
-		ValueNode& operator=(const std::pair<V, P>& data)
+		auto operator=(const std::pair<V, P>& data) -> ValueNode&
 		{
 			if (data.second < 0)
 				throw std::invalid_argument("Precision can't be lower than 0");
@@ -1066,7 +1072,7 @@ namespace XMLBuilder
 		*
 		* @return XMLBuilder::types::NodeTypes::NT_PARENT
 		*/
-		[[nodiscard]] types::NodeTypes Type() const override
+		[[nodiscard]] auto Type() const -> types::NodeTypes override
 		{
 			return types::NodeTypes::NT_PARENT;
 		}
