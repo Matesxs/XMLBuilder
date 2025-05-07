@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['rbegin_0',['rbegin',['../classXMLBuilder_1_1meta_1_1ChildrenStore.html#a6c895e25f5ccd6d2d88176bfcd9ac825',1,'XMLBuilder::meta::ChildrenStore::rbegin()'],['../classXMLBuilder_1_1meta_1_1ChildrenStore.html#a2154f4511a8da81e9c50fc05c3742c51',1,'XMLBuilder::meta::ChildrenStore::rbegin() const']]],
-  ['removeattribute_1',['RemoveAttribute',['../classXMLBuilder_1_1meta_1_1Attributable.html#a134c0686b98a050b023523e4dd8c1f5e',1,'XMLBuilder::meta::Attributable']]],
-  ['removechild_2',['RemoveChild',['../classXMLBuilder_1_1meta_1_1ChildrenStore.html#a94d44aec0410d3956d4ff0443ea0e78f',1,'XMLBuilder::meta::ChildrenStore']]],
-  ['rend_3',['rend',['../classXMLBuilder_1_1meta_1_1ChildrenStore.html#a0b9aa1bb424b3588f75a873fb2c79656',1,'XMLBuilder::meta::ChildrenStore::rend()'],['../classXMLBuilder_1_1meta_1_1ChildrenStore.html#a8dad05fba53a400d5073c9c98499e159',1,'XMLBuilder::meta::ChildrenStore::rend() const']]],
+  ['rbegin_0',['rbegin',['../classXMLBuilder_1_1meta_1_1ChildrenStore.html#a0eb672429ec9759300e95db066fac4f9',1,'XMLBuilder::meta::ChildrenStore::rbegin() -&gt; std::vector&lt; std::shared_ptr&lt; ChildableNode &gt; &gt;::reverse_iterator'],['../classXMLBuilder_1_1meta_1_1ChildrenStore.html#a526570120a2821f77989369f4bfe09b4',1,'XMLBuilder::meta::ChildrenStore::rbegin() const -&gt; std::vector&lt; std::shared_ptr&lt; ChildableNode &gt; &gt;::const_reverse_iterator']]],
+  ['removeattribute_1',['RemoveAttribute',['../classXMLBuilder_1_1meta_1_1Attributable.html#a998658ee7301cb761cf4cbd1594dd3ca',1,'XMLBuilder::meta::Attributable']]],
+  ['removechild_2',['RemoveChild',['../classXMLBuilder_1_1meta_1_1ChildrenStore.html#a8c8924069534afbd0e905fcbd48a20ea',1,'XMLBuilder::meta::ChildrenStore']]],
+  ['rend_3',['rend',['../classXMLBuilder_1_1meta_1_1ChildrenStore.html#a2f0548f4fb1f4a1db22deeeb9a47177d',1,'XMLBuilder::meta::ChildrenStore::rend() -&gt; std::vector&lt; std::shared_ptr&lt; ChildableNode &gt; &gt;::reverse_iterator'],['../classXMLBuilder_1_1meta_1_1ChildrenStore.html#a0d05845ddb83f7ec31bf242d2e561850',1,'XMLBuilder::meta::ChildrenStore::rend() const -&gt; std::vector&lt; std::shared_ptr&lt; ChildableNode &gt; &gt;::const_reverse_iterator']]],
   ['rootnode_4',['RootNode',['../classXMLBuilder_1_1RootNode.html#a14152ec999d488498402d20f3fe9e5ea',1,'XMLBuilder::RootNode']]]
 ];

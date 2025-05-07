@@ -6,6 +6,6 @@ var namespaceXMLBuilder =
     [ "ParentNode", "classXMLBuilder_1_1ParentNode.html", "classXMLBuilder_1_1ParentNode" ],
     [ "RootNode", "classXMLBuilder_1_1RootNode.html", "classXMLBuilder_1_1RootNode" ],
     [ "ValueNode", "classXMLBuilder_1_1ValueNode.html", "classXMLBuilder_1_1ValueNode" ],
-    [ "ChildableNode", "namespaceXMLBuilder.html#af64f189da99962b7256b176f2f2c8fef", null ],
-    [ "NodeType", "namespaceXMLBuilder.html#ad3c52bbe883c6c8252d8c6a81e4ff3d1", null ]
+    [ "ChildableNode", "namespaceXMLBuilder.html#a9a7c411156fabc73e04337935fd0f787", null ],
+    [ "NodeType", "namespaceXMLBuilder.html#a5dc5059822ddb5b85141eb8a430cb690", null ]
 ];

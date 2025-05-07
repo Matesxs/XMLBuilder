@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nodetype_0',['NodeType',['../namespaceXMLBuilder.html#ad3c52bbe883c6c8252d8c6a81e4ff3d1',1,'XMLBuilder']]]
+  ['nodetype_0',['NodeType',['../namespaceXMLBuilder.html#a5dc5059822ddb5b85141eb8a430cb690',1,'XMLBuilder']]]
 ];

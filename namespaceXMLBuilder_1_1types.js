@@ -1,8 +1,8 @@
 var namespaceXMLBuilder_1_1types =
 [
     [ "converters", "namespaceXMLBuilder_1_1types_1_1converters.html", [
-      [ "floatingToString", "namespaceXMLBuilder_1_1types_1_1converters.html#a67c0dc3f8a088b0eecb2eaf687108612", null ],
-      [ "toString", "namespaceXMLBuilder_1_1types_1_1converters.html#a44b1cc57c628401d5cd519a2c467501d", null ]
+      [ "floatingToString", "namespaceXMLBuilder_1_1types_1_1converters.html#a1462c20a8e26cb513824802565225971", null ],
+      [ "toString", "namespaceXMLBuilder_1_1types_1_1converters.html#a8663391e28b571a2fe3e66e1ab28fcbb", null ]
     ] ],
     [ "Strings", "conceptXMLBuilder_1_1types_1_1Strings.html", null ],
     [ "Stringable", "conceptXMLBuilder_1_1types_1_1Stringable.html", null ],

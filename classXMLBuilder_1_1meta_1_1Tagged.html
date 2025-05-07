@@ -132,13 +132,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a89434e361c0396deb71fc5c09204b28e"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a89434e361c0396deb71fc5c09204b28e">Tagged</a> (const T &amp;tag)</td></tr>
 <tr class="memdesc:a89434e361c0396deb71fc5c09204b28e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Tagged object.  <br /></td></tr>
 <tr class="separator:a89434e361c0396deb71fc5c09204b28e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16436823ec1c7f9462f4dab8d47e4992" id="r_a16436823ec1c7f9462f4dab8d47e4992"><td class="memTemplParams" colspan="2">template&lt;types::Strings T&gt; </td></tr>
-<tr class="memitem:a16436823ec1c7f9462f4dab8d47e4992"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a16436823ec1c7f9462f4dab8d47e4992">SetTag</a> (const T &amp;tag)</td></tr>
-<tr class="memdesc:a16436823ec1c7f9462f4dab8d47e4992"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modify tag of the node.  <br /></td></tr>
-<tr class="separator:a16436823ec1c7f9462f4dab8d47e4992"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7358da1e1778c8f1ad0a47d2faf60fe1" id="r_a7358da1e1778c8f1ad0a47d2faf60fe1"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7358da1e1778c8f1ad0a47d2faf60fe1">GetTag</a> () const</td></tr>
-<tr class="memdesc:a7358da1e1778c8f1ad0a47d2faf60fe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get node tag.  <br /></td></tr>
-<tr class="separator:a7358da1e1778c8f1ad0a47d2faf60fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab799db7f92e7f455da0a83fee54c4daa" id="r_ab799db7f92e7f455da0a83fee54c4daa"><td class="memTemplParams" colspan="2">template&lt;types::Strings T&gt; </td></tr>
+<tr class="memitem:ab799db7f92e7f455da0a83fee54c4daa"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ab799db7f92e7f455da0a83fee54c4daa">SetTag</a> (const T &amp;tag) -&gt; bool</td></tr>
+<tr class="memdesc:ab799db7f92e7f455da0a83fee54c4daa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modify tag of the node.  <br /></td></tr>
+<tr class="separator:ab799db7f92e7f455da0a83fee54c4daa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96609fc11b444087edc705b5f570f4e1" id="r_a96609fc11b444087edc705b5f570f4e1"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96609fc11b444087edc705b5f570f4e1">GetTag</a> () const -&gt; const std::string &amp;</td></tr>
+<tr class="memdesc:a96609fc11b444087edc705b5f570f4e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get node tag.  <br /></td></tr>
+<tr class="separator:a96609fc11b444087edc705b5f570f4e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -194,8 +194,8 @@ template&lt;types::Strings T&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a7358da1e1778c8f1ad0a47d2faf60fe1" name="a7358da1e1778c8f1ad0a47d2faf60fe1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7358da1e1778c8f1ad0a47d2faf60fe1">&#9670;&#160;</a></span>GetTag()</h2>
+<a id="a96609fc11b444087edc705b5f570f4e1" name="a96609fc11b444087edc705b5f570f4e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96609fc11b444087edc705b5f570f4e1">&#9670;&#160;</a></span>GetTag()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -204,10 +204,11 @@ template&lt;types::Strings T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const std::string &amp; XMLBuilder::meta::Tagged::GetTag </td>
+          <td class="memname">auto XMLBuilder::meta::Tagged::GetTag </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
+          <td> const -&gt; const std::string&amp;
+			</td>
         </tr>
       </table>
   </td>
@@ -223,8 +224,8 @@ template&lt;types::Strings T&gt; </div>
 
 </div>
 </div>
-<a id="a16436823ec1c7f9462f4dab8d47e4992" name="a16436823ec1c7f9462f4dab8d47e4992"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a16436823ec1c7f9462f4dab8d47e4992">&#9670;&#160;</a></span>SetTag()</h2>
+<a id="ab799db7f92e7f455da0a83fee54c4daa" name="ab799db7f92e7f455da0a83fee54c4daa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab799db7f92e7f455da0a83fee54c4daa">&#9670;&#160;</a></span>SetTag()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -235,10 +236,11 @@ template&lt;types::Strings T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool XMLBuilder::meta::Tagged::SetTag </td>
+          <td class="memname">auto XMLBuilder::meta::Tagged::SetTag </td>
           <td>(</td>
           <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em></span></td><td>)</td>
-          <td></td>
+          <td> -&gt; bool
+            </td>
         </tr>
       </table>
   </td>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['begin_0',['begin',['../classXMLBuilder_1_1meta_1_1ChildrenStore.html#a167e3b10a98d34111922e1e0d8886c81',1,'XMLBuilder::meta::ChildrenStore::begin()'],['../classXMLBuilder_1_1meta_1_1ChildrenStore.html#a5a29ec3281bc1f5edf5278ed8e22ef6e',1,'XMLBuilder::meta::ChildrenStore::begin() const']]]
+  ['begin_0',['begin',['../classXMLBuilder_1_1meta_1_1ChildrenStore.html#aecb2fb65d718253dab8b98658bf30efc',1,'XMLBuilder::meta::ChildrenStore::begin() -&gt; std::vector&lt; std::shared_ptr&lt; ChildableNode &gt; &gt;::iterator'],['../classXMLBuilder_1_1meta_1_1ChildrenStore.html#abd5607000996da0739ea1dfdbf0697ce',1,'XMLBuilder::meta::ChildrenStore::begin() const -&gt; std::vector&lt; std::shared_ptr&lt; ChildableNode &gt; &gt;::const_iterator']]]
 ];
